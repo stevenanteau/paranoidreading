@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>The Deep Reads — Gnostic Villains on Earth — Paranoid Reading</title>
+<title>The Deep Reads — Paranoid Reading</title>
 <style>
   :root{
     --ox:#a8342a; --ox-dim:#7a2620; --ink:#eae3d9; --gray:#9a9184; --faint:#4a4238;
-    --bg:#141210; --panel:#1b1815; --card:#211d19; --line:#332c25; --shadow:0 1px 3px rgba(0,0,0,.4);
+    --bg:#141210; --panel:#1b1815; --card:#211d19; --line:#332c25;
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{
@@ -18,68 +18,45 @@
     min-height:100vh;display:flex;flex-direction:column;
   }
   a{color:var(--ox)}
-  header{padding:22px 24px 0;max-width:760px;margin:0 auto;width:100%}
+  header{padding:22px 24px 0;max-width:900px;margin:0 auto;width:100%}
   .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
   .toplinks{display:flex;gap:16px;margin-top:8px}
   .toplinks a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);font-weight:bold;border-bottom:1px solid transparent;padding-bottom:1px}
   .toplinks a:hover{color:var(--ox);border-bottom-color:var(--ox)}
 
-  main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:34px 24px 70px}
+  main{flex:1;width:100%;max-width:900px;margin:0 auto;padding:34px 24px 70px}
 
-  .hero{text-align:center;margin-bottom:30px}
+  .hero{text-align:center;margin-bottom:36px}
   .sigil{margin:0 auto 22px;width:96px;height:96px;opacity:.85;display:block}
-  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ox);font-weight:bold;margin:0 0 12px}
-  h1{font-size:40px;letter-spacing:.01em;color:var(--ink);margin:0 0 8px;line-height:1.12}
-  .season{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 20px}
-  .lens{font-size:16px;color:var(--gray);line-height:1.7;max-width:600px;margin:0 auto;text-align:left}
-  .lens b{color:var(--ink)}
+  .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ox);font-weight:bold;margin:0 0 12px}
+  h1{font-size:44px;letter-spacing:.02em;color:var(--ink);margin:0 0 16px;line-height:1.1}
+  .intro{font-size:16px;color:var(--gray);line-height:1.7;max-width:560px;margin:0 auto}
+  .intro b{color:var(--ink)}
 
-  .how{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:26px 0 8px;font-size:13.5px;color:var(--gray);line-height:1.6}
-  .how b{color:var(--ox)}
+  .seclabel{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 14px;text-align:center}
 
-  .statusbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin:18px 0 6px}
-  .nowbox{font-size:13px;color:var(--gray)}
-  .nowbox b{color:var(--ink)}
-  .progwrap{flex:1;min-width:200px}
-  .progbar{height:8px;background:var(--faint);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
-  .progfill{height:100%;width:0;background:linear-gradient(90deg,var(--ox-dim),var(--ox));transition:width .3s}
-  .progtext{font-size:11.5px;color:var(--gray);margin-top:5px}
-  .resetbtn{font-family:inherit;font-size:11.5px;color:var(--faint);background:none;border:0;cursor:pointer;text-decoration:underline}
-  .resetbtn:hover{color:var(--ox)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+  .portal{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 22px;
+    text-decoration:none;display:flex;flex-direction:column;min-height:230px;transition:.18s;
+  }
+  .portal:hover{border-color:var(--ox-dim);transform:translateY(-2px)}
+  .p-badge{display:inline-block;align-self:flex-start;padding:2px 10px;border-radius:10px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;background:var(--ox-dim);color:var(--ink);margin-bottom:14px}
+  .p-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 6px}
+  .p-title{font-size:23px;color:var(--ox);font-weight:bold;margin:0 0 10px;letter-spacing:.01em;line-height:1.15}
+  .p-desc{font-size:14px;color:var(--gray);line-height:1.6;margin:0 0 16px;flex:1}
+  .p-foot{font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .p-go{color:var(--ox);font-weight:bold;letter-spacing:.05em;text-transform:uppercase;font-size:11px;flex:0 0 auto}
 
-  .bookhead{margin:30px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--ox)}
-  .bookhead .bt{font-size:22px;font-weight:bold;color:var(--ox);letter-spacing:.01em}
-  .bookhead .ba{font-size:14px;color:var(--gray);font-style:italic}
-  .bookhead .bm{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin-top:4px}
-
-  .week{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 15px;margin:0 0 8px;box-shadow:var(--shadow);position:relative}
-  .week.done{opacity:.52}
-  .week.current{border-color:var(--ox);box-shadow:0 0 0 1px var(--ox),0 2px 10px rgba(168,52,42,.25)}
-  .chk{flex:0 0 auto;padding-top:2px;position:relative}
-  .chk input{position:absolute;opacity:0;width:22px;height:22px;cursor:pointer;margin:0}
-  .box{display:inline-block;width:22px;height:22px;border:2px solid var(--faint);border-radius:6px;position:relative;cursor:pointer}
-  .chk input:checked + .box{background:var(--ox);border-color:var(--ox)}
-  .chk input:checked + .box::after{content:"\2713";color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:14px;font-weight:bold}
-  .wbody{flex:1;min-width:0}
-  .wtop{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
-  .wdate{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:bold;flex:0 0 auto}
-  .wtitle{font-size:15.5px;font-weight:bold;color:var(--ink)}
-  .week.done .wtitle{text-decoration:line-through;text-decoration-color:var(--faint)}
-  .wchap{display:block;font-size:13.5px;color:var(--gray);margin-top:1px}
-  .wnote{display:block;font-size:13px;color:#a89e8f;margin-top:6px;font-style:italic;line-height:1.55}
-  .wnote a{font-weight:bold}
-  .nowtag{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:bold;color:#fff;background:var(--ox);border-radius:9px;padding:2px 8px;margin-left:8px;vertical-align:middle}
-
-  .interlude{background:var(--panel);border:1px dashed var(--ox-dim)}
-  .interlude .wtitle{color:var(--ox)}
+  .portal.soon{cursor:default;opacity:.72}
+  .portal.soon:hover{transform:none;border-color:var(--line)}
+  .portal.soon .p-badge{background:var(--panel);color:var(--faint);border:1px solid var(--line)}
+  .portal.soon .p-title{color:var(--gray)}
 
   footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--gray)}
   footer a{font-weight:bold}
-  .followrow{margin:24px 0 4px;text-align:center}
-  .followrow a{display:inline-block;padding:9px 18px;border:1px solid var(--ox-dim);border-radius:8px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;color:var(--ink);background:var(--panel);margin:0 4px 8px;text-decoration:none;transition:.15s}
-  .followrow a:hover{background:var(--ox-dim);border-color:var(--ox)}
 
-  @media(max-width:560px){ h1{font-size:30px} .sigil{width:78px;height:78px} .wtop{flex-direction:column;gap:2px} }
+  @media(max-width:560px){ h1{font-size:32px} .sigil{width:78px;height:78px} }
 </style>
 </head>
 <body>
@@ -106,168 +83,35 @@
         <text x="100" y="196">XII</text>
       </g>
     </svg>
-    <p class="eyebrow">The Deep Reads</p>
-    <h1>Gnostic Villains on Earth</h1>
-    <p class="season">A Season · Fall 2026</p>
-    <p class="lens">Three American novels about evil that doesn't answer to anyone. The white whale, Popeye, and Judge Holden, villains who stop reading as men and start reading as something older and worse, running the world like it's theirs. We read <b>Melville, Faulkner, and McCarthy</b> through that lens, with the memoir Blood Meridian was built from and a crash course in Gnosticism to sharpen the knife. Sixteen weeks, one section a week, no skimming.</p>
+    <p class="eyebrow">A Paranoid Reading Program</p>
+    <h1>The Deep Reads</h1>
+    <p class="intro">Seasons, not single books. Every run is <b>three or four hard books read through one lens</b>, section by section, alongside the channel and the Substack. Pick a season and read it properly.</p>
   </div>
 
-  <div class="how">
-    <b>How it works.</b> A new section drops every Sunday. Read the week's chapters, then the video or the essay lands on the channel and the Substack. Check the box when you're done. The current week lights up on its own.
-  </div>
+  <p class="seclabel">The Seasons</p>
+  <div class="grid">
 
-  <div class="statusbar">
-    <div class="nowbox" id="nowbox"></div>
-    <div class="progwrap">
-      <div class="progbar"><div class="progfill" id="progfill"></div></div>
-      <div class="progtext"><span id="progtext">0 / 16 done</span> &nbsp;·&nbsp; <button class="resetbtn" id="resetbtn">reset</button></div>
+    <a class="portal" href="/slow-read/gnostic-villains">
+      <span class="p-badge">Now reading</span>
+      <div class="p-eyebrow">Fall 2026 &middot; 16 weeks</div>
+      <div class="p-title">Gnostic Villains on Earth</div>
+      <p class="p-desc">Melville, Faulkner, and McCarthy on evil that stops answering to anyone. Moby Dick, Sanctuary, and Blood Meridian, with a Gnosticism primer to sharpen the lens.</p>
+      <div class="p-foot"><span>Sep 6 &ndash; Dec 20</span><span class="p-go">Enter &rarr;</span></div>
+    </a>
+
+    <div class="portal soon">
+      <span class="p-badge">Coming later</span>
+      <div class="p-eyebrow">Winter 2027</div>
+      <div class="p-title">Season Two</div>
+      <p class="p-desc">The next lens is being sharpened. It'll land here when the fall run wraps.</p>
+      <div class="p-foot"><span>To be announced</span><span class="p-go">Soon</span></div>
     </div>
+
   </div>
 
-  <div id="schedule"></div>
-
-  <div class="followrow">
-    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Follow on Substack</a>
-    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Subscribe on YouTube</a>
-  </div>
+  <footer>
+    <p><a href="/every-book">The TBR</a> &nbsp;·&nbsp; <a href="/canon">The Canon</a> &nbsp;·&nbsp; <a href="/curriculums">The Curriculums</a> &nbsp;·&nbsp; <a href="/noided">The Noided List</a></p>
+  </footer>
 </main>
-
-<footer>
-  <p><a href="/every-book">The TBR</a> &nbsp;·&nbsp; <a href="/canon">The Canon</a> &nbsp;·&nbsp; <a href="/curriculums">The Curriculums</a> &nbsp;·&nbsp; <a href="/noided">The Noided List</a></p>
-</footer>
-
-<script>
-const SECTIONS = [
-  { kind:"loose", weeks:[
-    { date:"2026-09-06", title:"Intro week", chap:"Before we start",
-      note:'Watch McEvoy, <a href="https://www.youtube.com/watch?v=SVd7ITFGrJU" target="_blank" rel="noopener">How to Read Moby Dick (10 Tips)</a>. Get your copy, get your bearings.' }
-  ]},
-  { kind:"book", title:"Moby Dick", author:"Herman Melville", meta:"6 weeks · ~100 pages a week", weeks:[
-    { date:"2026-09-13", title:"Week 1 of 6", chap:"Chapters 1–23" },
-    { date:"2026-09-20", title:"Week 2 of 6", chap:"Chapters 24–45" },
-    { date:"2026-09-27", title:"Week 3 of 6", chap:"Chapters 46–68" },
-    { date:"2026-10-04", title:"Week 4 of 6", chap:"Chapters 69–91" },
-    { date:"2026-10-11", title:"Week 5 of 6", chap:"Chapters 92–113" },
-    { date:"2026-10-18", title:"Week 6 of 6", chap:"Chapters 114–135" }
-  ]},
-  { kind:"interlude", weeks:[
-    { date:"2026-10-25", title:"Interlude + rest week", chap:'"A Rose for Emily" — William Faulkner',
-      note:"One short story to catch your breath and cross into Faulkner country before Sanctuary." }
-  ]},
-  { kind:"book", title:"Sanctuary", author:"William Faulkner", meta:"3 weeks · the nasty one", weeks:[
-    { date:"2026-11-01", title:"Week 1 of 3", chap:"Chapters 1–11" },
-    { date:"2026-11-08", title:"Week 2 of 3", chap:"Chapters 12–21" },
-    { date:"2026-11-15", title:"Week 3 of 3", chap:"Chapters 22–31" }
-  ]},
-  { kind:"interlude", weeks:[
-    { date:"2026-11-22", title:"Interlude — sharpening the lens", chap:"My Confession (Ch. 39–42) + Hans Jonas, The Gnostic Religion (Ch. 3, pp. 48–91)",
-      note:'The source Blood Meridian was built from, plus the Gnosticism primer. Watch McEvoy, <a href="https://www.youtube.com/watch?v=If1Su5qh96Q" target="_blank" rel="noopener">the companion video</a>.' }
-  ]},
-  { kind:"book", title:"Blood Meridian", author:"Cormac McCarthy", meta:"4 weeks · the finale", weeks:[
-    { date:"2026-11-29", title:"Week 1 of 4", chap:"Chapters 1–6" },
-    { date:"2026-12-06", title:"Week 2 of 4", chap:"Chapters 7–12" },
-    { date:"2026-12-13", title:"Week 3 of 4", chap:"Chapters 13–18" },
-    { date:"2026-12-20", title:"Week 4 of 4", chap:"Chapters 19–23 + Epilogue",
-      note:'Close on Leo Daugherty, "Gravers False and True: Blood Meridian as Gnostic Tragedy." The whole season points here.' }
-  ]}
-];
-
-// flatten for ordering / current-week detection
-const ALL = [];
-SECTIONS.forEach(s => s.weeks.forEach(w => ALL.push(w)));
-const TOTAL = ALL.length;
-
-function ymd(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y, m-1, d); }
-function fmt(s){ const d=ymd(s); return d.toLocaleDateString("en-US",{month:"short",day:"numeric"}); }
-function todayMid(){ const t=new Date(); return new Date(t.getFullYear(),t.getMonth(),t.getDate()); }
-
-// current week = latest start date that is <= today, within the season window
-function currentIndex(){
-  const t=todayMid();
-  let idx=-1;
-  for(let i=0;i<ALL.length;i++){ if(ymd(ALL[i].date) <= t) idx=i; }
-  // if past the final week by more than 7 days, no current
-  if(idx===ALL.length-1){
-    const end=ymd(ALL[idx].date); const wk=new Date(end); wk.setDate(wk.getDate()+7);
-    if(t>=wk) return -2; // finished
-  }
-  return idx; // -1 = not started yet
-}
-
-const KEY="pr_deepreads_fall2026";
-function loadDone(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
-function saveDone(o){ try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){} }
-let done = loadDone();
-
-const curIdx = currentIndex();
-
-function render(){
-  const wrap=document.getElementById("schedule");
-  wrap.innerHTML="";
-  let i=0;
-  SECTIONS.forEach(sec=>{
-    if(sec.kind==="book"){
-      const h=document.createElement("div");
-      h.className="bookhead";
-      h.innerHTML='<span class="bt">'+sec.title+'</span> <span class="ba">'+sec.author+'</span><div class="bm">'+sec.meta+'</div>';
-      wrap.appendChild(h);
-    }
-    sec.weeks.forEach(w=>{
-      const idx=i;
-      const row=document.createElement("label");
-      row.className="week"+(sec.kind==="interlude"?" interlude":"");
-      if(done[w.date]) row.classList.add("done");
-      if(idx===curIdx) row.classList.add("current");
-      const now = idx===curIdx ? '<span class="nowtag">This week</span>' : '';
-      row.innerHTML =
-        '<span class="chk"><input type="checkbox" '+(done[w.date]?"checked":"")+' data-d="'+w.date+'"><span class="box"></span></span>'+
-        '<span class="wbody">'+
-          '<span class="wtop"><span class="wtitle">'+w.title+now+'</span><span class="wdate">'+fmt(w.date)+'</span></span>'+
-          '<span class="wchap">'+w.chap+'</span>'+
-          (w.note?'<span class="wnote">'+w.note+'</span>':'')+
-        '</span>';
-      wrap.appendChild(row);
-      i++;
-    });
-  });
-  wrap.querySelectorAll('input[type=checkbox]').forEach(cb=>{
-    cb.addEventListener("change",e=>{
-      const d=e.target.getAttribute("data-d");
-      if(e.target.checked) done[d]=1; else delete done[d];
-      saveDone(done); updateProgress();
-      e.target.closest(".week").classList.toggle("done", e.target.checked);
-    });
-  });
-}
-
-function updateProgress(){
-  const n=Object.keys(done).length;
-  const pct=Math.round(n/TOTAL*100);
-  document.getElementById("progfill").style.width=pct+"%";
-  document.getElementById("progtext").textContent=n+" / "+TOTAL+" done · "+pct+"%";
-}
-
-function setNow(){
-  const box=document.getElementById("nowbox");
-  if(curIdx===-1){
-    const start=ymd(ALL[0].date), t=todayMid();
-    const days=Math.round((start-t)/86400000);
-    const wks=Math.max(0,Math.ceil(days/7));
-    box.innerHTML = days>0
-      ? "Begins <b>Sep 6, 2026</b>"+(wks>0?" · in about "+wks+" week"+(wks===1?"":"s"):"")
-      : "Begins <b>Sep 6, 2026</b>";
-  } else if(curIdx===-2){
-    box.innerHTML = "<b>Finished.</b> That was Fall 2026.";
-  } else {
-    box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> · "+ALL[curIdx].chap;
-  }
-}
-
-document.getElementById("resetbtn").addEventListener("click",()=>{
-  if(confirm("Clear your checked weeks?")){ done={}; saveDone(done); render(); updateProgress(); }
-});
-
-render(); updateProgress(); setNow();
-</script>
 </body>
 </html>
