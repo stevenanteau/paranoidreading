@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Curriculums — Paranoid Reading</title>
+<style>
+  :root{
+    --ox:#6B1414; --ox2:#8f2320; --ink:#1a1a1a; --gray:#5a5a5a; --faint:#c9b8b8;
+    --paper:#faf7f2; --card:#ffffff; --line:#e7ddd6; --shadow:0 1px 2px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:Georgia,"Iowan Old Style","Times New Roman",serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--ox)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px 80px}
+  header{background:linear-gradient(180deg,#fbf9f5,#f4ede4);border-bottom:3px solid var(--ox);position:sticky;top:0;z-index:20}
+  .head-inner{max-width:900px;margin:0 auto;padding:14px 18px 12px}
+  .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  h1{margin:2px 0 2px;font-size:28px;letter-spacing:.05em;color:var(--ox)}
+  .sub{margin:0;color:var(--gray);font-style:italic;font-size:14px}
+  .progwrap{margin-top:10px;display:flex;align-items:center;gap:10px}
+  .progbar{flex:1;height:9px;background:#eaded4;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .progfill{height:100%;width:0;background:linear-gradient(90deg,var(--ox),var(--ox2));transition:width .3s}
+  .progtext{font-size:12.5px;color:var(--gray);white-space:nowrap}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;align-items:center}
+  .controls input[type=search],.controls select{font-family:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+  .controls input[type=search]{flex:1;min-width:180px}
+  .toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:#fff;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--ox)}
+  .btn{font-family:inherit;font-size:13px;color:var(--ox);background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 10px;cursor:pointer}
+  .btn:hover{background:#fbf3f0}
+  .count{font-size:12.5px;color:var(--gray);margin:4px 2px 14px}
+  details.legend{margin:0 0 16px;border:1px solid var(--line);border-radius:10px;background:#fff}
+  details.legend summary{cursor:pointer;padding:9px 12px;font-size:13px;color:var(--ox);font-weight:bold;letter-spacing:.02em}
+  .legend-body{padding:0 12px 12px;font-size:13px;color:var(--gray);line-height:1.7}
+  .vein{margin:26px 0 6px}
+  .vein .kicker{font-size:11px;letter-spacing:.22em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  .vein h2{margin:1px 0 8px;font-size:21px;letter-spacing:.03em;color:var(--ink)}
+  .vein-rule{height:2px;background:var(--ox);opacity:.85;border:0;margin:0 0 12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 10px;box-shadow:var(--shadow);transition:opacity .2s}
+  .card.done{opacity:.6}
+  .ctop{display:flex;gap:10px;align-items:flex-start}
+  .chk{flex:0 0 auto;padding-top:2px}
+  .chk input{position:absolute;opacity:0;width:22px;height:22px;cursor:pointer}
+  .box{display:inline-block;width:22px;height:22px;border:2px solid var(--faint);border-radius:6px;position:relative;cursor:pointer;transition:.15s}
+  .chk input:checked + .box{background:var(--ox);border-color:var(--ox)}
+  .chk input:checked + .box::after{content:"✓";color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:14px;font-weight:bold}
+  .chk input:focus-visible + .box{outline:2px solid var(--ox2);outline-offset:2px}
+  .cbody{flex:1;min-width:0}
+  .ctitle{font-size:17px;font-weight:bold;color:var(--ox);line-height:1.3}
+  .ctitle .star{color:var(--ox);font-size:14px;margin-right:2px}
+  .card.done .ctitle{text-decoration:line-through;text-decoration-color:var(--faint)}
+  .books{margin:8px 0 0;padding:0;list-style:none}
+  .books li{font-size:14px;color:var(--ink);padding:2px 0 2px 16px;position:relative}
+  .books li::before{content:"•";color:var(--ox);position:absolute;left:0}
+  .books li.opt{color:var(--gray)}
+  .books li.opt .tag{font-style:italic;font-size:12px;color:var(--faint);margin-left:6px}
+  .hyp{margin:10px 0 0;font-size:14.5px;color:#333;line-height:1.55}
+  .empty{padding:40px 10px;text-align:center;color:var(--gray);font-style:italic}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--gray)}
+  footer a{font-weight:bold}
+  @media(max-width:560px){h1{font-size:22px}.controls input[type=search]{min-width:120px}.ctitle{font-size:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="brand">Paranoid Reading</div>
+    <h1>The Curriculums</h1>
+    <p class="sub">99 themed routes through the Canon — three or four books, one argument each</p>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 99 done</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search a curriculum, book, or author…" autocomplete="off">
+    <select id="vein" aria-label="Filter by vein"></select>
+    <select id="sort" aria-label="Sort">
+      <option value="canon">Default order</option>
+      <option value="title">Title A–Z</option>
+      <option value="unread">Not started first</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="flagOnly"> ★ Flagships only</label>
+    <button class="btn" id="reset">Reset progress</button>
+  </div>
+  <div class="count" id="count"></div>
+
+  <details class="legend">
+    <summary>What this page is</summary>
+    <div class="legend-body">
+      A strand in the Canon is a mood. A curriculum is an argument — three books, sometimes four, tied to one idea, meant to be read together and then thought about as a set. ★ marks the fifteen flagships, the ones built to be videos first. Tick one off when you've finished the set. Your progress is saved in this browser only.
+    </div>
+  </details>
+
+  <div id="list"></div>
+
+  <footer>
+    <p>Part of <b>Paranoid Reading</b>. Your progress here is saved privately in this browser — nothing gets uploaded.</p>
+    <p><a href="/canon">← The full Canon (116 books)</a> &nbsp;·&nbsp; <a href="/every-book">Every Book (261) →</a> &nbsp;·&nbsp; <a href="https://substack.com/@paranoidreading">Paranoid Reading on Substack →</a></p>
+  </footer>
+</div>
+
+<script>
+const DATA = [{"vein":"The Core Slate","items":[{"t":"The Dystopia Canon Didn't Start With Orwell","f":true,"b":["The Iron Heel — Jack London","We — Yevgeny Zamyatin","Swastika Night — Katharine Burdekin"],"o":"Lord of the World — Robert Hugh Benson","h":"Everyone gives Orwell the credit. Wrong. The whole blueprint was done decades earlier, and one of the best versions is a 1937 Nazi-victory nightmare written by a woman hiding behind a man's name. Nobody's read it. We're fixing that."},{"t":"Damnation Country","f":true,"b":["Wise Blood — Flannery O'Connor","Outer Dark — Cormac McCarthy","Provinces of Night — William Gay"],"o":"Knockemstiff — Donald Ray Pollock","h":"O'Connor to McCarthy to William Gay, who nobody talks about and should. Same blood, same God, same violence. American gothic didn't die, it just stopped getting good cover art."},{"t":"How to Read a Conspiracy","f":true,"b":["Libra — Don DeLillo","American Tabloid — James Ellroy","Foucault's Pendulum — Umberto Eco"],"o":"Gravity's Rainbow — Thomas Pynchon","h":"Want to actually understand how the deep state works? Skip the nonfiction. DeLillo turns JFK into an engineered event, Ellroy turns the whole decade into a crime scene, and Eco just makes the conspiracy real. This is the syllabus."},{"t":"Demonology Noir","f":true,"b":["Falling Angel — William Hjortsberg","Legion — William Peter Blatty","War in Heaven — Charles Williams"],"o":"The Day After Judgment — James Blish","h":"The detective novel meets actual demonology and nobody remembers Charles Williams invented this whole thing in the 1930s. Falling Angel's the one to start with — a missing-persons case that turns out to be a damned soul."},{"t":"The Other Murakami","f":true,"b":["In the Miso Soup — Ryū Murakami","Out — Natsuo Kirino","The Thief — Fuminori Nakamura"],"o":"Coin Locker Babies — Ryū Murakami","h":"You know Haruki. Sad jazz, cats, parallel worlds. Ryū's the one you don't know, and he's writing the Tokyo underworld Haruki won't touch. Different Murakami, same last name, way more blood."},{"t":"Before Lovecraft","f":true,"b":["The King in Yellow — Robert W. Chambers","The Great God Pan — Arthur Machen","The House on the Borderland — William Hope Hodgson"],"o":"The Willows — Algernon Blackwood","h":"Lovecraft gets all the credit for cosmic horror and he stole from four guys who did it first. Start with King in Yellow — it's where True Detective got Carcosa and the Yellow King, and it's from 1895."},{"t":"Guts on the Page","f":true,"b":["The Broken Sword — Poul Anderson","The Black Company — Glen Cook","Death Angel's Shadow — Karl Edward Wagner"],"o":"The Last Wish — Andrzej Sapkowski","h":"All the doom and violence of Berserk, none of the thousand-page worldbuilding homework. Karl Edward Wagner's Kane basically invented grimdark before anyone had a word for it."},{"t":"The Prophets Were Right","f":true,"b":["Super Sad True Love Story — Gary Shteyngart","White Noise — Don DeLillo","Capitalist Realism — Mark Fisher"],"o":"Simulacra and Simulation — Jean Baudrillard","h":"These aren't warnings about some possible future. They're describing right now, screens and all. Shteyngart and DeLillo just got there early, and Fisher's the one who explains why it feels like this."},{"t":"The God-Haunted","f":true,"b":["Moby-Dick — Herman Melville","The Brothers Karamazov — Fyodor Dostoevsky","Blood Meridian — Cormac McCarthy"],"o":"Silence — Shūsaku Endō","h":"The three heaviest books in English are all secretly arguing about God. Read Blood Meridian like it's scripture and the Judge like he's a sermon. That's the move."},{"t":"Manga for People Who Don't Read Manga","f":true,"b":["Berserk — Kentaro Miura","Goodnight Punpun — Inio Asano","Blame! — Tsutomu Nihei"],"o":"Vinland Saga — Makoto Yukimura","h":"If you think manga's kid stuff, you're missing some of the best fiction being made right now, period. Goodnight Punpun will do to you what No Longer Human does. Consider yourself warned."},{"t":"Japan Dreamed the Bomb","f":true,"b":["Japan Sinks — Sakyo Komatsu","Ten Billion Days and One Hundred Billion Nights — Ryō Mitsuse","Automatic Eve — Rokuro Inui"],"o":"Inter Ice Age 4 — Kōbō Abe","h":"Japanese sci-fi doesn't dream about the future, it dreads it, because it's the only country actually writing from the other side of the bomb. Catastrophe here isn't a warning. It's a memory."},{"t":"The Company Man","f":true,"b":["The Quiet American — Graham Greene","Harlot's Ghost — Norman Mailer","Dog Soldiers — Robert Stone"],"o":"A Flag for Sunrise — Robert Stone","h":"The real history of the CIA isn't in the declassified files. It's in these three novels, where the Agency is basically a haunted house nobody can leave. Greene called Vietnam before it happened."},{"t":"Country Noir","f":true,"b":["The Friends of Eddie Coyle — George V. Higgins","The Killer Inside Me — Jim Thompson","Winter's Bone — Daniel Woodrell"],"o":"Cutter and Bone — Newton Thornburg","h":"Crime fiction where nobody wins. Rural, broke, no way out. Thompson's small-town deputy narrates his own psychopathy and it's still the coldest thing anyone's ever written in the genre."},{"t":"The Occult Underneath","f":true,"b":["The Twenty Days of Turin — Giorgio De Maria","From Hell — Alan Moore","Mumbo Jumbo — Ishmael Reed"],"o":"The Illuminatus! Trilogy — Shea & Wilson","h":"Three countries, one move: rewrite history as an occult conspiracy. Turin's insomniac dread, Moore's Masonic London, Reed's psychic plague. This is basically the channel's thesis statement in three books."},{"t":"Ero-Guro & the Japanese Grotesque","f":true,"b":["Japanese Tales of Mystery and Imagination — Edogawa Rampo","Uzumaki — Junji Ito","Grotesque — Natsuo Kirino"],"o":"Tomie — Junji Ito","h":"Japan built a whole horror mode the West never really figured out — beautiful and grotesque at the same time, no separation. Rampo's perverse little mysteries to Ito's spirals. This is the aesthetic."}]},{"vein":"American Gothic & the Southern Grain","items":[{"t":"The Great American Death-Trip","f":false,"b":["Moby-Dick — Herman Melville","Absalom, Absalom! — William Faulkner","Blood Meridian — Cormac McCarthy"],"o":null,"h":"Turns out the Great American Novel is always a horror story. A whaling ship, a plantation, a scalp-hunting gang — Melville hands it to Faulkner, Faulkner hands it to McCarthy, same doom the whole way down."},{"t":"The Bloodline","f":false,"b":["Absalom, Absalom! — William Faulkner","Child of God — Cormac McCarthy","Provinces of Night — William Gay"],"o":null,"h":"How Faulkner's South rotted into McCarthy's South. Same land, same design, same curse, just handed down."},{"t":"Christ-Haunted","f":false,"b":["Wise Blood — Flannery O'Connor","The Devil All the Time — Donald Ray Pollock","Child of God — Cormac McCarthy"],"o":null,"h":"Grace only shows up here as violence. That's the whole tradition in one line."},{"t":"Grit Lit","f":false,"b":["Winter's Bone — Daniel Woodrell","Knockemstiff — Donald Ray Pollock","Crimes in Southern Indiana — Frank Bill"],"o":null,"h":"Southern gothic moved into the trailer park and almost nobody's covering it. Meth, poverty, real writing. This is the living tradition."},{"t":"The Freaks","f":false,"b":["A Feast of Snakes — Harry Crews","Geek Love — Katherine Dunn","Sanctuary — William Faulkner"],"o":null,"h":"The Southern grotesque cranked all the way up — the carnival, the ruined body, the wound as spectacle. Also, somehow, funny."},{"t":"The Ghosts They Buried","f":false,"b":["Beloved — Toni Morrison","Salvage the Bones — Jesmyn Ward","Sing, Unburied, Sing — Jesmyn Ward"],"o":null,"h":"Black Southern gothic — the haunting the rest of the tradition spent a century pretending wasn't there. Probably the darkest corner of the whole American canon."},{"t":"Appalachian Dread","f":false,"b":["The Dollmaker — Harriette Arnow","Gods of Howl Mountain — Taylor Brown","Even the Dogs — Jon McGregor"],"o":null,"h":"Mountain poverty as its own kind of gothic. The dread here is economic before it's anything else."},{"t":"Suburban Rot","f":false,"b":["Revolutionary Road — Richard Yates","The Virgin Suicides — Jeffrey Eugenides","A Little Life — Hanya Yanagihara"],"o":null,"h":"Same despair, better lawn. The cul-de-sac as horror set."},{"t":"Small-Town Rot","f":false,"b":["Pop. 1280 — Jim Thompson","The Killer Inside Me — Jim Thompson","Winter's Bone — Daniel Woodrell"],"o":null,"h":"The badge is the worst thing in town. Thompson's lawmen narrate their own evil from behind the exact authority that protects them."},{"t":"The Complete McCarthy","f":false,"b":["Suttree — Cormac McCarthy","The Border Trilogy — Cormac McCarthy","The Passenger / Stella Maris — Cormac McCarthy"],"o":null,"h":"McCarthy beyond Blood Meridian — the funny one, the elegiac one, the last one. Read together, it's the whole range of the darkest major novelist we've got."},{"t":"Southern Voices, Fractured","f":false,"b":["As I Lay Dying — William Faulkner","The Complete Stories — Flannery O'Connor","Jesus' Son — Denis Johnson"],"o":null,"h":"The American grotesque told in pieces, because a straight line couldn't hold it. Three writers who understood that."}]},{"vein":"Parapolitics & the Paranoid Mode","items":[{"t":"The Assassination Machine","f":false,"b":["Libra — Don DeLillo","Winter Kills — Richard Condon","The Tears of Autumn — Charles McCarry"],"o":null,"h":"Three novelists take a run at Dallas, and none of them buy the lone gunman for a second."},{"t":"Manufactured Reality","f":false,"b":["The Crying of Lot 49 — Thomas Pynchon","Radio Free Albemuth — Philip K. Dick","The Illuminatus! Trilogy — Shea & Wilson"],"o":null,"h":"The paranoid guy turns out to be right. All three of these end with the hidden pattern being real, and it doesn't help him at all."},{"t":"The Company's Wars","f":false,"b":["The Quiet American — Graham Greene","A Flag for Sunrise — Robert Stone","The Ugly American — Lederer & Burdick"],"o":null,"h":"American intervention abroad, told honestly, which means told as a slow-motion disaster."},{"t":"Bureaucracy as Horror","f":false,"b":["The Trial — Franz Kafka","The Castle — Franz Kafka","A Scanner Darkly — Philip K. Dick"],"o":null,"h":"The system doesn't hate you. That's the actually terrifying part."},{"t":"Surveillance Before It Was Real","f":false,"b":["We — Yevgeny Zamyatin","1984 — George Orwell","The Circle — Dave Eggers"],"o":null,"h":"The watched self, a hundred years running. Glass city to smartphone, same idea, worse every time."},{"t":"Cold War Paranoia","f":false,"b":["The Manchurian Candidate — Richard Condon","A Perfect Spy — John le Carré","Gravity's Rainbow — Thomas Pynchon"],"o":null,"h":"Betrayal and conditioning at the scale of a whole war. The spy novel doing the real history."},{"t":"The Case That Ate the Author","f":false,"b":["Chaos — Tom O'Neill","Helter Skelter — Vincent Bugliosi","The Devil's Chessboard — David Talbot"],"o":null,"h":"Three guys who went looking for an answer and got swallowed by the question instead. Decades-long rabbit holes, all worth it."},{"t":"Gnostic Fiction","f":false,"b":["VALIS — Philip K. Dick","The Man in the High Castle — Philip K. Dick","Foucault's Pendulum — Umberto Eco"],"o":null,"h":"The universe is a lie and somebody out there knows it. Revelation and madness, same doorway."}]},{"vein":"Crime & Noir","items":[{"t":"The Con","f":false,"b":["The Grifters — Jim Thompson","The Talented Mr. Ripley — Patricia Highsmith","Ripley's Game — Patricia Highsmith"],"o":null,"h":"Being a sociopath as a skill set. You'll root for the wrong guy the whole time and you won't be able to help it."},{"t":"Heist Gone Wrong","f":false,"b":["The Asphalt Jungle — W. R. Burnett","The Friends of Eddie Coyle — George V. Higgins","Cutter and Bone — Newton Thornburg"],"o":null,"h":"The job was never the point. Watching it fall apart is."},{"t":"LA Underneath","f":false,"b":["The Day of the Locust — Nathanael West","Ask the Dust — John Fante","L.A. Confidential — James Ellroy"],"o":null,"h":"The dream factory's sewer system. Everybody came here for the same reason and it chews them up the same way."},{"t":"The Unreliable Confession","f":false,"b":["Pale Fire — Vladimir Nabokov","Lolita — Vladimir Nabokov","The Killer Inside Me — Jim Thompson"],"o":null,"h":"Narrators who make you complicit just by being good company. The prose is the trap."},{"t":"The Nonfiction Novel","f":false,"b":["In Cold Blood — Truman Capote","The Executioner's Song — Norman Mailer","Zodiac — Robert Graysmith"],"o":null,"h":"True crime written like literature, which somehow makes it worse."},{"t":"Killers on the Page","f":false,"b":["Compulsion — Meyer Levin","The Stranger Beside Me — Ann Rule","My Friend Dahmer — Derf Backderf"],"o":null,"h":"The murderer, up close, from someone who actually knew him. That's the whole horror — proximity."},{"t":"American Noir's Lost Poets","f":false,"b":["Down There — David Goodis","The Postman Always Rings Twice — James M. Cain","A Rage in Harlem — Chester Himes"],"o":null,"h":"The noir writers standing next to Ellroy that nobody name-drops. Goodis is basically writing doom as poetry."},{"t":"British Bleak: The Cruelest Island","f":false,"b":["I Was Dora Suarez — Derek Raymond","The Red Riding Quartet — David Peace","Tinker Tailor Soldier Spy — John le Carré"],"o":null,"h":"British crime at its absolute nastiest. The bleakest noir ever written, the Ripper years, and the mole running the whole intelligence service. An island rotting from the inside out."}]},{"vein":"Weird Fiction, Cosmic Horror & the Occult","items":[{"t":"After Lovecraft, Without the Baggage","f":false,"b":["The Fisherman — John Langan","The Croning — Laird Barron","North American Lake Monsters — Nathan Ballingrud"],"o":null,"h":"Same cosmic dread, except these guys can also write actual people. The living heirs, doing it better."},{"t":"Reality Is Thin Here","f":false,"b":["House of Leaves — Mark Z. Danielewski","The Raw Shark Texts — Steven Hall","Annihilation — Jeff VanderMeer"],"o":null,"h":"The book itself is the haunted house. Footnotes, typography, all of it working against you."},{"t":"English Folk Horror","f":false,"b":["The Wicker Man — Robin Hardy & Anthony Shaffer","Harvest Home — Thomas Tryon","The Loney — Andrew Michael Hurley"],"o":null,"h":"The old gods never left, they just moved under the field. Rural England, still hungry."},{"t":"The Haunted Landscape","f":false,"b":["The Willows — Algernon Blackwood","The Beckoning Fair One — Oliver Onions","The Fisherman — John Langan"],"o":null,"h":"Not the house, not the ghost. The land itself wants you gone."},{"t":"The Antarctic of the Mind","f":false,"b":["The Narrative of Arthur Gordon Pym — Edgar Allan Poe","At the Mountains of Madness — H. P. Lovecraft","The Terror — Dan Simmons"],"o":null,"h":"The blank white void as the scariest setting there is. Run out of map, something's still waiting."},{"t":"Occult Detectives","f":false,"b":["Falling Angel — William Hjortsberg","Declare — Tim Powers","The Ceremonies — T. E. D. Klein"],"o":null,"h":"The case file meets the grimoire. Procedural rigor applied to a crime that's fundamentally supernatural."},{"t":"The Devil's Paperwork","f":false,"b":["The Master and Margarita — Mikhail Bulgakov","The Screwtape Letters — C. S. Lewis","Falling Angel — William Hjortsberg"],"o":null,"h":"Hell as an institution, memos and all. Bureaucratic evil, from funny to damned."},{"t":"The Unreliable Haunting","f":false,"b":["We Have Always Lived in the Castle — Shirley Jackson","The Drowning Girl — Caitlín R. Kiernan","Peace — Gene Wolfe"],"o":null,"h":"Ghosts, or just a narrator you can't trust? Never resolves. That's the point."},{"t":"Satanic Panic: The Occult Conspiracy Thriller","f":false,"b":["Rosemary's Baby — Ira Levin","The Devil Rides Out — Dennis Wheatley","The Day After Judgment — James Blish"],"o":"Our Lady of Darkness — Fritz Leiber","h":"Devil-worship cabals actually running things. The hidden order behind the world turns out to be exactly as bad as you'd guess."}]},{"vein":"The Dying Earth & the Decadent Weird","items":[{"t":"The Dying Earth","f":false,"b":["The Dying Earth — Jack Vance","Zothique — Clark Ashton Smith","Night's Master — Tanith Lee"],"o":"Viriconium — M. John Harrison","h":"Magic and science stop being different things when the sun's about to go out. This is fantasy's most beautiful nihilism, and it's the direct ancestor of Wolfe's New Sun."},{"t":"Decadent & Mythic Fantasy","f":false,"b":["Night's Master — Tanith Lee","The King of Elfland's Daughter — Lord Dunsany","Gormenghast — Mervyn Peake"],"o":null,"h":"Fantasy as cruel, gorgeous myth instead of worldbuilding by the pound. Tanith Lee's demon-lord fables are the centerpiece here, and they should be way more famous than they are."},{"t":"The New Weird","f":false,"b":["Perdido Street Station — China Miéville","City of Saints and Madmen — Jeff VanderMeer","Viriconium — M. John Harrison"],"o":null,"h":"The movement that made fantasy strange again by refusing all its comforts. Grotesque, urban, political, no apologies."},{"t":"The Women Who Wrote the Weird","f":false,"b":["We Have Always Lived in the Castle — Shirley Jackson","Night's Master — Tanith Lee","The Drowning Girl — Caitlín R. Kiernan"],"o":"The Bloody Chamber — Angela Carter","h":"The men went cosmic and external. Jackson, Lee, Carter, and Kiernan went domestic and internal, and it's worse."}]},{"vein":"The Eerie, the Political & the Hallucinatory","items":[{"t":"History as a Haunting","f":false,"b":["The Rings of Saturn — W. G. Sebald","The Tartar Steppe — Dino Buzzati","By Night in Chile — Roberto Bolaño"],"o":null,"h":"Catastrophe as something you're always waiting for or remembering, never actually facing. The eerie as pure history."},{"t":"The Hallucinatory Sentence","f":false,"b":["Maldoror — Comte de Lautréamont","The Street of Crocodiles — Bruno Schulz","Songs of a Dead Dreamer and Grimscribe — Thomas Ligotti"],"o":null,"h":"Prose so thick it tips over into delirium. The sentence itself is where the dread lives."},{"t":"War, Atrocity & the Broken Voice","f":false,"b":["Kaputt — Curzio Malaparte","Journey to the End of the Night — Louis-Ferdinand Céline","The Atrocity Exhibition — J. G. Ballard"],"o":null,"h":"The century's violence breaking the sentence itself. None of these three write in a straight line, and that's the whole argument."}]},{"vein":"Baroque, Visionary & Grimdark Fantasy","items":[{"t":"The Rereadable: Wolfe & the Dense Masters","f":false,"b":["Soldier of the Mist — Gene Wolfe","The Wizard Knight — Gene Wolfe","City of Saints and Madmen — Jeff VanderMeer"],"o":null,"h":"Books that reward reading twice. The pleasure's in catching what you missed the first time through."},{"t":"Baroque Decay","f":false,"b":["Gormenghast — Mervyn Peake","The Dying Earth — Jack Vance","Little, Big — John Crowley"],"o":null,"h":"Ritual, rot, and grandeur, caught at the exact moment it starts to fall apart."},{"t":"Post-Apocalypse in a Broken Tongue","f":false,"b":["Riddley Walker — Russell Hoban","A Canticle for Leibowitz — Walter M. Miller Jr.","Dhalgren — Samuel R. Delany"],"o":null,"h":"The world ended and the language broke with it. Told in invented, busted English, on purpose."},{"t":"The Cursed Blade","f":false,"b":["Elric of Melniboné — Michael Moorcock","The Last Wish — Andrzej Sapkowski","The Broken Sword — Poul Anderson"],"o":null,"h":"The sword that wins every fight and costs everything. This is where Guts comes from, basically."}]},{"vein":"Dystopia & the Machine","items":[{"t":"Corporate Dystopia","f":false,"b":["Jennifer Government — Max Barry","The Space Merchants — Pohl & Kornbluth","Super Sad True Love Story — Gary Shteyngart"],"o":null,"h":"Forget the government. The brand owns you now."},{"t":"Reproductive Dystopia","f":false,"b":["The Handmaid's Tale — Margaret Atwood","The Children of Men — P. D. James","Woman on the Edge of Time — Marge Piercy"],"o":null,"h":"The body as the state's last territory to conquer."},{"t":"Ecological Collapse","f":false,"b":["The Road — Cormac McCarthy","Parable of the Sower — Octavia E. Butler","The Drowned World — J. G. Ballard"],"o":null,"h":"Ash, drought, flood. Three ways the dead world follows naturally from the living one."},{"t":"The Cozy Catastrophe & Its Enemies","f":false,"b":["The Death of Grass — John Christopher","The Day of the Triffids — John Wyndham","Blindness — José Saramago"],"o":null,"h":"British apocalypse. Polite right up until the food runs out."},{"t":"Machines That Dream of Being Human","f":false,"b":["Do Androids Dream of Electric Sheep? — Philip K. Dick","We Can Build You — Philip K. Dick","Klara and the Sun — Kazuo Ishiguro"],"o":null,"h":"PKD's paranoia to Ishiguro's tenderness. The question was never whether the machine's human. It's whether we are."},{"t":"The Near-Future Is Already Here","f":false,"b":["Bleeding Edge — Thomas Pynchon","Tenth of December — George Saunders","The Elementary Particles — Michel Houellebecq"],"o":null,"h":"Late-capitalism with a joke and a broken heart. This isn't coming. You're already holding it."},{"t":"The Dissolving World","f":false,"b":["Ubik — Philip K. Dick","High-Rise — J. G. Ballard","Dhalgren — Samuel R. Delany"],"o":null,"h":"Entropy eating everything — reality, the social contract, the city itself."}]},{"vein":"Theology, Despair & the Theory Shelf","items":[{"t":"God's Silence","f":false,"b":["Silence — Shūsaku Endō","The Power and the Glory — Graham Greene","The Violent Bear It Away — Flannery O'Connor"],"o":null,"h":"Faith pushed until it breaks, against a God who won't answer."},{"t":"Apocalypse as Genre","f":false,"b":["The Road — Cormac McCarthy","A Canticle for Leibowitz — Walter M. Miller Jr.","On the Beach — Nevil Shute"],"o":null,"h":"Three temperatures of the end — ash, the slow return of the dark ages, and the quiet radioactive hush of everyone just waiting."},{"t":"The Double","f":false,"b":["The Double — Fyodor Dostoevsky","Despair — Vladimir Nabokov","Fight Club — Chuck Palahniuk"],"o":null,"h":"Your double shows up to live the life you didn't, and you can't even prove he's not you."},{"t":"Cults on Paper","f":false,"b":["The Girls — Emma Cline","The Sacrament — Craig Davidson","Wise Blood — Flannery O'Connor"],"o":null,"h":"How belief becomes a trap, told from inside, where it always makes perfect sense."},{"t":"The Philosophy of Despair","f":false,"b":["Demons — Fyodor Dostoevsky","The Trouble with Being Born — E. M. Cioran","The Conspiracy Against the Human Race — Thomas Ligotti"],"o":null,"h":"Nihilism from novel to aphorism to full argument against existing at all. One straight line, getting worse."},{"t":"The Theory Shelf: Reading the Machinery","f":false,"b":["Ghosts of My Life — Mark Fisher","Simulacra and Simulation — Jean Baudrillard","The Burnout Society — Byung-Chul Han","In the Dust of This Planet — Eugene Thacker"],"o":null,"h":"The nonfiction that explains why the fiction feels the way it does. Basically the toolkit for everything else on this list."}]},{"vein":"Transgression & the Self","items":[{"t":"Transgressive Fiction: How Far Is Too Far","f":false,"b":["Last Exit to Brooklyn — Hubert Selby Jr.","Story of the Eye — Georges Bataille","Frisk — Dennis Cooper"],"o":null,"h":"Cruelty and the body treated as the actual subject, not garnish. These test you on purpose. (Frisk especially — go in with your eyes open.)"},{"t":"The Self Coming Apart","f":false,"b":["Requiem for a Dream — Hubert Selby Jr.","Glamorama — Bret Easton Ellis","A Scanner Darkly — Philip K. Dick"],"o":null,"h":"Addiction, dissociation, identity just quietly stopping being one thing."}]},{"vein":"Japanese & Asian Darkness","items":[{"t":"Mishima: Desire and Ruin","f":false,"b":["Confessions of a Mask — Yukio Mishima","The Sailor Who Fell from Grace with the Sea — Yukio Mishima","The Sea of Fertility — Yukio Mishima"],"o":null,"h":"Hidden desire, then nihilism, then the four-novel finale. Mishima's whole arc, beauty and self-destruction as the same move."},{"t":"The Japanese Grotesque & the Shadow","f":false,"b":["The Silent Cry — Kenzaburō Ōe","Coin Locker Babies — Ryū Murakami","In Praise of Shadows — Junichirō Tanizaki"],"o":null,"h":"Buried violence and the aesthetics of darkness. Ōe's brothers, Ryū's feral scream, Tanizaki explaining why the shadow is beautiful in the first place."},{"t":"The Korean Uncanny","f":false,"b":["The Vegetarian — Han Kang","The Hole — Hye-young Pyun","Cursed Bunny — Bora Chung"],"o":null,"h":"Body horror that never raises its voice. Domestic life just quietly goes wrong."},{"t":"Han Kang's Grief","f":false,"b":["The Vegetarian — Han Kang","Human Acts — Han Kang","We Do Not Part — Han Kang"],"o":null,"h":"National trauma lodged in one body, and it doesn't leave."},{"t":"Chinese Weird & Dystopian","f":false,"b":["The Three-Body Problem — Liu Cixin","Waste Tide — Chen Qiufan","Hospital — Han Song"],"o":null,"h":"Hard SF to e-waste dystopia to straight-up surrealist dread. A tradition figuring out its own kind of dark in real time."},{"t":"Nuclear Ghosts","f":false,"b":["Hiroshima — John Hersey","Black Rain — Masuji Ibuse","When the Wind Blows — Raymond Briggs"],"o":null,"h":"The bomb as the defining haunting of the century. Reportage, fiction, comic, all circling the same wound."}]},{"vein":"Comics & the Graphic Canon","items":[{"t":"Comics for People Who Don't Read Comics","f":false,"b":["Watchmen — Alan Moore & Dave Gibbons","From Hell — Alan Moore & Eddie Campbell","Berserk — Kentaro Miura"],"o":null,"h":"The case for the medium, no apology needed. These do things prose can't and deserve the same attention you'd give a novel."},{"t":"Alan Moore Is a Wizard","f":false,"b":["From Hell — Alan Moore & Eddie Campbell","Watchmen — Alan Moore & Dave Gibbons","Providence — Alan Moore & Jacen Burrows"],"o":null,"h":"Moore reads history and power as one continuous magic trick, and somehow he's convincing."},{"t":"The Bleak Panel","f":false,"b":["Maus — Art Spiegelman","Black Hole — Charles Burns","My Favorite Thing Is Monsters — Emil Ferris"],"o":null,"h":"Ink carrying the actual weight of grief. Words would've softened it."},{"t":"Manga That Reads Like Literature, Vol. II","f":false,"b":["Pluto — Naoki Urasawa","Monster — Naoki Urasawa","Vinland Saga — Makoto Yukimura"],"o":null,"h":"War, evil, redemption, done at full literary scale. Urasawa alone proves the medium can carry it."},{"t":"Body Horror & Disease","f":false,"b":["No Longer Human — Junji Ito","Gyo — Junji Ito","Ode to Kirihito — Osamu Tezuka"],"o":null,"h":"The flesh betraying you. Ito's spirals, Tezuka's disease-and-faith nightmare."},{"t":"The Manga Apocalypse","f":false,"b":["Akira — Katsuhiro Otomo","Nausicaä of the Valley of the Wind — Hayao Miyazaki","Blame! — Tsutomu Nihei"],"o":null,"h":"The city eating itself, the poisoned earth, the megastructure with no end. Scale prose just can't touch."}]},{"vein":"International Bleakness","items":[{"t":"The Latin American Nightmare","f":false,"b":["2666 — Roberto Bolaño","Pedro Páramo — Juan Rulfo","The Obscene Bird of Night — José Donoso"],"o":null,"h":"Femicide, ghosts, gothic rot, written with enough ambition that the horror actually gets worse, not softer."},{"t":"Fever Dreams of the Border","f":false,"b":["Pedro Páramo — Juan Rulfo","2666 — Roberto Bolaño","Under the Volcano — Malcolm Lowry"],"o":null,"h":"The Mexico of the literary imagination. You cross into it and you don't come back the same."},{"t":"Scandinavian Cold","f":false,"b":["Hunger — Knut Hamsun","Doctor Glas — Hjalmar Söderberg","Let the Right One In — John Ajvide Lindqvist"],"o":null,"h":"The cold as a moral condition. Isolation, obsession, the long dark, take your pick."},{"t":"The German Reckoning","f":false,"b":["The Tin Drum — Günter Grass","Berlin Alexanderplatz — Alfred Döblin","Every Man Dies Alone — Hans Fallada"],"o":null,"h":"The German novel looking straight at how ordinary people live through catastrophe."},{"t":"Russian Abyss","f":false,"b":["Notes from Underground — Fyodor Dostoevsky","Petersburg — Andrei Bely","Life and Fate — Vasily Grossman"],"o":null,"h":"The Russian novel's bottomless talent for spiritual crisis, from one guy in a basement to the siege of Stalingrad."},{"t":"African Apocalypse","f":false,"b":["Season of Migration to the North — Tayeb Salih","The Famished Road — Ben Okri","A Grain of Wheat — Ngũgĩ wa Thiong'o"],"o":null,"h":"Empire and independence, told through spirit-children, revenge, and a nation that won't stop haunting itself."}]},{"vein":"Disaster, Obsession & the Void","items":[{"t":"The Doomed Expedition","f":false,"b":["Heart of Darkness — Joseph Conrad","The Terror — Dan Simmons","The Lost City of Z — David Grann"],"o":null,"h":"Men go into the wilderness with a plan. The wilderness always wins, and the guy in charge is always the worst part of the trip."},{"t":"The Sea Wants You Dead","f":false,"b":["Moby-Dick — Herman Melville","The Wager — David Grann","The North Water — Ian McGuire"],"o":null,"h":"The ocean strips away the ship, the rank, and eventually the civilization. What's left is just appetite."},{"t":"Plague Logic","f":false,"b":["The Plague — Albert Camus","Blindness — José Saramago","Severance — Ling Ma"],"o":null,"h":"The disease was never really the subject. How everyone reacts to it is."},{"t":"The City as Labyrinth","f":false,"b":["The Crying of Lot 49 — Thomas Pynchon","The City & the City — China Miéville","2666 — Roberto Bolaño"],"o":null,"h":"The city as a text you can almost read. The almost is the horror."}]}];
+
+const ITEMS = [];
+DATA.forEach((v, vi) => v.items.forEach((c, ci) => {
+  ITEMS.push({ ...c, veinName: v.vein, id: vi + "-" + ci,
+    searchable: (c.t + " " + c.b.join(" ") + " " + (c.o||"") + " " + c.h).toLowerCase() });
+}));
+const TOTAL = ITEMS.length;
+
+const KEY = "paranoid_curricula_done_v1";
+let done = new Set(), storageOK = true;
+try { const raw = localStorage.getItem(KEY); if (raw) done = new Set(JSON.parse(raw)); } catch(_) { storageOK = false; }
+function saveDone(){ if(!storageOK) return; try{ localStorage.setItem(KEY, JSON.stringify([...done])); }catch(_){ storageOK=false; } }
+
+function esc(s){ return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+const $ = id => document.getElementById(id);
+const veinSel = $("vein");
+veinSel.innerHTML = '<option value="ALL">All veins</option>' + DATA.map(v => '<option value="'+esc(v.vein)+'">'+esc(v.vein)+'</option>').join('');
+
+function currentFilters(){
+  return { q: $("search").value.trim().toLowerCase(), vein: veinSel.value, sort: $("sort").value, flagOnly: $("flagOnly").checked };
+}
+function sortItems(arr, mode){
+  const a = [...arr];
+  if (mode === "title") a.sort((x,y) => x.t.localeCompare(y.t));
+  else if (mode === "unread") a.sort((x,y) => (done.has(x.id) - done.has(y.id)));
+  return a;
+}
+function cardHTML(c){
+  const isDone = done.has(c.id);
+  const books = c.b.map(b => '<li>'+esc(b)+'</li>').join('');
+  const opt = c.o ? '<li class="opt">'+esc(c.o)+' <span class="tag">optional fourth</span></li>' : '';
+  return '<article class="card'+(isDone?" done":"")+'">'
+    + '<div class="ctop">'
+    +   '<label class="chk"><input type="checkbox" data-id="'+c.id+'"'+(isDone?" checked":"")+' aria-label="Mark done"><span class="box"></span></label>'
+    +   '<div class="cbody">'
+    +     '<div class="ctitle">'+(c.f?'<span class="star">★</span>':'')+esc(c.t)+'</div>'
+    +     '<ul class="books">'+books+opt+'</ul>'
+    +     '<p class="hyp">'+esc(c.h)+'</p>'
+    +   '</div>'
+    + '</div></article>';
+}
+function render(){
+  const f = currentFilters();
+  let items = ITEMS.filter(c => {
+    if (f.q && !c.searchable.includes(f.q)) return false;
+    if (f.vein !== "ALL" && c.veinName !== f.vein) return false;
+    if (f.flagOnly && !c.f) return false;
+    return true;
+  });
+  $("count").textContent = "Showing " + items.length + " of " + TOTAL;
+  const list = $("list"); list.innerHTML = "";
+  if (!items.length) { list.innerHTML = '<div class="empty">Nothing matches. Try clearing filters.</div>'; return; }
+
+  if (f.vein !== "ALL" || f.sort !== "canon") {
+    const sec = document.createElement("div");
+    sortItems(items, f.sort).forEach(c => sec.insertAdjacentHTML("beforeend", cardHTML(c)));
+    list.appendChild(sec);
+  } else {
+    DATA.forEach((v, vi) => {
+      let group = items.filter(c => c.veinName === v.vein);
+      if (!group.length) return;
+      const sec = document.createElement("section");
+      sec.className = "vein";
+      sec.innerHTML = '<div class="kicker">Vein</div><h2>'+esc(v.vein)+'</h2><hr class="vein-rule">';
+      group.forEach(c => sec.insertAdjacentHTML("beforeend", cardHTML(c)));
+      list.appendChild(sec);
+    });
+  }
+}
+function updateProgress(){
+  const n = done.size, pct = Math.round(n / TOTAL * 100);
+  $("progfill").style.width = pct + "%";
+  $("progtext").textContent = n + " / " + TOTAL + " done · " + pct + "%";
+}
+
+$("list").addEventListener("change", e => {
+  const cb = e.target.closest('input[type=checkbox][data-id]');
+  if (!cb) return;
+  const id = cb.dataset.id;
+  if (cb.checked) done.add(id); else done.delete(id);
+  saveDone(); updateProgress();
+  const card = cb.closest(".card");
+  if (card) card.classList.toggle("done", cb.checked);
+});
+["search","vein","sort"].forEach(id => $(id).addEventListener("input", render));
+$("flagOnly").addEventListener("change", render);
+$("reset").addEventListener("click", () => {
+  if (confirm("Clear all curriculum progress?")) { done.clear(); saveDone(); updateProgress(); render(); }
+});
+
+updateProgress();
+render();
+</script>
+</body>
+</html>
