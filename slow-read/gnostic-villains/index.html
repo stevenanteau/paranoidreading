@@ -47,6 +47,9 @@
   .bookhead .bt{font-size:22px;font-weight:bold;color:var(--ox);letter-spacing:.01em}
   .bookhead .ba{font-size:14px;color:var(--gray);font-style:italic}
   .bookhead .bm{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin-top:4px}
+  .bookrec{font-size:12.5px;color:var(--gray);margin:0 0 12px;line-height:1.5}
+  .bookrec a{font-weight:bold}
+  .bookrec b{color:var(--ox)}
 
   .week{display:block;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 15px;margin:0 0 8px;box-shadow:var(--shadow);position:relative;color:inherit;text-decoration:none}
   .week.current{border-color:var(--ox);box-shadow:0 0 0 1px var(--ox),0 2px 10px rgba(168,52,42,.25)}
@@ -135,7 +138,8 @@ const SECTIONS = [
     { date:"2026-09-06", title:"Intro week", chap:"Before we start",
       note:'Watch McEvoy, <a href="https://www.youtube.com/watch?v=SVd7ITFGrJU" target="_blank" rel="noopener">How to Read Moby Dick (10 Tips)</a>. Get your copy, get your bearings.' }
   ]},
-  { kind:"book", title:"Moby Dick", author:"Herman Melville", meta:"6 weeks &middot; ~100 pages a week", weeks:[
+  { kind:"book", title:"Moby Dick", author:"Herman Melville", meta:"6 weeks &middot; ~100 pages a week",
+    rec:'<b>Companion:</b> read the <a href="https://www.litcharts.com/lit/moby-dick" target="_blank" rel="noopener">LitChart</a> after each chapter, and seek out extra commentary as you go.', weeks:[
     { date:"2026-09-13", title:"Week 1 of 6", chap:"Chapters 1&ndash;23" },
     { date:"2026-09-20", title:"Week 2 of 6", chap:"Chapters 24&ndash;45" },
     { date:"2026-09-27", title:"Week 3 of 6", chap:"Chapters 46&ndash;68" },
@@ -156,7 +160,8 @@ const SECTIONS = [
     { date:"2026-11-22", title:"Interlude &mdash; sharpening the lens", chap:"My Confession (Ch. 39&ndash;42) + Hans Jonas, The Gnostic Religion (Ch. 3, pp. 48&ndash;91)",
       note:'The source Blood Meridian was built from, plus the Gnosticism primer. Watch McEvoy, <a href="https://www.youtube.com/watch?v=If1Su5qh96Q" target="_blank" rel="noopener">the companion video</a>.' }
   ]},
-  { kind:"book", title:"Blood Meridian", author:"Cormac McCarthy", meta:"4 weeks &middot; the finale", weeks:[
+  { kind:"book", title:"Blood Meridian", author:"Cormac McCarthy", meta:"4 weeks &middot; the finale",
+    rec:'<b>Companion:</b> read the <a href="https://www.litcharts.com/lit/blood-meridian" target="_blank" rel="noopener">LitChart</a> after each chapter, and hunt down any extra commentary you can find.', weeks:[
     { date:"2026-11-29", title:"Week 1 of 4", chap:"Chapters 1&ndash;6" },
     { date:"2026-12-06", title:"Week 2 of 4", chap:"Chapters 7&ndash;12" },
     { date:"2026-12-13", title:"Week 3 of 4", chap:"Chapters 13&ndash;18" },
@@ -194,6 +199,7 @@ function render(){
       h.className="bookhead";
       h.innerHTML='<span class="bt">'+sec.title+'</span> <span class="ba">'+sec.author+'</span><div class="bm">'+sec.meta+'</div>';
       wrap.appendChild(h);
+      if(sec.rec){ const r=document.createElement("div"); r.className="bookrec"; r.innerHTML=sec.rec; wrap.appendChild(r); }
     }
     sec.weeks.forEach(w=>{
       const idx=i;
