@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Steve's Canon — Paranoid Reading</title>
+<style>
+  :root{
+    --ox:#6B1414; --ox2:#8f2320; --ink:#1a1a1a; --gray:#5a5a5a; --faint:#c9b8b8;
+    --paper:#faf7f2; --card:#ffffff; --line:#e7ddd6; --shadow:0 1px 2px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ox)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px 80px}
+
+  /* header */
+  header{
+    background:linear-gradient(180deg,#fbf9f5, #f4ede4);
+    border-bottom:3px solid var(--ox);
+    position:sticky;top:0;z-index:20;
+  }
+  .head-inner{max-width:900px;margin:0 auto;padding:14px 18px 12px}
+  .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  h1{margin:2px 0 2px;font-size:30px;letter-spacing:.06em;color:var(--ox)}
+  .sub{margin:0;color:var(--gray);font-style:italic;font-size:14px}
+  .progwrap{margin-top:10px;display:flex;align-items:center;gap:10px}
+  .progbar{flex:1;height:9px;background:#eaded4;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .progfill{height:100%;width:0;background:linear-gradient(90deg,var(--ox),var(--ox2));transition:width .3s}
+  .progtext{font-size:12.5px;color:var(--gray);white-space:nowrap}
+
+  /* controls */
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;align-items:center}
+  .controls input[type=search],.controls select{
+    font-family:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);
+    border-radius:8px;background:#fff;color:var(--ink)
+  }
+  .controls input[type=search]{flex:1;min-width:180px}
+  .toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);
+    border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:#fff;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--ox)}
+  .btn{font-family:inherit;font-size:13px;color:var(--ox);background:#fff;border:1px solid var(--line);
+    border-radius:8px;padding:7px 10px;cursor:pointer}
+  .btn:hover{background:#fbf3f0}
+  .count{font-size:12.5px;color:var(--gray);margin:4px 2px 14px}
+
+  /* legend */
+  details.legend{margin:0 0 16px;border:1px solid var(--line);border-radius:10px;background:#fff}
+  details.legend summary{cursor:pointer;padding:9px 12px;font-size:13px;color:var(--ox);font-weight:bold;letter-spacing:.02em}
+  .legend-body{padding:0 12px 12px;font-size:13px;color:var(--gray);line-height:1.7}
+  .legend-body .m{margin-right:4px}
+
+  /* strand */
+  .strand{margin:26px 0 6px}
+  .strand .kicker{font-size:11px;letter-spacing:.22em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  .strand h2{margin:1px 0 2px;font-size:21px;letter-spacing:.03em;color:var(--ink)}
+  .strand .ssub{margin:0 0 8px;font-size:13px;color:var(--gray);font-style:italic}
+  .strand-rule{height:2px;background:var(--ox);opacity:.85;border:0;margin:0 0 12px}
+
+  /* card */
+  .card{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);
+    border-radius:10px;padding:12px 14px;margin:0 0 9px;box-shadow:var(--shadow);transition:opacity .2s,border-color .2s}
+  .card.read{opacity:.62}
+  .card.read .title{text-decoration:line-through;text-decoration-color:var(--faint)}
+  .chk{flex:0 0 auto;padding-top:2px}
+  .chk input{position:absolute;opacity:0;width:22px;height:22px;cursor:pointer}
+  .box{display:inline-block;width:22px;height:22px;border:2px solid var(--faint);border-radius:6px;position:relative;cursor:pointer;transition:.15s}
+  .chk input:checked + .box{background:var(--ox);border-color:var(--ox)}
+  .chk input:checked + .box::after{content:"✓";color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:14px;font-weight:bold}
+  .chk input:focus-visible + .box{outline:2px solid var(--ox2);outline-offset:2px}
+  .body{flex:1;min-width:0}
+  .head{font-size:16px;line-height:1.3}
+  .num{color:var(--ox);font-weight:bold}
+  .title{font-weight:bold;color:var(--ink)}
+  .author{color:var(--gray)}
+  .desc{margin:5px 0 8px;font-size:14px;color:#333}
+  .markers{font-size:13px;color:var(--gray);display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center}
+  .markers .m{white-space:nowrap}
+  .b-on{color:var(--ox);letter-spacing:1px}
+  .b-off{color:var(--faint);letter-spacing:1px}
+  .b-ink{color:var(--ink);letter-spacing:1px}
+  .lab{color:var(--gray)}
+  .chan{margin-top:6px;font-size:13px;color:var(--ox);font-style:italic}
+  .chan .tri{font-style:normal}
+
+  .empty{padding:40px 10px;text-align:center;color:var(--gray);font-style:italic}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--gray)}
+  footer a{font-weight:bold}
+  @media(max-width:560px){
+    h1{font-size:24px}
+    .controls input[type=search]{min-width:120px}
+    .head{font-size:15px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="brand">Paranoid Reading</div>
+    <h1>Steve's Canon</h1>
+    <p class="sub">116 books · 14 strands · Noided and/or Grim</p>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 116 read</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search title or author…" autocomplete="off">
+    <select id="strand" aria-label="Filter by strand"></select>
+    <select id="sort" aria-label="Sort">
+      <option value="canon">Canon order</option>
+      <option value="title">Title A–Z</option>
+      <option value="author">Author A–Z</option>
+      <option value="short">Shortest first</option>
+      <option value="long">Longest first</option>
+      <option value="unread">Unread first</option>
+      <option value="channel">Channel fuel first</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="chanOnly"> ▶ Channel fuel</label>
+    <label class="toggle"><input type="checkbox" id="unreadOnly"> Unread only</label>
+    <button class="btn" id="reset">Reset progress</button>
+  </div>
+  <div class="count" id="count"></div>
+
+  <details class="legend">
+    <summary>How to read the markers</summary>
+    <div class="legend-body">
+      <div><b>Length</b> <span class="m"><span class="b-on">▮▮▮</span><span class="b-off">▯</span></span> approximate page count — more bars, more heft.</div>
+      <div><b>Commitment</b> <span class="m">◔ ◑ ◕ ●</span> a sitting or two · a normal read · a real investment · a season of a life.</div>
+      <div><b>Challenge</b> <span class="m">◆◇◇ ◆◆◇ ◆◆◆</span> Accessible · Demanding · Formidable.</div>
+      <div><b>▶ Channel fuel</b> — also prime Paranoid Reading material; the angle is noted on the card.</div>
+      <div style="margin-top:6px"><b>N / G</b> — the two Noided strands (Parapolitical &amp; Demonology) use the channel's own <i>Noided / Grim</i> score instead: <b style="color:var(--ox)">N</b> hidden machinery (0–5), <b>G</b> bleakness (0–5).</div>
+    </div>
+  </details>
+
+  <div id="list"></div>
+
+  <footer>
+    <p>An interactive companion to <b>Steve's Canon</b>, part of <b>Paranoid Reading</b>. Your reading progress is saved privately in this browser only — nothing is uploaded.</p>
+    <p><a href="https://substack.com/@paranoidreading" id="subLink">← Paranoid Reading on Substack</a></p>
+    <p><a href="/noided">→ The Noided Reading List</a> &nbsp;·&nbsp; <a href="/curriculums">→ The Curriculums (99 routes through)</a> &nbsp;·&nbsp; <a href="/every-book">→ Every Book (261, one list)</a></p>
+  </footer>
+</div>
+
+<script>
+const DATA = [{"num":"I","name":"The De Maria Strand","sub":"Weird political horror; the eerie made social.","scoring":"CC","entries":[{"n":1,"head":"Thomas Ligotti — Songs of a Dead Dreamer and Grimscribe.","desc":"The missing link between the Mark Fisher shelf and the horror shelf; corporate and small-town dread as metaphysical rot.","len":"≈ 450 pp","bar":3,"commit":"M","chal":2,"chan":null},{"n":2,"head":"Roberto Bolaño — 2666.","desc":"Political violence widened into cosmic horror; the Santa Teresa section is one of the great sustained dreads in the language.","len":"≈ 900 pp","bar":4,"commit":"E","chal":3,"chan":null},{"n":3,"head":"Roberto Bolaño — By Night in Chile.","desc":"One feverish deathbed monologue; complicity and art under dictatorship in a single unbroken breath.","len":"≈ 130 pp","bar":1,"commit":"B","chal":2,"chan":null},{"n":4,"head":"Dino Buzzati — The Tartar Steppe.","desc":"A soldier waits his whole life at a fort for an enemy that may never come. The Stranger's Italian cousin.","len":"≈ 200 pp","bar":2,"commit":"M","chal":1,"chan":null},{"n":5,"head":"Curzio Malaparte — Kaputt.","desc":"Hallucinatory, baroque WWII horror-reportage — a bridge straight from Turin to McCarthy's evening redness.","len":"≈ 440 pp","bar":3,"commit":"L","chal":2,"chan":null},{"n":6,"head":"W. G. Sebald — The Rings of Saturn.","desc":"History as a haunting; a walking tour that keeps sinking into catastrophe. The purest rendering of the eerie in prose.","len":"≈ 300 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":7,"head":"Bruno Schulz — The Street of Crocodiles.","desc":"A provincial town dreaming itself into decay; language so dense it verges on the hallucinatory.","len":"≈ 160 pp","bar":1,"commit":"B","chal":3,"chan":null},{"n":8,"head":"Comte de Lautréamont — Maldoror.","desc":"Proto-surrealist blasphemy — cosmic cruelty rendered as scripture. Ancestor of everything the God Hand stands for.","len":"≈ 260 pp","bar":2,"commit":"M","chal":3,"chan":null},{"n":9,"head":"China Miéville — The City & the City.","desc":"A murder investigation across two cities that occupy the same streets, whose citizens are trained to ‘unsee’ each other — a noir procedural warped by one perfect eerie conceit, where the eerie is pure politics. No worldbuilding, all dread.","len":"≈ 310 pp","bar":2,"commit":"M","chal":2,"chan":"Noided flagship — crime meets the eerie"}]},{"num":"II","name":"The Carcosa Strand","sub":"The cosmic-horror canon, past Lovecraft.","scoring":"CC","entries":[{"n":10,"head":"Robert W. Chambers — The King in Yellow.","desc":"The direct sequel to the Bierce reading: the cursed play, the Yellow Sign, Carcosa itself.","len":"≈ 250 pp","bar":2,"commit":"B","chal":1,"chan":"Essay: the True Detective lineage"},{"n":11,"head":"Arthur Machen — The Great God Pan and Other Stories.","desc":"The Welsh mystic Lovecraft worshipped; pagan terror bleeding through the modern veil.","len":"≈ 300 pp","bar":2,"commit":"B","chal":1,"chan":null},{"n":12,"head":"Algernon Blackwood — The Willows and Other Stories.","desc":"“The Willows” is the finest nature-horror ever written — dread as pure atmosphere.","len":"≈ 250 pp","bar":2,"commit":"B","chal":1,"chan":null},{"n":13,"head":"William Hope Hodgson — The House on the Borderland.","desc":"A lonely house at the edge of cosmic time; the deep-time vision that shaped the whole genre.","len":"≈ 160 pp","bar":1,"commit":"B","chal":2,"chan":null},{"n":14,"head":"Shirley Jackson — We Have Always Lived in the Castle.","desc":"The eerie turned domestic and merciless; two sisters, a poisoning, a village.","len":"≈ 150 pp","bar":1,"commit":"M","chal":1,"chan":null},{"n":15,"head":"Laird Barron — The Croning.","desc":"The best living heir to the cosmic tradition — folk-horror muscle, ancient appetites under the Pacific Northwest.","len":"≈ 250 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":16,"head":"John Langan — The Fisherman.","desc":"Grief and a river that runs somewhere it shouldn't; a modern cosmic-horror masterwork.","len":"≈ 280 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":17,"head":"Caitlín R. Kiernan — The Drowning Girl.","desc":"An unreliable narrator, a haunting, and a mind that can't be trusted — Wolfe-level slipperiness in horror form.","len":"≈ 330 pp","bar":2,"commit":"M","chal":3,"chan":null}]},{"num":"III","name":"The Super Sad Strand","sub":"Satirical dystopia; late-capital collapse; tender ruin.","scoring":"CC","entries":[{"n":18,"head":"Don DeLillo — Libra.","desc":"The JFK assassination as engineered dread — feeds the Ellroy and the O'Neill Chaos obsession directly.","len":"≈ 460 pp","bar":3,"commit":"L","chal":2,"chan":"Noided flagship — the JFK machine"},{"n":19,"head":"George Saunders — Tenth of December.","desc":"Collapse rendered with unbearable tenderness; the exact Shteyngart move at short-story pitch.","len":"≈ 260 pp","bar":2,"commit":"M","chal":1,"chan":null},{"n":20,"head":"J. G. Ballard — High-Rise.","desc":"A luxury tower devolves into tribal war floor by floor; social order dissolving from the inside.","len":"≈ 200 pp","bar":2,"commit":"M","chal":1,"chan":null},{"n":21,"head":"J. G. Ballard — The Atrocity Exhibition.","desc":"The psychopathology of modern media, fragmented to the edge of coherence. Fisher's favorite.","len":"≈ 160 pp","bar":1,"commit":"M","chal":3,"chan":null},{"n":22,"head":"Philip K. Dick — A Scanner Darkly.","desc":"Surveillance, addiction, and a self splitting in two; the despairing peak of PKD.","len":"≈ 280 pp","bar":2,"commit":"M","chal":2,"chan":"Essay: surveillance & the drug war"},{"n":23,"head":"Philip K. Dick — Ubik.","desc":"Reality decaying like a corpse; entropy as horror, with jokes.","len":"≈ 220 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":24,"head":"Thomas Pynchon — Bleeding Edge.","desc":"Post-9/11 New York, the dot-com wreckage and the deep web; fraud, paranoia, and dread in the near-present.","len":"≈ 480 pp","bar":3,"commit":"L","chal":2,"chan":"Noided — post-9/11, the deep web"},{"n":25,"head":"Thomas Pynchon — Gravity's Rainbow.","desc":"The great paranoid systems-novel; a Farrell appetite and a Wolfe density tolerance point straight here.","len":"≈ 760 pp","bar":4,"commit":"E","chal":3,"chan":"The paranoid novel (deep-dive)"},{"n":26,"head":"Nathanael West — Miss Lonelyhearts & The Day of the Locust.","desc":"Two short, savage American-despair novels; the grotesque done lean.","len":"≈ 230 pp","bar":2,"commit":"B","chal":2,"chan":null},{"n":27,"head":"Michel Houellebecq — The Elementary Particles.","desc":"Bleak Euro late-capital sexual despair; Shteyngart's misery without the mercy.","len":"≈ 260 pp","bar":2,"commit":"M","chal":2,"chan":null}]},{"num":"IV","name":"The New Sun Strand","sub":"Baroque, dense, allusive literary SF & fantasy.","scoring":"CC","entries":[{"n":28,"head":"Gene Wolfe — Soldier of the Mist.","desc":"An amnesiac Roman mercenary who forgets each day but sees the gods; Wolfe's unreliable narration at its most haunting.","len":"≈ 340 pp","bar":2,"commit":"L","chal":3,"chan":null},{"n":29,"head":"Gene Wolfe — Peace.","desc":"A quiet Midwestern memoir that is, on the reread, a ghost story. Wolfe's most insidious book.","len":"≈ 270 pp","bar":2,"commit":"M","chal":3,"chan":null},{"n":30,"head":"Gene Wolfe — The Wizard Knight.","desc":"His full-hearted fantasy epic; a boy in a knight's body, a cosmos in seven tiers.","len":"≈ 900 pp","bar":4,"commit":"L","chal":2,"chan":null},{"n":31,"head":"Jeff VanderMeer — City of Saints and Madmen.","desc":"Ambergris: a baroque, footnoted, fungal city built from nested documents. The weird done ornately, from the author of Annihilation.","len":"≈ 450 pp","bar":3,"commit":"L","chal":2,"chan":null},{"n":32,"head":"Jack Vance — The Dying Earth.","desc":"The literal source Wolfe built New Sun on; the ancestor worth reading first.","len":"≈ 180 pp","bar":1,"commit":"B","chal":1,"chan":null},{"n":33,"head":"Samuel R. Delany — Dhalgren.","desc":"A dense, looping, apocalyptic city that swallows its readers whole — for getting lost on purpose.","len":"≈ 800 pp","bar":4,"commit":"E","chal":3,"chan":null},{"n":34,"head":"Mervyn Peake — Gormenghast.","desc":"Baroque gothic fantasy — ritual, rot, and grandeur; the decaying-splendor mood Berserk shares.","len":"≈ 1,100 pp","bar":4,"commit":"L","chal":2,"chan":null},{"n":35,"head":"Russell Hoban — Riddley Walker.","desc":"Post-apocalyptic England told in a broken invented English; allusive, demanding, unforgettable.","len":"≈ 230 pp","bar":2,"commit":"M","chal":3,"chan":"Deep-dive: the unreadable masterpiece"},{"n":36,"head":"Walter M. Miller Jr. — A Canticle for Leibowitz.","desc":"Monks preserving knowledge across a post-nuclear dark age; post-apocalypse plus theology — a bullseye.","len":"≈ 340 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":37,"head":"John Crowley — Little, Big.","desc":"Elegiac, allusive fairy-tale realism; a Wolfe peer working in a gentler, sadder key.","len":"≈ 540 pp","bar":3,"commit":"L","chal":2,"chan":null}]},{"num":"V","name":"The Outer Dark Strand","sub":"American gothic; the grotesque; biblical violence.","scoring":"CC","entries":[{"n":38,"head":"Cormac McCarthy — Suttree.","desc":"The major McCarthy Steve skipped, and his closest approach to Pollock's world: Knoxville squalor, drunks and drifters, gallows humor.","len":"≈ 470 pp","bar":3,"commit":"L","chal":2,"chan":"Deep-dive: McCarthy's secret masterpiece"},{"n":39,"head":"Cormac McCarthy — The Border Trilogy.","desc":"All the Pretty Horses, The Crossing, Cities of the Plain — the elegiac, lyrical McCarthy to balance the merciless one.","len":"≈ 1,040 pp","bar":4,"commit":"E","chal":2,"chan":null},{"n":40,"head":"Cormac McCarthy — The Passenger / Stella Maris.","desc":"Late McCarthy — grief, physics, and madness; the last thing he had to say.","len":"≈ 580 pp","bar":3,"commit":"L","chal":3,"chan":null},{"n":41,"head":"Flannery O'Connor — Wise Blood.","desc":"The source code. Every Christ-haunted grotesque Steve loves runs downstream from her.","len":"≈ 230 pp","bar":2,"commit":"B","chal":2,"chan":null},{"n":42,"head":"Flannery O'Connor — The Complete Stories.","desc":"“A Good Man Is Hard to Find” and the rest — grace arriving through violence, over and over.","len":"≈ 560 pp","bar":3,"commit":"L","chal":1,"chan":null},{"n":43,"head":"William Faulkner — As I Lay Dying.","desc":"The Faulkner on-ramp; a family hauls a coffin across the county, told in fractured voices.","len":"≈ 260 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":44,"head":"William Faulkner — Sanctuary.","desc":"The brutal one — the McCarthy-adjacent Faulkner, cruel and hard.","len":"≈ 330 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":45,"head":"William Faulkner — Absalom, Absalom!","desc":"The dense one; a Southern damnation myth built in cathedral-length sentences.","len":"≈ 320 pp","bar":2,"commit":"L","chal":3,"chan":null},{"n":46,"head":"William Gay — Provinces of Night.","desc":"The most direct McCarthy-Pollock heir, and criminally underread — Tennessee gothic, mean and lyrical.","len":"≈ 300 pp","bar":2,"commit":"M","chal":2,"chan":"'Everyone's wrong about this' pick"},{"n":47,"head":"Daniel Woodrell — Winter's Bone.","desc":"“Country noir”: a girl hunts her father through the meth Ozarks. Spare and hard.","len":"≈ 200 pp","bar":2,"commit":"B","chal":1,"chan":null},{"n":48,"head":"Denis Johnson — Jesus' Son.","desc":"Transcendent squalor — addicts and drifters lit from within. Short, and it will wreck a reader.","len":"≈ 160 pp","bar":1,"commit":"B","chal":2,"chan":null},{"n":49,"head":"Donald Ray Pollock — Knockemstiff.","desc":"The Pollock gap: the story collection the novels grew out of. Same holler, same doom.","len":"≈ 210 pp","bar":2,"commit":"M","chal":1,"chan":"Your proven Pollock audience"},{"n":50,"head":"Harry Crews — A Feast of Snakes.","desc":"Southern grotesque at full boil — violent, funny, and appalling.","len":"≈ 180 pp","bar":1,"commit":"M","chal":2,"chan":null}]},{"num":"VI","name":"The Ellroy Strand","sub":"American noir & country crime.","scoring":"CC","entries":[{"n":51,"head":"George V. Higgins — The Friends of Eddie Coyle.","desc":"Told almost entirely in doomed low-life dialogue; the foundational crime novel Ellroy and everyone after learned from.","len":"≈ 180 pp","bar":1,"commit":"B","chal":2,"chan":"Ranking: the crime canon"},{"n":52,"head":"Jim Thompson — The Killer Inside Me.","desc":"A small-town deputy narrates his own psychopathy; the ur-text of noir-from-inside.","len":"≈ 250 pp","bar":2,"commit":"B","chal":1,"chan":null},{"n":53,"head":"David Goodis — Down There (Shoot the Piano Player).","desc":"Doomed, lyrical, loser's noir; the poet of the fall.","len":"≈ 160 pp","bar":1,"commit":"B","chal":1,"chan":null},{"n":54,"head":"James M. Cain — The Postman Always Rings Twice.","desc":"Lust, murder, and inevitability at a roadside diner; lean as a blade.","len":"≈ 120 pp","bar":1,"commit":"B","chal":1,"chan":null},{"n":55,"head":"Patricia Highsmith — The Talented Mr. Ripley.","desc":"Amorality rendered seductive; a murderer the reader follows because looking away is impossible.","len":"≈ 290 pp","bar":2,"commit":"M","chal":1,"chan":null},{"n":56,"head":"Derek Raymond — I Was Dora Suarez.","desc":"The bleakest British noir ever written; a nameless detective and an unbearable grief.","len":"≈ 230 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":57,"head":"Newton Thornburg — Cutter and Bone.","desc":"Post-Vietnam paranoia and rot; the great disillusioned-70s crime novel.","len":"≈ 350 pp","bar":2,"commit":"M","chal":2,"chan":"Noided — 70s conspiracy noir"},{"n":58,"head":"Chester Himes — A Rage in Harlem.","desc":"Harlem noir, violent and comic and furious; a crucial American voice.","len":"≈ 160 pp","bar":1,"commit":"B","chal":1,"chan":null}]},{"num":"VII","name":"The Transgressive Strand","sub":"Body, psyche, and extremity, done seriously.","scoring":"CC","entries":[{"n":59,"head":"Hubert Selby Jr. — Last Exit to Brooklyn.","desc":"Brutal, tender, punctuation-shattering urban despair; a landmark of extremity with a soul.","len":"≈ 290 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":60,"head":"Hubert Selby Jr. — Requiem for a Dream.","desc":"Four addictions descending in lockstep; relentless and humane.","len":"≈ 280 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":61,"head":"Georges Bataille — Story of the Eye.","desc":"Transgression as philosophy; short, notorious, and deadly serious.","len":"≈ 100 pp","bar":1,"commit":"B","chal":2,"chan":null},{"n":62,"head":"Bret Easton Ellis — Glamorama.","desc":"Ellis past American Psycho — celebrity, terrorism, and dissociation curdled together.","len":"≈ 480 pp","bar":3,"commit":"L","chal":2,"chan":"Noided — terror & celebrity"},{"n":63,"head":"Dennis Cooper — Frisk.","desc":"(The flag.) The George Miles cycle pushes further into cruelty than anything currently on the shelf — literary, deliberate, extreme. To be approached with care.","len":"≈ 130 pp","bar":1,"commit":"B","chal":3,"chan":null}]},{"num":"VIII","name":"The Japanese Dark Strand","sub":"Beyond Murakami.","scoring":"CC","entries":[{"n":64,"head":"Yukio Mishima — Confessions of a Mask.","desc":"The biggest Japanese-lit gap begins here: desire, concealment, and the pull toward ruin.","len":"≈ 260 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":65,"head":"Yukio Mishima — The Sailor Who Fell from Grace with the Sea.","desc":"A gang of cold, philosophizing boys and a terrible verdict. Nihilism in miniature.","len":"≈ 180 pp","bar":1,"commit":"B","chal":2,"chan":null},{"n":66,"head":"Yukio Mishima — The Sea of Fertility.","desc":"The four-novel masterwork — reincarnation, decline, and a nation's soul. His summit.","len":"≈ 1,400 pp","bar":4,"commit":"E","chal":3,"chan":null},{"n":67,"head":"Ryū Murakami — In the Miso Soup.","desc":"Haruki's violent shadow-twin; a Tokyo nightlife guide and an American who is very wrong.","len":"≈ 220 pp","bar":2,"commit":"M","chal":1,"chan":null},{"n":68,"head":"Ryū Murakami — Coin Locker Babies.","desc":"Two abandoned boys and a scream that could level a city; sprawling, feral, unforgettable.","len":"≈ 400 pp","bar":3,"commit":"L","chal":2,"chan":null},{"n":69,"head":"Kenzaburō Ōe — The Silent Cry.","desc":"Rural violence, buried history, and two brothers; Nobel-weight and merciless.","len":"≈ 280 pp","bar":2,"commit":"L","chal":3,"chan":null},{"n":70,"head":"Natsuo Kirino — Out.","desc":"Ordinary working women, a dismemberment, and what comes after. Brutal domestic noir.","len":"≈ 400 pp","bar":3,"commit":"M","chal":1,"chan":null},{"n":71,"head":"Junichirō Tanizaki — In Praise of Shadows.","desc":"A short essay on darkness as aesthetic — the philosophy under half the Japanese fiction Steve loves.","len":"≈ 50 pp","bar":1,"commit":"B","chal":1,"chan":null},{"n":72,"head":"Fuminori Nakamura — The Thief.","desc":"Existential Tokyo crime; a pickpocket caught in a machine larger than himself.","len":"≈ 210 pp","bar":2,"commit":"B","chal":1,"chan":null},{"n":73,"head":"Edogawa Rampo — Japanese Tales of Mystery and Imagination.","desc":"The grotesque, ero-guro roots of Japanese horror; strange and cruel and foundational.","len":"≈ 230 pp","bar":2,"commit":"M","chal":1,"chan":null}]},{"num":"IX","name":"The Berserk Strand, Part I","sub":"Manga & comics with the same blood.","scoring":"CC","entries":[{"n":74,"head":"Naoki Urasawa — Pluto.","desc":"A murder mystery among the world's great robots that becomes a grief-soaked meditation on war and what makes us human.","len":"8 vols","bar":3,"commit":"L","chal":1,"chan":null},{"n":75,"head":"Inio Asano — Goodnight Punpun.","desc":"The No Longer Human of manga — depressive, tender, devastating. For the Dazai in him.","len":"13 vols","bar":4,"commit":"L","chal":1,"chan":null},{"n":76,"head":"Makoto Yukimura — Vinland Saga.","desc":"Viking brutality that turns, slowly, into something profound about violence and its cost.","len":"27+ vols","bar":4,"commit":"E","chal":1,"chan":null},{"n":77,"head":"Tsutomu Nihei — Blame!","desc":"Near-silent cosmic-architectural horror at New Sun scale; dread as sheer space.","len":"10 vols","bar":3,"commit":"L","chal":2,"chan":null},{"n":78,"head":"Junji Ito — No Longer Human.","desc":"Ito's adaptation of Dazai — two obsessions in one work. Past Uzumaki and Remina.","len":"3 vols","bar":2,"commit":"M","chal":1,"chan":null},{"n":79,"head":"Junji Ito — Gyo.","desc":"Body-horror and dread of the sea; grotesque invention at full tilt.","len":"2 vols","bar":1,"commit":"B","chal":1,"chan":null},{"n":80,"head":"Naoki Urasawa — Monster.","desc":"A surgeon, a patient he saved, and a slow-burning study of evil across a haunted Europe.","len":"18 vols","bar":4,"commit":"E","chal":1,"chan":null},{"n":81,"head":"Katsuhiro Otomo — Akira.","desc":"The apocalyptic manga monument — power, decay, and a city eating itself.","len":"6 vols","bar":4,"commit":"L","chal":2,"chan":null},{"n":82,"head":"Hayao Miyazaki — Nausicaä of the Valley of the Wind.","desc":"The manga, not the film — a dark ecological epic far bleaker than its reputation.","len":"7 vols","bar":3,"commit":"L","chal":2,"chan":null},{"n":83,"head":"Osamu Tezuka — Ode to Kirihito.","desc":"Dark, grotesque, disease-and-faith Tezuka; the god of manga at his most unsettling.","len":"2 vols","bar":3,"commit":"L","chal":2,"chan":null}]},{"num":"X","name":"The Berserk Strand, Part II","sub":"Grimdark & cosmic-fate fantasy in prose.","scoring":"CC","entries":[{"n":84,"head":"Poul Anderson — The Broken Sword.","desc":"Bleak Norse doom: a stolen child, a changeling, and a cursed blade that grants victory and takes everything. Lean, mythic, fated — no worldbuilding apparatus, just tragedy.","len":"≈ 210 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":85,"head":"Glen Cook — The Black Company.","desc":"The ur-grimdark; morally grey mercenaries in a doomed war. Guts would enlist.","len":"≈ 330 pp","bar":2,"commit":"M","chal":1,"chan":null},{"n":86,"head":"Karl Edward Wagner — Death Angel's Shadow.","desc":"Kane: an immortal, red-handed, coldly intelligent killer wandering a doomed world — the horror-soaked proto-grimdark antihero Guts shares a bloodline with. Three lean novellas, no map required.","len":"≈ 230 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":87,"head":"Andrzej Sapkowski — The Last Wish.","desc":"A wandering monster-hunter for hire, morally grey and weary — Guts as the Black Swordsman, in prose. Told as standalone grim fairy tales, so the darkness comes without a saga's baggage.","len":"≈ 280 pp","bar":2,"commit":"M","chal":1,"chan":null},{"n":88,"head":"Michael Moorcock — Elric of Melniboné.","desc":"The doomed albino swordsman and his soul-drinking blade; the line Guts descends from.","len":"≈ 180 pp","bar":1,"commit":"B","chal":1,"chan":null}]},{"num":"XI","name":"The Bedrock Strand","sub":"Theological & philosophical darkness (runs under every door).","scoring":"CC","entries":[{"n":89,"head":"Herman Melville — Moby-Dick.","desc":"The cosmic-biblical ancestor of Blood Meridian. The reader gripped by Judge Holden needs Ahab.","len":"≈ 630 pp","bar":3,"commit":"E","chal":2,"chan":null},{"n":90,"head":"Fyodor Dostoevsky — The Brothers Karamazov.","desc":"The Grand Inquisitor, patricide, and faith on trial; the theological summit of the novel.","len":"≈ 800 pp","bar":4,"commit":"E","chal":2,"chan":null},{"n":91,"head":"Fyodor Dostoevsky — Notes from Underground.","desc":"The short, bilious on-ramp; the birth of the modern anti-hero.","len":"≈ 140 pp","bar":1,"commit":"B","chal":2,"chan":null},{"n":92,"head":"Fyodor Dostoevsky — Demons.","desc":"Political nihilism as spiritual plague; a provincial town destroyed from within. Pairs with the theory shelf.","len":"≈ 730 pp","bar":4,"commit":"E","chal":3,"chan":"Noided — nihilist terror, the literary heavyweight"},{"n":93,"head":"Shūsaku Endō — Silence.","desc":"God's silence and martyrdom in Japan — theology, Japanese lit, and Outer Dark's dread in one novel.","len":"≈ 200 pp","bar":2,"commit":"M","chal":2,"chan":null},{"n":94,"head":"Louis-Ferdinand Céline — Journey to the End of the Night.","desc":"The great nihilist-comic bile-novel; everyone transgressive Steve loves owes it a debt.","len":"≈ 450 pp","bar":3,"commit":"L","chal":2,"chan":null},{"n":95,"head":"Knut Hamsun — Hunger.","desc":"The proto-modernist despair novel — Dazai's spiritual ancestor, starving in a hostile city.","len":"≈ 230 pp","bar":2,"commit":"B","chal":2,"chan":null},{"n":96,"head":"E. M. Cioran — The Trouble with Being Born.","desc":"Aphoristic despair; the philosophical companion to Ligotti and Fisher.","len":"≈ 220 pp","bar":2,"commit":"B","chal":2,"chan":null}]},{"num":"XII","name":"The Real Strand","sub":"Criticism, pessimism, and the machinery underneath.","scoring":"CC","entries":[{"n":97,"head":"Mark Fisher — Ghosts of My Life.","desc":"Hauntology, lost futures, and cultural depression; the natural next Fisher after Capitalist Realism and The Weird and the Eerie.","len":"≈ 250 pp","bar":2,"commit":"M","chal":2,"chan":"Essay: hauntology (your Fisher crowd)"},{"n":98,"head":"Jean Baudrillard — Simulacra and Simulation.","desc":"The map replaces the territory; the theory-root beneath half the dystopias on this list.","len":"≈ 170 pp","bar":1,"commit":"M","chal":3,"chan":"The theory everyone cites"},{"n":99,"head":"Byung-Chul Han — The Burnout Society.","desc":"A short, sharp diagnosis of the achievement-exhaustion age; speaks straight to the attention thread in Steve's shelf.","len":"≈ 70 pp","bar":1,"commit":"B","chal":2,"chan":null},{"n":100,"head":"Eugene Thacker — In the Dust of This Planet.","desc":"The horror of philosophy: the world-without-us and cosmic pessimism — the exact bridge between the horror shelf and the theory shelf.","len":"≈ 180 pp","bar":1,"commit":"B","chal":3,"chan":"Essay: the True Detective philosophy"},{"n":101,"head":"Thomas Ligotti — The Conspiracy Against the Human Race.","desc":"Ligotti's nonfiction pessimism — the bridge between the horror shelf and the philosophy shelf, and a fitting last word.","len":"≈ 250 pp","bar":2,"commit":"M","chal":2,"chan":"Flagship: pessimism / True Detective"}]},{"num":"XIII","name":"The Paranoid Strand","sub":"Parapolitical & deep-politics fiction — the channel's Noided core.","scoring":"NG","entries":[{"n":102,"head":"Umberto Eco — Foucault's Pendulum.","desc":"Three bored editors invent a grand conspiracy that turns out to be real — the erudite occult-conspiracy novel, and the literary heart of the Core Zone.","len":"≈ 640 pp","bar":3,"noided":5,"grim":2},{"n":103,"head":"Robert Shea & Robert Anton Wilson — The Illuminatus! Trilogy.","desc":"The conspiracy-fiction ur-text: every secret society at once, occult and parapolitical and gleefully unhinged.","len":"≈ 800 pp","bar":4,"noided":5,"grim":2},{"n":104,"head":"David Peace — The Red Riding Quartet.","desc":"Yorkshire police corruption, child murders, and occult rot braided into the bleakest deep-politics noir ever written.","len":"≈ 1,500 pp","bar":4,"noided":4,"grim":5},{"n":105,"head":"Norman Mailer — Harlot's Ghost.","desc":"The great CIA-as-America epic; the Agency rendered as a haunted house with no exit.","len":"≈ 1,300 pp","bar":4,"noided":4,"grim":3},{"n":106,"head":"Ishmael Reed — Mumbo Jumbo.","desc":"A secret history of the twentieth century as collage: a psychic 'anti-plague' the establishment is desperate to suppress.","len":"≈ 220 pp","bar":2,"noided":5,"grim":2},{"n":107,"head":"Robert Stone — Dog Soldiers.","desc":"Heroin, Vietnam, and the American rot coming home; National Book Award deep-politics noir.","len":"≈ 340 pp","bar":2,"noided":3,"grim":4},{"n":108,"head":"Graham Greene — The Quiet American.","desc":"Saigon, 1955: idealism as the cover story for covert catastrophe. The prescient one.","len":"≈ 190 pp","bar":1,"noided":3,"grim":3},{"n":109,"head":"John le Carré — Tinker Tailor Soldier Spy.","desc":"A mole at the top of British intelligence — the procedural anatomy of the deep state, done cold.","len":"≈ 380 pp","bar":2,"noided":4,"grim":2}]},{"num":"XIV","name":"The Demonology Strand","sub":"Demonology & occult-crime — where the demonic meets the detective.","scoring":"NG","entries":[{"n":110,"head":"James Blish — The Day After Judgment.","desc":"The sequel to the Black Easter you read — Hell wins, and the theology is rigorous.","len":"≈ 170 pp","bar":1,"noided":5,"grim":4},{"n":111,"head":"Charles Williams — War in Heaven.","desc":"The Grail as a murder object; the man who invented the 'supernatural thriller.'","len":"≈ 260 pp","bar":2,"noided":4,"grim":2},{"n":112,"head":"Fritz Leiber — Our Lady of Darkness.","desc":"San Francisco as a living occult entity; scholarly horror about the magic of cities.","len":"≈ 180 pp","bar":1,"noided":4,"grim":3},{"n":113,"head":"Ira Levin — Rosemary's Baby.","desc":"A satanic conspiracy hiding inside a marriage and an apartment building. Lean, perfect, crossover-friendly.","len":"≈ 250 pp","bar":2,"noided":4,"grim":3},{"n":114,"head":"Dennis Wheatley — The Devil Rides Out.","desc":"The classic black-magic thriller; the template the whole occult-thriller shelf copies.","len":"≈ 250 pp","bar":2,"noided":4,"grim":2},{"n":115,"head":"T. E. D. Klein — The Ceremonies.","desc":"Slow cosmic-occult dread building under rural America; a cult favorite for a reason.","len":"≈ 560 pp","bar":3,"noided":4,"grim":3},{"n":116,"head":"Thomas Tryon — Harvest Home.","desc":"Folk-occult conspiracy in a New England village; the pagan-America horror that Midsommar owes everything to.","len":"≈ 400 pp","bar":3,"noided":4,"grim":3}]}];
+
+// flatten
+const CLOCK = {B:"◔",M:"◑",L:"◕",E:"●"};
+const CLABEL = {B:"Brief",M:"Medium",L:"Long",E:"Epic"};
+const CHLAB = {1:"Accessible",2:"Demanding",3:"Formidable"};
+
+function splitHead(head){
+  const i = head.indexOf(" — ");
+  if(i<0) return {author:"", title:head.replace(/\.$/,"")};
+  return {author:head.slice(0,i), title:head.slice(i+3).replace(/\.$/,"")};
+}
+const ITEMS = [];
+DATA.forEach(p=>{
+  p.entries.forEach(e=>{
+    const st = splitHead(e.head);
+    ITEMS.push({...e, strandNum:p.num, strandName:p.name, strandSub:p.sub, scoring:p.scoring,
+      author:st.author, title:st.title,
+      searchable:(e.head+" "+e.desc).toLowerCase(),
+      isChan: !!e.chan});
+  });
+});
+const TOTAL = ITEMS.length;
+
+// read-state persistence (graceful if storage blocked)
+const KEY="paranoid_canon_read_v1";
+let read = new Set();
+let storageOK = true;
+try{ const raw=localStorage.getItem(KEY); if(raw) read=new Set(JSON.parse(raw)); }
+catch(_){ storageOK=false; }
+function saveRead(){ if(!storageOK) return; try{ localStorage.setItem(KEY, JSON.stringify([...read])); }catch(_){ storageOK=false; } }
+
+// marker builders
+function bar(fill,total,cls){
+  let s="";
+  for(let i=0;i<total;i++) s += '<span class="'+(i<fill?cls:'b-off')+'">'+(i<fill?'▮':'▯')+'</span>';
+  return s;
+}
+function markersHTML(it){
+  if(it.scoring==="NG"){
+    return '<span class="m">'+bar(it.bar,4,'b-on')+' '+it.len+'</span>'
+      + '<span class="m"><span class="lab">N</span> '+bar(it.noided,5,'b-on')+' '+it.noided+'</span>'
+      + '<span class="m"><span class="lab">G</span> '+bar(it.grim,5,'b-ink')+' '+it.grim+'</span>';
+  }
+  return '<span class="m">'+bar(it.bar,4,'b-on')+' '+it.len+'</span>'
+    + '<span class="m" title="Commitment"><span style="color:var(--ox)">'+CLOCK[it.commit]+'</span> '+CLABEL[it.commit]+'</span>'
+    + '<span class="m" title="Challenge">'+bar(it.chal,3,'b-on').replace(/▮/g,'◆').replace(/▯/g,'◇')+' '+CHLAB[it.chal]+'</span>';
+}
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+// controls
+const $ = id=>document.getElementById(id);
+const strandSel=$("strand");
+strandSel.innerHTML = '<option value="ALL">All strands</option>' +
+  DATA.map(p=>'<option value="'+p.num+'">Part '+p.num+' — '+esc(p.name)+'</option>').join('');
+
+function currentFilters(){
+  return {
+    q: $("search").value.trim().toLowerCase(),
+    strand: strandSel.value,
+    sort: $("sort").value,
+    chanOnly: $("chanOnly").checked,
+    unreadOnly: $("unreadOnly").checked,
+  };
+}
+function sortItems(arr, mode){
+  const a=[...arr];
+  if(mode==="title") a.sort((x,y)=>x.title.localeCompare(y.title));
+  else if(mode==="author") a.sort((x,y)=>x.author.localeCompare(y.author));
+  else if(mode==="short") a.sort((x,y)=>x.bar-y.bar || x.n-y.n);
+  else if(mode==="long") a.sort((x,y)=>y.bar-x.bar || x.n-y.n);
+  else if(mode==="unread") a.sort((x,y)=>(read.has(x.n)-read.has(y.n)) || x.n-y.n);
+  else if(mode==="channel") a.sort((x,y)=>(y.isChan-x.isChan) || x.n-y.n);
+  else a.sort((x,y)=>x.n-y.n);
+  return a;
+}
+function render(){
+  const f=currentFilters();
+  let items = ITEMS.filter(it=>{
+    if(f.q && !it.searchable.includes(f.q)) return false;
+    if(f.strand!=="ALL" && it.strandNum!==f.strand) return false;
+    if(f.chanOnly && !it.isChan) return false;
+    if(f.unreadOnly && read.has(it.n)) return false;
+    return true;
+  });
+  const shown=items.length;
+  $("count").textContent = "Showing "+shown+" of "+TOTAL+(f.chanOnly?" · channel fuel":"");
+
+  // group by strand, in canon order
+  const list=$("list"); list.innerHTML="";
+  if(shown===0){ list.innerHTML='<div class="empty">No books match that. Try clearing filters.</div>'; return; }
+  DATA.forEach(p=>{
+    let group = items.filter(it=>it.strandNum===p.num);
+    if(!group.length) return;
+    group = sortItems(group, f.sort);
+    const sec=document.createElement("section");
+    sec.className="strand";
+    sec.innerHTML = '<div class="kicker">Part '+p.num+(p.scoring==="NG"?' · Noided':'')+'</div>'
+      + '<h2>'+esc(p.name)+'</h2><p class="ssub">'+esc(p.sub)+'</p><hr class="strand-rule">';
+    group.forEach(it=>{
+      const isRead=read.has(it.n);
+      const card=document.createElement("article");
+      card.className="card"+(isRead?" read":"");
+      card.innerHTML =
+        '<label class="chk"><input type="checkbox" data-n="'+it.n+'"'+(isRead?" checked":"")+' aria-label="Mark read"><span class="box"></span></label>'
+        + '<div class="body">'
+        +   '<div class="head"><span class="num">'+it.n+'.</span> <span class="title">'+esc(it.title)+'</span> <span class="author">— '+esc(it.author)+'</span></div>'
+        +   '<p class="desc">'+esc(it.desc)+'</p>'
+        +   '<div class="markers">'+markersHTML(it)+'</div>'
+        +   (it.chan?'<div class="chan"><span class="tri">▶</span> '+esc(it.chan)+'</div>':'')
+        + '</div>';
+      sec.appendChild(card);
+    });
+    list.appendChild(sec);
+  });
+}
+function updateProgress(){
+  const n=read.size, pct=Math.round(n/TOTAL*100);
+  $("progfill").style.width=pct+"%";
+  $("progtext").textContent=n+" / "+TOTAL+" read · "+pct+"%";
+}
+
+// events
+$("list").addEventListener("change",e=>{
+  const cb=e.target.closest('input[type=checkbox][data-n]');
+  if(!cb) return;
+  const n=+cb.dataset.n;
+  if(cb.checked) read.add(n); else read.delete(n);
+  saveRead(); updateProgress();
+  const card=cb.closest(".card");
+  if(card) card.classList.toggle("read", cb.checked);
+  if(currentFilters().unreadOnly) render();
+});
+["search","strand","sort"].forEach(id=>$(id).addEventListener("input",render));
+$("chanOnly").addEventListener("change",render);
+$("unreadOnly").addEventListener("change",render);
+$("reset").addEventListener("click",()=>{
+  if(confirm("Clear all reading progress?")){ read.clear(); saveRead(); updateProgress(); render(); }
+});
+
+updateProgress();
+render();
+</script>
+</body>
+</html>
