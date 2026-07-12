@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Noided Reading List — Paranoid Reading</title>
+<style>
+  :root{
+    --ox:#6B1414; --ox2:#8f2320; --ink:#1a1a1a; --gray:#5a5a5a; --faint:#c9b8b8;
+    --paper:#faf7f2; --card:#ffffff; --line:#e7ddd6; --shadow:0 1px 2px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:Georgia,"Iowan Old Style","Times New Roman",serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--ox)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px 80px}
+  header{background:linear-gradient(180deg,#fbf9f5,#f4ede4);border-bottom:3px solid var(--ox);position:sticky;top:0;z-index:20}
+  .head-inner{max-width:900px;margin:0 auto;padding:14px 18px 12px}
+  .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  h1{margin:2px 0 2px;font-size:28px;letter-spacing:.05em;color:var(--ox)}
+  .sub{margin:0;color:var(--gray);font-style:italic;font-size:14px}
+  .progwrap{margin-top:10px;display:flex;align-items:center;gap:10px}
+  .progbar{flex:1;height:9px;background:#eaded4;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .progfill{height:100%;width:0;background:linear-gradient(90deg,var(--ox),var(--ox2));transition:width .3s}
+  .progtext{font-size:12.5px;color:var(--gray);white-space:nowrap}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;align-items:center}
+  .controls input[type=search],.controls select{font-family:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+  .controls input[type=search]{flex:1;min-width:180px}
+  .toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:#fff;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--ox)}
+  .btn{font-family:inherit;font-size:13px;color:var(--ox);background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 10px;cursor:pointer}
+  .btn:hover{background:#fbf3f0}
+  .count{font-size:12.5px;color:var(--gray);margin:4px 2px 14px}
+  details.legend{margin:0 0 16px;border:1px solid var(--line);border-radius:10px;background:#fff}
+  details.legend summary{cursor:pointer;padding:9px 12px;font-size:13px;color:var(--ox);font-weight:bold;letter-spacing:.02em}
+  .legend-body{padding:0 12px 12px;font-size:13px;color:var(--gray);line-height:1.7}
+  .strand{margin:26px 0 6px}
+  .strand .kicker{font-size:11px;letter-spacing:.22em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  .strand h2{margin:1px 0 2px;font-size:21px;letter-spacing:.03em;color:var(--ink)}
+  .strand .ssub{margin:0 0 8px;font-size:13px;color:var(--gray);font-style:italic}
+  .strand-rule{height:2px;background:var(--ox);opacity:.85;border:0;margin:0 0 12px}
+  .card{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 9px;box-shadow:var(--shadow);transition:opacity .2s}
+  .card.read{opacity:.62}
+  .card.read .title{text-decoration:line-through;text-decoration-color:var(--faint)}
+  .chk{flex:0 0 auto;padding-top:2px}
+  .chk input{position:absolute;opacity:0;width:22px;height:22px;cursor:pointer}
+  .box{display:inline-block;width:22px;height:22px;border:2px solid var(--faint);border-radius:6px;position:relative;cursor:pointer;transition:.15s}
+  .chk input:checked + .box{background:var(--ox);border-color:var(--ox)}
+  .chk input:checked + .box::after{content:"✓";color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:14px;font-weight:bold}
+  .chk input:focus-visible + .box{outline:2px solid var(--ox2);outline-offset:2px}
+  .body{flex:1;min-width:0}
+  .head{font-size:16px;line-height:1.3}
+  .num{color:var(--ox);font-weight:bold}
+  .title{font-weight:bold;color:var(--ink)}
+  .author{color:var(--gray)}
+  .desc{margin:5px 0 8px;font-size:14px;color:#333}
+  .markers{font-size:13px;color:var(--gray);display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center}
+  .markers .m{white-space:nowrap}
+  .b-on{color:var(--ox);letter-spacing:1px}
+  .b-off{color:var(--faint);letter-spacing:1px}
+  .b-ink{color:var(--ink);letter-spacing:1px}
+  .lab{color:var(--gray)}
+  .empty{padding:40px 10px;text-align:center;color:var(--gray);font-style:italic}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--gray)}
+  footer a{font-weight:bold}
+  @media(max-width:560px){h1{font-size:22px}.controls input[type=search]{min-width:120px}.head{font-size:15px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="brand">Paranoid Reading</div>
+    <h1>The Noided Reading List</h1>
+    <p class="sub">33 books · parapolitics, deep politics &amp; the occult · scored Noided / Grim</p>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 33 read</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search title or author…" autocomplete="off">
+    <select id="strand" aria-label="Filter by strand"></select>
+    <select id="sort" aria-label="Sort">
+      <option value="canon">List order</option>
+      <option value="noided">Most Noided</option>
+      <option value="grim">Grimmest</option>
+      <option value="core">Core Zone (N+G)</option>
+      <option value="title">Title A–Z</option>
+      <option value="author">Author A–Z</option>
+      <option value="short">Shortest first</option>
+      <option value="long">Longest first</option>
+      <option value="unread">Unread first</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="unreadOnly"> Unread only</label>
+    <button class="btn" id="reset">Reset progress</button>
+  </div>
+  <div class="count" id="count"></div>
+
+  <details class="legend">
+    <summary>How to read the scores</summary>
+    <div class="legend-body">
+      <div><b>Length</b> <span class="m"><span class="b-on">▮▮▮</span><span class="b-off">▯</span></span> approximate page count — more bars, more heft.</div>
+      <div><b style="color:var(--ox)">N — Noided</b> <span class="m"><span class="b-on">▮▮▮▮</span><span class="b-off">▯</span></span> how deep into the hidden machinery: 0 Clear Skies → 5 The Veil Is Thin.</div>
+      <div><b>G — Grim</b> <span class="m"><span class="b-ink">▮▮▮</span><span class="b-off">▯▯</span></span> how bleak and violent: 0 Sunlit → 5 Evening Redness.</div>
+      <div style="margin-top:6px">Sort by <b>Core Zone</b> to surface the highest combined N+G — the flagship-essay material.</div>
+    </div>
+  </details>
+
+  <div id="list"></div>
+
+  <footer>
+    <p>The parapolitics-and-demonology companion to <b>Steve's Canon</b>, part of <b>Paranoid Reading</b>. Your reading progress is saved privately in this browser only — nothing is uploaded.</p>
+    <p><a href="https://substack.com/@paranoidreading" id="subLink">← Paranoid Reading on Substack</a></p>
+    <p><a href="/canon">→ Steve's Canon (the full 116)</a> &nbsp;·&nbsp; <a href="/curriculums">→ The Curriculums</a> &nbsp;·&nbsp; <a href="/every-book">→ Every Book</a></p>
+  </footer>
+</div>
+
+<script>
+const DATA = [{"num":"I","name":"The Paranoid Novel","sub":"Parapolitical & deep-politics fiction.","entries":[{"n":1,"head":"Umberto Eco — Foucault's Pendulum.","desc":"Three bored editors invent a grand conspiracy that turns out to be real — the erudite occult-conspiracy novel, and the literary heart of the Core Zone.","len":"≈ 640 pp","bar":3,"noided":5,"grim":2},{"n":2,"head":"Robert Shea & Robert Anton Wilson — The Illuminatus! Trilogy.","desc":"The conspiracy-fiction ur-text: every secret society at once, occult and parapolitical and gleefully unhinged.","len":"≈ 800 pp","bar":4,"noided":5,"grim":2},{"n":3,"head":"David Peace — The Red Riding Quartet.","desc":"Yorkshire police corruption, child murders, and occult rot braided into the bleakest deep-politics noir ever written.","len":"≈ 1,500 pp","bar":4,"noided":4,"grim":5},{"n":4,"head":"Norman Mailer — Harlot's Ghost.","desc":"The great CIA-as-America epic; the Agency rendered as a haunted house with no exit.","len":"≈ 1,300 pp","bar":4,"noided":4,"grim":3},{"n":5,"head":"Ishmael Reed — Mumbo Jumbo.","desc":"A secret history of the twentieth century as collage: a psychic 'anti-plague' the establishment is desperate to suppress.","len":"≈ 220 pp","bar":2,"noided":5,"grim":2},{"n":6,"head":"James Ellroy — American Tabloid.","desc":"The deep-politics crime epic that is basically your channel's worldview in a book. (You've read it — the reference point for the whole strand.)","len":"≈ 570 pp","bar":3,"noided":4,"grim":4},{"n":7,"head":"Thomas Pynchon — Gravity's Rainbow.","desc":"The paranoid novel itself — rockets, cartels, and a war that never really ends. (Also #25 on your canon.)","len":"≈ 760 pp","bar":4,"noided":5,"grim":4},{"n":8,"head":"Don DeLillo — Libra.","desc":"The Kennedy assassination as an intelligence operation that slips its handlers. (Also #17 on your canon.)","len":"≈ 460 pp","bar":3,"noided":4,"grim":3},{"n":9,"head":"Robert Stone — Dog Soldiers.","desc":"Heroin, Vietnam, and the American rot coming home; National Book Award deep-politics noir.","len":"≈ 340 pp","bar":2,"noided":3,"grim":4},{"n":10,"head":"Graham Greene — The Quiet American.","desc":"Saigon, 1955: idealism as the cover story for covert catastrophe. The prescient one.","len":"≈ 190 pp","bar":1,"noided":3,"grim":3},{"n":11,"head":"John le Carré — Tinker Tailor Soldier Spy.","desc":"A mole at the top of British intelligence — the procedural anatomy of the deep state, done cold.","len":"≈ 380 pp","bar":2,"noided":4,"grim":2},{"n":12,"head":"Alan Moore — From Hell.","desc":"Masonic conspiracy, the Ripper, and occult London as the engine of the twentieth century. (You've read it — the Noided/Grim benchmark.)","len":"≈ 570 pp","bar":3,"noided":5,"grim":5}]},{"num":"II","name":"Deep Politics, Documented","sub":"Nonfiction — the credibility shelf for the essays.","entries":[{"n":13,"head":"Peter Dale Scott — Deep Politics and the Death of JFK.","desc":"The scholar who coined 'parapolitics.' The foundational text for the entire lens.","len":"≈ 450 pp","bar":3,"noided":5,"grim":3},{"n":14,"head":"Peter Dale Scott — The Road to 9/11.","desc":"Continuity of the deep state across administrations; dense, sourced, essential.","len":"≈ 400 pp","bar":3,"noided":5,"grim":3},{"n":15,"head":"David Talbot — The Devil's Chessboard.","desc":"Allen Dulles and the private shadow-government; reads like a thriller, footnoted like a history.","len":"≈ 600 pp","bar":3,"noided":4,"grim":3},{"n":16,"head":"Tim Weiner — Legacy of Ashes.","desc":"The Pulitzer history of CIA failure and folly; the ground truth under all the fiction.","len":"≈ 700 pp","bar":4,"noided":4,"grim":3},{"n":17,"head":"Frances Stonor Saunders — The Cultural Cold War.","desc":"How the CIA quietly funded modern art and letters — covert ops aimed at the culture itself. Catnip for a book channel.","len":"≈ 500 pp","bar":3,"noided":4,"grim":2},{"n":18,"head":"Kathryn Olmsted — Real Enemies.","desc":"A century of American conspiracy — and how often the government actually was conspiring. The credibility spine.","len":"≈ 380 pp","bar":2,"noided":4,"grim":2},{"n":19,"head":"John Gray — Black Mass.","desc":"Apocalyptic religion inside secular politics; ties demonology straight to statecraft.","len":"≈ 340 pp","bar":2,"noided":4,"grim":3}]},{"num":"III","name":"Demonology & Occult-Crime","sub":"Where the demonic meets the detective.","entries":[{"n":20,"head":"William Hjortsberg — Falling Angel.","desc":"The PI case that is really a soul in hell — your five-star touchstone and the platonic Noided/Grim book.","len":"≈ 270 pp","bar":2,"noided":5,"grim":4},{"n":21,"head":"William Peter Blatty — The Exorcist.","desc":"The foundational text; possession as procedure, faith as forensics.","len":"≈ 380 pp","bar":2,"noided":4,"grim":3},{"n":22,"head":"William Peter Blatty — Legion.","desc":"The sequel as detective novel: a homicide cop, a serial killer, and the problem of evil. (On your summer TBR.)","len":"≈ 270 pp","bar":2,"noided":4,"grim":3},{"n":23,"head":"James Blish — The Day After Judgment.","desc":"The sequel to the Black Easter you read — Hell wins, and the theology is rigorous.","len":"≈ 170 pp","bar":1,"noided":5,"grim":4},{"n":24,"head":"Charles Williams — War in Heaven.","desc":"The Grail as a murder object; the man who invented the 'supernatural thriller.'","len":"≈ 260 pp","bar":2,"noided":4,"grim":2},{"n":25,"head":"Fritz Leiber — Our Lady of Darkness.","desc":"San Francisco as a living occult entity; scholarly horror about the magic of cities.","len":"≈ 180 pp","bar":1,"noided":4,"grim":3},{"n":26,"head":"Ira Levin — Rosemary's Baby.","desc":"A satanic conspiracy hiding inside a marriage and an apartment building. Lean, perfect, crossover-friendly.","len":"≈ 250 pp","bar":2,"noided":4,"grim":3},{"n":27,"head":"Dennis Wheatley — The Devil Rides Out.","desc":"The classic black-magic thriller; the template the whole occult-thriller shelf copies.","len":"≈ 250 pp","bar":2,"noided":4,"grim":2},{"n":28,"head":"T. E. D. Klein — The Ceremonies.","desc":"Slow cosmic-occult dread building under rural America; a cult favorite for a reason.","len":"≈ 560 pp","bar":3,"noided":4,"grim":3},{"n":29,"head":"Thomas Tryon — Harvest Home.","desc":"Folk-occult conspiracy in a New England village; the pagan-America horror that Midsommar owes everything to.","len":"≈ 400 pp","bar":3,"noided":4,"grim":3}]},{"num":"IV","name":"Occult History & Esoterica","sub":"Research seams for the fiction.","entries":[{"n":30,"head":"Gary Lachman — Dark Star Rising.","desc":"Magic, chaos-magick, and the occult currents running under contemporary politics. The exact crosspoint you want to write from.","len":"≈ 250 pp","bar":2,"noided":5,"grim":2},{"n":31,"head":"Peter Levenda — Unholy Alliance.","desc":"Nazi occultism and its long afterlife — the parapolitics/occult overlap, adjacent to your Farrell reading.","len":"≈ 400 pp","bar":3,"noided":5,"grim":3},{"n":32,"head":"Mitch Horowitz — Occult America.","desc":"A readable history of the American esoteric underground; a fact-mine for the serial.","len":"≈ 290 pp","bar":2,"noided":3,"grim":1},{"n":33,"head":"Erik Davis — TechGnosis.","desc":"Mysticism inside the machine — how the occult and information technology keep merging. Feeds the near-future angle.","len":"≈ 370 pp","bar":2,"noided":4,"grim":1}]}];
+
+function splitHead(head){
+  const i = head.indexOf(" — ");
+  if(i<0) return {author:"", title:head.replace(/\.$/,"")};
+  return {author:head.slice(0,i), title:head.slice(i+3).replace(/\.$/,"")};
+}
+const ITEMS=[];
+DATA.forEach(p=>p.entries.forEach(e=>{
+  const st=splitHead(e.head);
+  ITEMS.push({...e, strandNum:p.num, author:st.author, title:st.title,
+    searchable:(e.head+" "+e.desc).toLowerCase()});
+}));
+const TOTAL=ITEMS.length;
+
+const KEY="paranoid_noided_read_v1";
+let read=new Set(), storageOK=true;
+try{const raw=localStorage.getItem(KEY); if(raw) read=new Set(JSON.parse(raw));}catch(_){storageOK=false;}
+function saveRead(){if(!storageOK)return;try{localStorage.setItem(KEY,JSON.stringify([...read]));}catch(_){storageOK=false;}}
+
+function bar(fill,total,cls){let s="";for(let i=0;i<total;i++)s+='<span class="'+(i<fill?cls:'b-off')+'">'+(i<fill?'▮':'▯')+'</span>';return s;}
+function markersHTML(it){
+  return '<span class="m">'+bar(it.bar,4,'b-on')+' '+it.len+'</span>'
+    +'<span class="m"><span class="lab" style="color:var(--ox);font-weight:bold">N</span> '+bar(it.noided,5,'b-on')+' '+it.noided+'</span>'
+    +'<span class="m"><span class="lab" style="font-weight:bold">G</span> '+bar(it.grim,5,'b-ink')+' '+it.grim+'</span>';
+}
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+const $=id=>document.getElementById(id);
+const strandSel=$("strand");
+strandSel.innerHTML='<option value="ALL">All strands</option>'+DATA.map(p=>'<option value="'+p.num+'">Part '+p.num+' — '+esc(p.name)+'</option>').join('');
+
+function currentFilters(){return{q:$("search").value.trim().toLowerCase(),strand:strandSel.value,sort:$("sort").value,unreadOnly:$("unreadOnly").checked};}
+function sortItems(arr,mode){
+  const a=[...arr];
+  if(mode==="title")a.sort((x,y)=>x.title.localeCompare(y.title));
+  else if(mode==="author")a.sort((x,y)=>x.author.localeCompare(y.author));
+  else if(mode==="short")a.sort((x,y)=>x.bar-y.bar||x.n-y.n);
+  else if(mode==="long")a.sort((x,y)=>y.bar-x.bar||x.n-y.n);
+  else if(mode==="unread")a.sort((x,y)=>(read.has(x.n)-read.has(y.n))||x.n-y.n);
+  else if(mode==="noided")a.sort((x,y)=>y.noided-x.noided||y.grim-x.grim||x.n-y.n);
+  else if(mode==="grim")a.sort((x,y)=>y.grim-x.grim||y.noided-x.noided||x.n-y.n);
+  else if(mode==="core")a.sort((x,y)=>(y.noided+y.grim)-(x.noided+x.grim)||x.n-y.n);
+  else a.sort((x,y)=>x.n-y.n);
+  return a;
+}
+function render(){
+  const f=currentFilters();
+  const global = f.sort!=="canon" && f.strand==="ALL";
+  let items=ITEMS.filter(it=>{
+    if(f.q && !it.searchable.includes(f.q))return false;
+    if(f.strand!=="ALL" && it.strandNum!==f.strand)return false;
+    if(f.unreadOnly && read.has(it.n))return false;
+    return true;
+  });
+  $("count").textContent="Showing "+items.length+" of "+TOTAL;
+  const list=$("list"); list.innerHTML="";
+  if(!items.length){list.innerHTML='<div class="empty">No books match that. Try clearing filters.</div>';return;}
+
+  function cardHTML(it){
+    const isRead=read.has(it.n);
+    return '<article class="card'+(isRead?" read":"")+'">'
+      +'<label class="chk"><input type="checkbox" data-n="'+it.n+'"'+(isRead?" checked":"")+' aria-label="Mark read"><span class="box"></span></label>'
+      +'<div class="body"><div class="head"><span class="num">'+it.n+'.</span> <span class="title">'+esc(it.title)+'</span> <span class="author">— '+esc(it.author)+'</span></div>'
+      +'<p class="desc">'+esc(it.desc)+'</p><div class="markers">'+markersHTML(it)+'</div></div></article>';
+  }
+
+  if(global){
+    // flat, globally sorted (no strand headers) — best for N/G rankings
+    const sec=document.createElement("div");
+    sortItems(items,f.sort).forEach(it=>sec.insertAdjacentHTML("beforeend",cardHTML(it)));
+    list.appendChild(sec);
+  }else{
+    DATA.forEach(p=>{
+      let group=items.filter(it=>it.strandNum===p.num);
+      if(!group.length)return;
+      group=sortItems(group,f.sort);
+      const sec=document.createElement("section");
+      sec.className="strand";
+      sec.innerHTML='<div class="kicker">Part '+p.num+'</div><h2>'+esc(p.name)+'</h2><p class="ssub">'+esc(p.sub)+'</p><hr class="strand-rule">';
+      group.forEach(it=>sec.insertAdjacentHTML("beforeend",cardHTML(it)));
+      list.appendChild(sec);
+    });
+  }
+}
+function updateProgress(){const n=read.size,pct=Math.round(n/TOTAL*100);$("progfill").style.width=pct+"%";$("progtext").textContent=n+" / "+TOTAL+" read · "+pct+"%";}
+
+$("list").addEventListener("change",e=>{
+  const cb=e.target.closest('input[type=checkbox][data-n]');if(!cb)return;
+  const n=+cb.dataset.n; if(cb.checked)read.add(n);else read.delete(n);
+  saveRead();updateProgress();
+  const card=cb.closest(".card"); if(card)card.classList.toggle("read",cb.checked);
+  if(currentFilters().unreadOnly)render();
+});
+["search","strand","sort"].forEach(id=>$(id).addEventListener("input",render));
+$("unreadOnly").addEventListener("change",render);
+$("reset").addEventListener("click",()=>{if(confirm("Clear all reading progress?")){read.clear();saveRead();updateProgress();render();}});
+updateProgress();render();
+</script>
+</body>
+</html>
