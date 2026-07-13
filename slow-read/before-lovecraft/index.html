@@ -48,18 +48,16 @@
   .bookhead .ba{font-size:14px;color:var(--gray);font-style:italic}
   .bookhead .bm{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin-top:4px}
 
-  .week{display:block;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 15px;margin:0 0 8px;box-shadow:var(--shadow);position:relative;color:inherit;text-decoration:none}
+  .week{display:block;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 15px;margin:0 0 8px;box-shadow:var(--shadow);position:relative}
   .week.current{border-color:var(--ox);box-shadow:0 0 0 1px var(--ox),0 2px 10px rgba(168,52,42,.25)}
-  a.week{cursor:pointer;transition:.15s}
-  a.week:hover{border-color:var(--ox-dim);background:#26211c}
   .wtop{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
   .wdate{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:bold;flex:0 0 auto}
   .wtitle{font-size:15.5px;font-weight:bold;color:var(--ink)}
   .wchap{display:block;font-size:13.5px;color:var(--gray);margin-top:1px}
   .wnote{display:block;font-size:13px;color:#a89e8f;margin-top:6px;font-style:italic;line-height:1.55}
   .wnote a{font-weight:bold}
-  .wgo{display:none}
-  a.week .wgo{display:inline-block;margin-top:8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:bold;color:var(--ox)}
+  .wread{display:block;margin-top:8px;font-size:12px;letter-spacing:.03em;color:var(--faint)}
+  .wread a{color:var(--ox);font-weight:bold}
   .nowtag{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:bold;color:#fff;background:var(--ox);border-radius:9px;padding:2px 8px;margin-left:8px;vertical-align:middle}
 
   .interlude{background:var(--panel);border:1px dashed var(--ox-dim)}
@@ -103,11 +101,11 @@
     <p class="eyebrow">The Deep Reads</p>
     <h1>Before Lovecraft</h1>
     <p class="season">A Season &middot; Summer 2027</p>
-    <p class="lens">Lovecraft gets all the credit for cosmic horror, and he stole it from the writers who did it first. Bierce named Carcosa, Chambers built a play that drives you mad, Machen tore the veil, Hodgson sent a house to the death of the sun, and Blackwood found the indifferent gods out in the willows before he tried to sound the name of God itself. Read the sources in order and watch the genre get assembled before its most famous name ever picked up a pen. <b>Twelve weeks, the real founders, and the essay where Lovecraft admits it himself.</b></p>
+    <p class="lens">Lovecraft is the name that made cosmic horror, and like every writer worth reading he built it out of the ones who came before. Books are made out of books, and he said so himself, in a whole essay crediting the writers who got there first. Bierce dreamed up Carcosa, Chambers wrote a play that drives its readers mad, Machen tore the veil, Hodgson sent a house to the death of the sun, and Blackwood found the indifferent gods out in the willows. Read his sources in order, then read what he made of them. <b>Twelve weeks, the tradition behind the master, and the debt he was proud to owe.</b></p>
   </div>
 
   <div class="how">
-    <b>How it works.</b> A new assignment drops every Sunday, and the weeks run about 90 to 110 pages each. The dispatch lands on the Substack and the video on the channel. Nearly everything here is public domain, so any edition or a free online text works. Read closely.
+    <b>How it works.</b> A new assignment drops every Sunday, and the weeks run about 90 to 110 pages each. The dispatch lands on the Substack and the video on the channel. It's all public domain, so every week links to a free copy you can read online. Read closely.
   </div>
 
   <div class="statusbar">
@@ -127,48 +125,60 @@
 </footer>
 
 <script>
-// To link a week to its Substack post, add a "url" to that week.
-// Any week with a "url" becomes a clickable link; weeks without one stay plain.
+// Each week has a "read" link to a free public-domain copy: read:{ t:"source name", u:"url" }.
+// To link a week to its Substack post later, add url:"..." to that week; it renders a "Read the dispatch" link.
 const SECTIONS = [
   { kind:"interlude", weeks:[
     { date:"2027-05-02", title:"The map", chap:'Lovecraft, "Supernatural Horror in Literature" (1927) &middot; the whole essay &middot; &asymp; 100 pp',
-      note:"Read all of it, not just the good parts. He names Poe, Machen, Blackwood, Chambers, Hodgson, and Dunsany, the entire course is hiding in this one essay." }
+      note:"Read all of it, not just the good parts. He names Poe, Machen, Blackwood, Chambers, Hodgson, and Dunsany, the entire course is hiding in this one essay.",
+      read:{ t:"The H.P. Lovecraft Archive", u:"https://www.hplovecraft.com/writings/texts/essays/shil.aspx" } }
   ]},
   { kind:"book", title:"Ambrose Bierce", author:"before Carcosa", meta:"1 week &middot; the origin", weeks:[
     { date:"2027-05-09", title:"The Carcosa tales, and the best of the rest", chap:'"An Inhabitant of Carcosa," "Haïta the Shepherd," "The Death of Halpin Frayser," "The Damned Thing," "The Moonlit Road," "The Boarded Window" &middot; &asymp; 95 pp',
-      note:"Carcosa, Hali, and Hastur, plus the sharpest of Bierce's weird horror. Chambers took the names a decade later; you'll see why they stuck." }
+      note:"Carcosa, Hali, and Hastur, plus the sharpest of Bierce's weird horror. Chambers borrowed the names a decade later; you'll see why they stuck.",
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/Author:Ambrose_Bierce" } }
   ]},
   { kind:"book", title:"Robert W. Chambers", author:"The King in Yellow, 1895", meta:"1 week &middot; the yellow sign", weeks:[
     { date:"2027-05-16", title:"All four weird tales", chap:'"The Repairer of Reputations," "The Mask," "In the Court of the Dragon," "The Yellow Sign" + "The Demoiselle d&rsquo;Ys" &middot; &asymp; 100 pp',
-      note:"The play nobody survives reading, all in one sitting. The back half of Chambers' book turns to romance, so we stop after Ys." }
+      note:"The play nobody survives reading, all in one sitting. The back half of Chambers' book turns to romance, so we stop after Ys.",
+      read:{ t:"Standard Ebooks", u:"https://standardebooks.org/ebooks/robert-w-chambers/the-king-in-yellow" } }
   ]},
   { kind:"book", title:"Arthur Machen", author:"the veil torn", meta:"2 weeks", weeks:[
     { date:"2027-05-23", title:"The Great God Pan + The Inmost Light", chap:"Two novellas, 1894 &middot; &asymp; 110 pp",
-      note:"Science lifts the veil, and something on the other side looks back." },
+      note:"Science lifts the veil, and something on the other side looks back.",
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/The_Great_God_Pan" } },
     { date:"2027-05-30", title:"The White People + The Great Return", chap:"1904 &amp; 1915 &middot; &asymp; 95 pp",
-      note:'"The White People," often called the greatest weird tale ever written, paired with the visionary Great Return.' }
+      note:'"The White People," often called the greatest weird tale ever written, paired with the visionary Great Return.',
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/Author:Arthur_Machen" } }
   ]},
   { kind:"book", title:"William Hope Hodgson", author:"The House on the Borderland, 1908", meta:"2 weeks", weeks:[
     { date:"2027-06-06", title:"Week 1 of 2", chap:"First half &middot; &asymp; 90 pp",
-      note:"The found manuscript, the pit, the swine-things, the siege." },
+      note:"The found manuscript, the pit, the swine-things, the siege.",
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/The_House_on_the_Borderland" } },
     { date:"2027-06-13", title:"Week 2 of 2", chap:"Second half &middot; finish &middot; &asymp; 90 pp",
-      note:"The house comes loose from time. The voyage to the death of the sun." }
+      note:"The house comes loose from time. The voyage to the death of the sun.",
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/The_House_on_the_Borderland" } }
   ]},
   { kind:"book", title:"Algernon Blackwood", author:"the indifferent wild", meta:"3 weeks", weeks:[
     { date:"2027-06-20", title:"The Willows + The Wendigo", chap:"Two novellas, 1907 &amp; 1910 &middot; &asymp; 110 pp",
-      note:"His two masterpieces back to back. Lovecraft's own pick for the finest weird tale in the language, plus the thing that runs on the wind." },
+      note:"His two masterpieces back to back. Lovecraft's own pick for the finest weird tale in the language, plus the thing that runs on the wind.",
+      read:{ t:"Standard Ebooks", u:"https://standardebooks.org/ebooks/algernon-blackwood/short-fiction" } },
     { date:"2027-06-27", title:"The Human Chord, I", chap:"The novel, 1910 &middot; first half &middot; &asymp; 110 pp",
-      note:"A man answers a strange ad and joins a scheme to pronounce the actual name of God. Sound as a cosmic force." },
+      note:"A man answers a strange ad and joins a scheme to pronounce the actual name of God. Sound as a cosmic force.",
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/The_Human_Chord" } },
     { date:"2027-07-04", title:"The Human Chord, II", chap:"Second half &middot; finish &middot; &asymp; 110 pp",
-      note:"The four voices assemble into the chord, and the risk of being unmade by a single syllable." }
+      note:"The four voices assemble into the chord, and the risk of being unmade by a single syllable.",
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/The_Human_Chord" } }
   ]},
   { kind:"book", title:"Lord Dunsany", author:"The Gods of Pegāna, 1905", meta:"1 week", weeks:[
     { date:"2027-07-11", title:"The invented pantheon", chap:"The Gods of Pegāna, complete, + tales from Time and the Gods &middot; &asymp; 95 pp",
-      note:"A whole mythology built from nothing. This is where Lovecraft learned to make his own gods instead of borrowing them." }
+      note:"A whole mythology built from nothing. This is where Lovecraft learned to make his own gods instead of borrowing them.",
+      read:{ t:"Wikisource", u:"https://en.wikisource.org/wiki/The_Gods_of_Peg%C4%81na" } }
   ]},
   { kind:"interlude", weeks:[
     { date:"2027-07-18", title:"What it built", chap:'Lovecraft, "The Call of Cthulhu" (1928) + S.T. Joshi, The Weird Tale (a chapter) &middot; &asymp; 90 pp',
-      note:"Read the first true Mythos story last, with everything you now recognize sitting inside it. Joshi names the machine. You've watched cosmic horror get built, piece by piece, before Lovecraft wrote a word." }
+      note:"Read the first great Mythos story last, with everything you now recognize sitting inside it. Joshi names the machine. You've watched cosmic horror come together, piece by piece, into the work Lovecraft made his own.",
+      read:{ t:"The H.P. Lovecraft Archive", u:"https://www.hplovecraft.com/writings/texts/fiction/cc.aspx" } }
   ]}
 ];
 
@@ -204,17 +214,17 @@ function render(){
     }
     sec.weeks.forEach(w=>{
       const idx=i;
-      const linked = !!w.url;
-      const el=document.createElement(linked ? "a" : "div");
+      const el=document.createElement("div");
       el.className="week"+(sec.kind==="interlude"?" interlude":"");
       if(idx===curIdx) el.classList.add("current");
-      if(linked) el.setAttribute("href", w.url);
       const now = idx===curIdx ? '<span class="nowtag">This week</span>' : '';
+      const readLink = w.read ? '<span class="wread">Read it free &middot; <a href="'+w.read.u+'" target="_blank" rel="noopener">'+w.read.t+'</a></span>' : '';
+      const dispatch = w.url ? '<span class="wread"><a href="'+w.url+'" target="_blank" rel="noopener">Read the dispatch &rarr;</a></span>' : '';
       el.innerHTML =
         '<span class="wtop"><span class="wtitle">'+w.title+now+'</span><span class="wdate">'+fmt(w.date)+'</span></span>'+
         '<span class="wchap">'+w.chap+'</span>'+
         (w.note?'<span class="wnote">'+w.note+'</span>':'')+
-        (linked?'<span class="wgo">Read the dispatch &rarr;</span>':'');
+        readLink + dispatch;
       wrap.appendChild(el);
       i++;
     });
