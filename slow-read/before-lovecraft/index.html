@@ -103,11 +103,11 @@
     <p class="eyebrow">The Deep Reads</p>
     <h1>Before Lovecraft</h1>
     <p class="season">A Season &middot; Summer 2027</p>
-    <p class="lens">Lovecraft gets all the credit for cosmic horror, and he stole it from four guys who did it first. Bierce named Carcosa, Chambers built a play that drives you mad, Machen tore the veil, Hodgson sent a house to the death of the sun, and Blackwood found the indifferent gods out in the willows. Read the sources in order and watch the genre get assembled before its most famous name ever picked up a pen. <b>Twelve weeks, the real founders, and the essay where Lovecraft admits it himself.</b></p>
+    <p class="lens">Lovecraft gets all the credit for cosmic horror, and he stole it from the writers who did it first. Bierce named Carcosa, Chambers built a play that drives you mad, Machen tore the veil, Hodgson sent a house to the death of the sun, and Blackwood found the indifferent gods out in the willows before he tried to sound the name of God itself. Read the sources in order and watch the genre get assembled before its most famous name ever picked up a pen. <b>Twelve weeks, the real founders, and the essay where Lovecraft admits it himself.</b></p>
   </div>
 
   <div class="how">
-    <b>How it works.</b> A new piece drops every Sunday. Read it, then the dispatch lands on the Substack and the video on the channel. Nearly everything here is public domain, so any edition or a free online text works. These are short and dense, so read closely.
+    <b>How it works.</b> A new assignment drops every Sunday, and the weeks run about 90 to 110 pages each. The dispatch lands on the Substack and the video on the channel. Nearly everything here is public domain, so any edition or a free online text works. Read closely.
   </div>
 
   <div class="statusbar">
@@ -131,43 +131,43 @@
 // Any week with a "url" becomes a clickable link; weeks without one stay plain.
 const SECTIONS = [
   { kind:"interlude", weeks:[
-    { date:"2027-05-02", title:"The map", chap:'Lovecraft, "Supernatural Horror in Literature" (1927)',
-      note:"Start by letting Lovecraft name his own sources. Read the sections on Poe, Machen, Blackwood, Chambers, and Hodgson. The whole course is hiding in this essay." }
+    { date:"2027-05-02", title:"The map", chap:'Lovecraft, "Supernatural Horror in Literature" (1927) &middot; the whole essay &middot; &asymp; 100 pp',
+      note:"Read all of it, not just the good parts. He names Poe, Machen, Blackwood, Chambers, Hodgson, and Dunsany, the entire course is hiding in this one essay." }
   ]},
   { kind:"book", title:"Ambrose Bierce", author:"before Carcosa", meta:"1 week &middot; the origin", weeks:[
-    { date:"2027-05-09", title:"The source", chap:'"An Inhabitant of Carcosa" + "Haïta the Shepherd"',
-      note:"Carcosa, Hali, Hastur. Bierce coined them in the 1880s, Chambers took the names a decade later, and True Detective took them a century after that." }
+    { date:"2027-05-09", title:"The Carcosa tales, and the best of the rest", chap:'"An Inhabitant of Carcosa," "Haïta the Shepherd," "The Death of Halpin Frayser," "The Damned Thing," "The Moonlit Road," "The Boarded Window" &middot; &asymp; 95 pp',
+      note:"Carcosa, Hali, and Hastur, plus the sharpest of Bierce's weird horror. Chambers took the names a decade later; you'll see why they stuck." }
   ]},
-  { kind:"book", title:"Robert W. Chambers", author:"The King in Yellow, 1895", meta:"2 weeks &middot; the yellow sign", weeks:[
-    { date:"2027-05-16", title:"Week 1 of 2", chap:'"The Repairer of Reputations" + "The Mask"',
-      note:"The play nobody survives reading. Where the Yellow King begins." },
-    { date:"2027-05-23", title:"Week 2 of 2", chap:'"In the Court of the Dragon" + "The Yellow Sign"',
-      note:"The four weird tales, done. The back half of Chambers' book turns to romance, so we stop here." }
+  { kind:"book", title:"Robert W. Chambers", author:"The King in Yellow, 1895", meta:"1 week &middot; the yellow sign", weeks:[
+    { date:"2027-05-16", title:"All four weird tales", chap:'"The Repairer of Reputations," "The Mask," "In the Court of the Dragon," "The Yellow Sign" + "The Demoiselle d&rsquo;Ys" &middot; &asymp; 100 pp',
+      note:"The play nobody survives reading, all in one sitting. The back half of Chambers' book turns to romance, so we stop after Ys." }
   ]},
   { kind:"book", title:"Arthur Machen", author:"the veil torn", meta:"2 weeks", weeks:[
-    { date:"2027-05-30", title:"The Great God Pan", chap:"The novella, 1894",
+    { date:"2027-05-23", title:"The Great God Pan + The Inmost Light", chap:"Two novellas, 1894 &middot; &asymp; 110 pp",
       note:"Science lifts the veil, and something on the other side looks back." },
-    { date:"2027-06-06", title:"The White People", chap:"The novella, 1904",
-      note:"Often called the greatest weird tale ever written. A girl's green diary and the oldest evil there is." }
+    { date:"2027-05-30", title:"The White People + The Great Return", chap:"1904 &amp; 1915 &middot; &asymp; 95 pp",
+      note:'"The White People," often called the greatest weird tale ever written, paired with the visionary Great Return.' }
   ]},
   { kind:"book", title:"William Hope Hodgson", author:"The House on the Borderland, 1908", meta:"2 weeks", weeks:[
-    { date:"2027-06-13", title:"Week 1 of 2", chap:"First half",
+    { date:"2027-06-06", title:"Week 1 of 2", chap:"First half &middot; &asymp; 90 pp",
       note:"The found manuscript, the pit, the swine-things, the siege." },
-    { date:"2027-06-20", title:"Week 2 of 2", chap:"Second half &middot; finish",
+    { date:"2027-06-13", title:"Week 2 of 2", chap:"Second half &middot; finish &middot; &asymp; 90 pp",
       note:"The house comes loose from time. The voyage to the death of the sun." }
   ]},
-  { kind:"book", title:"Algernon Blackwood", author:"the indifferent wild", meta:"2 weeks", weeks:[
-    { date:"2027-06-27", title:"The Willows", chap:"The novella, 1907",
-      note:"Lovecraft's own pick for the finest weird tale in the language. Two men, a river, and a place that does not want them." },
-    { date:"2027-07-04", title:"The Wendigo", chap:"The novella, 1910",
-      note:"The north woods, and the thing that runs on the wind." }
+  { kind:"book", title:"Algernon Blackwood", author:"the indifferent wild", meta:"3 weeks", weeks:[
+    { date:"2027-06-20", title:"The Willows + The Wendigo", chap:"Two novellas, 1907 &amp; 1910 &middot; &asymp; 110 pp",
+      note:"His two masterpieces back to back. Lovecraft's own pick for the finest weird tale in the language, plus the thing that runs on the wind." },
+    { date:"2027-06-27", title:"The Human Chord, I", chap:"The novel, 1910 &middot; first half &middot; &asymp; 110 pp",
+      note:"A man answers a strange ad and joins a scheme to pronounce the actual name of God. Sound as a cosmic force." },
+    { date:"2027-07-04", title:"The Human Chord, II", chap:"Second half &middot; finish &middot; &asymp; 110 pp",
+      note:"The four voices assemble into the chord, and the risk of being unmade by a single syllable." }
   ]},
   { kind:"book", title:"Lord Dunsany", author:"The Gods of Pegāna, 1905", meta:"1 week", weeks:[
-    { date:"2027-07-11", title:"Selections", chap:"The invented pantheon",
+    { date:"2027-07-11", title:"The invented pantheon", chap:"The Gods of Pegāna, complete, + tales from Time and the Gods &middot; &asymp; 95 pp",
       note:"A whole mythology built from nothing. This is where Lovecraft learned to make his own gods instead of borrowing them." }
   ]},
   { kind:"interlude", weeks:[
-    { date:"2027-07-18", title:"What it built", chap:'Lovecraft, "The Call of Cthulhu" (1928) + S.T. Joshi, The Weird Tale (selection)',
+    { date:"2027-07-18", title:"What it built", chap:'Lovecraft, "The Call of Cthulhu" (1928) + S.T. Joshi, The Weird Tale (a chapter) &middot; &asymp; 90 pp',
       note:"Read the first true Mythos story last, with everything you now recognize sitting inside it. Joshi names the machine. You've watched cosmic horror get built, piece by piece, before Lovecraft wrote a word." }
   ]}
 ];
