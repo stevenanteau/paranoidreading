@@ -102,16 +102,12 @@
     </svg>
     <p class="eyebrow">The Deep Reads</p>
     <h1>2666</h1>
-    <p class="season">Roberto Bolaño &middot; A Season &middot; Fall 2027</p>
+    <p class="season">Roberto Bolaño &middot; A Season</p>
     <p class="lens">Bolaño's last novel, and the one that swallows everything. Five books in one, stitched together by a Mexican border town where the women keep turning up dead. Four scholars hunting a vanished German novelist, a professor coming apart, an American reporter in over his head, three hundred pages of forensic murder, and one soldier's entire century. It refuses to resolve, and that's the point. <b>One book, twelve weeks, read as five separate pieces that quietly turn out to be one.</b></p>
   </div>
 
   <div class="how">
-    <b>How it works.</b> A new section drops every Sunday. Read the week's pages, then the dispatch lands on the Substack and the video on the channel. Page counts are approximate, based on the one-volume FSG / Picador edition, so go by the part, not the exact page.
-  </div>
-
-  <div class="statusbar">
-    <div class="nowbox" id="nowbox"></div>
+    <b>How it works.</b> The read goes in order, one section at a time. Read the week's pages, then the dispatch lands on the Substack and the video on the channel. Page counts are approximate, based on the one-volume FSG / Picador edition, so go by the part, not the exact page.
   </div>
 
   <div id="schedule"></div>
@@ -195,11 +191,10 @@ function render(){
       const linked = !!w.url;
       const el=document.createElement(linked ? "a" : "div");
       el.className="week"+(sec.kind==="interlude"?" interlude":"");
-      if(idx===curIdx) el.classList.add("current");
       if(linked) el.setAttribute("href", w.url);
       const now = idx===curIdx ? '<span class="nowtag">This week</span>' : '';
       el.innerHTML =
-        '<span class="wtop"><span class="wtitle">'+w.title+now+'</span><span class="wdate">'+fmt(w.date)+'</span></span>'+
+        '<span class="wtop"><span class="wtitle">'+w.title+'</span></span>'+
         '<span class="wchap">'+w.chap+'</span>'+
         (w.note?'<span class="wnote">'+w.note+'</span>':'')+
         (linked?'<span class="wgo">Read the dispatch &rarr;</span>':'');
@@ -209,21 +204,7 @@ function render(){
   });
 }
 
-function setNow(){
-  const box=document.getElementById("nowbox");
-  if(curIdx===-1){
-    const start=ymd(ALL[0].date), t=todayMid();
-    const days=Math.round((start-t)/86400000);
-    const wks=Math.max(0,Math.ceil(days/7));
-    box.innerHTML = "Begins <b>Jul 25, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
-  } else if(curIdx===-2){
-    box.innerHTML = "<b>Finished.</b> That was Fall 2027.";
-  } else {
-    box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> &middot; "+ALL[curIdx].chap;
-  }
-}
-
-render(); setNow();
+render();
 </script>
 </body>
 </html>
