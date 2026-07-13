@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Fascist Japan — The Deep Reads — Paranoid Reading</title>
+<style>
+  :root{
+    --ox:#a8342a; --ox-dim:#7a2620; --ink:#eae3d9; --gray:#9a9184; --faint:#4a4238;
+    --bg:#141210; --panel:#1b1815; --card:#211d19; --line:#332c25; --shadow:0 1px 3px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  a{color:var(--ox)}
+  header{padding:22px 24px 0;max-width:760px;margin:0 auto;width:100%}
+  .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  .toplinks{display:flex;gap:16px;margin-top:8px}
+  .toplinks a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);font-weight:bold;border-bottom:1px solid transparent;padding-bottom:1px}
+  .toplinks a:hover{color:var(--ox);border-bottom-color:var(--ox)}
+
+  main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 24px 70px}
+  .back{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:bold;color:var(--gray);text-decoration:none;margin-bottom:20px}
+  .back:hover{color:var(--ox)}
+
+  .hero{text-align:center;margin-bottom:30px}
+  .sigil{margin:0 auto 22px;width:88px;height:88px;opacity:.85;display:block}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ox);font-weight:bold;margin:0 0 12px}
+  h1{font-size:40px;letter-spacing:.01em;color:var(--ink);margin:0 0 8px;line-height:1.12}
+  .season{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 20px}
+  .lens{font-size:16px;color:var(--gray);line-height:1.7;max-width:600px;margin:0 auto;text-align:left}
+  .lens b{color:var(--ink)}
+
+  .how{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:26px 0 8px;font-size:13.5px;color:var(--gray);line-height:1.6}
+  .how b{color:var(--ox)}
+
+  .statusbar{margin:18px 2px 14px}
+  .nowbox{font-size:13px;color:var(--gray)}
+  .nowbox b{color:var(--ink)}
+
+  .bookhead{margin:30px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--ox)}
+  .bookhead .bt{font-size:22px;font-weight:bold;color:var(--ox);letter-spacing:.01em}
+  .bookhead .ba{font-size:14px;color:var(--gray);font-style:italic}
+  .bookhead .bm{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin-top:4px}
+
+  .week{display:block;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 15px;margin:0 0 8px;box-shadow:var(--shadow);position:relative}
+  .week.current{border-color:var(--ox);box-shadow:0 0 0 1px var(--ox),0 2px 10px rgba(168,52,42,.25)}
+  .wtop{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .wdate{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:bold;flex:0 0 auto}
+  .wtitle{font-size:15.5px;font-weight:bold;color:var(--ink)}
+  .wchap{display:block;font-size:13.5px;color:var(--gray);margin-top:1px}
+  .wnote{display:block;font-size:13px;color:#a89e8f;margin-top:6px;font-style:italic;line-height:1.55}
+  .wnote a{font-weight:bold}
+  .wread{display:block;margin-top:8px;font-size:12px;letter-spacing:.03em;color:var(--faint)}
+  .wread a{color:var(--ox);font-weight:bold}
+  .nowtag{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:bold;color:#fff;background:var(--ox);border-radius:9px;padding:2px 8px;margin-left:8px;vertical-align:middle}
+  .tbrtag{display:inline-block;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:bold;color:var(--ox);border:1px solid var(--ox-dim);border-radius:8px;padding:1px 6px;margin-left:8px;vertical-align:middle}
+
+  .interlude{background:var(--panel);border:1px dashed var(--ox-dim)}
+  .interlude .wtitle{color:var(--ox)}
+
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--gray)}
+  footer a{font-weight:bold}
+  .followrow{margin:24px 0 4px;text-align:center}
+  .followrow a{display:inline-block;padding:9px 18px;border:1px solid var(--ox-dim);border-radius:8px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;color:var(--ink);background:var(--panel);margin:0 4px 8px;text-decoration:none;transition:.15s}
+  .followrow a:hover{background:var(--ox-dim);border-color:var(--ox)}
+
+  @media(max-width:560px){ h1{font-size:30px} .sigil{width:74px;height:74px} .wtop{flex-direction:column;gap:2px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Paranoid Reading</div>
+  <div class="toplinks">
+    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Substack</a>
+    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Pagebound</a>
+  </div>
+</header>
+
+<main>
+  <a class="back" href="/slow-read">&larr; The Deep Reads</a>
+
+  <div class="hero">
+    <svg class="sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#a8342a" stroke-width="1.4" fill="none" opacity="0.85">
+        <circle cx="100" cy="100" r="88"/>
+        <circle cx="100" cy="100" r="62"/>
+        <circle cx="100" cy="100" r="36"/>
+        <polygon points="100,20 145,120 55,72 155,72 65,120"/>
+      </g>
+      <g fill="#7a5240" font-family="Georgia, serif" font-size="11" text-anchor="middle" opacity="0.8">
+        <text x="100" y="14">I</text>
+        <text x="100" y="196">XII</text>
+      </g>
+    </svg>
+    <p class="eyebrow">The Deep Reads</p>
+    <h1>Fascist Japan</h1>
+    <p class="season">A Season &middot; Winter 2027&ndash;28</p>
+    <p class="lens">The literature of Japanese ultranationalism and the death-cult aesthetic at its heart, read to understand it, not to admire it. How beauty, loyalty, and violence fused into something men would die for, and what it produced when it finally met the real world. Yukio Mishima sits at the center: the writer who spent his life building the aesthetic, then in 1970 killed himself for it. We read the ideal and the ruin side by side. <b>Fourteen weeks: the seduction, the doctrine, the catastrophe, and the reckoning.</b></p>
+  </div>
+
+  <div class="how">
+    <b>How it works, and a word on the frame.</b> A new assignment drops every Sunday; the dispatch lands on the Substack and the video on the channel. This is a critical read. We're studying how a beautiful, deadly ideology worked and what it cost, not celebrating it, and we end on the scholarship and the wreckage. Three of these books are already on your TBR.
+  </div>
+
+  <div class="statusbar">
+    <div class="nowbox" id="nowbox"></div>
+  </div>
+
+  <div id="schedule"></div>
+
+  <div class="followrow">
+    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Follow on Substack</a>
+    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Subscribe on YouTube</a>
+  </div>
+</main>
+
+<footer>
+  <p><a href="/every-book">The TBR</a> &nbsp;·&nbsp; <a href="/canon">The Canon</a> &nbsp;·&nbsp; <a href="/curriculums">The Curriculums</a> &nbsp;·&nbsp; <a href="/noided">The Noided List</a></p>
+</footer>
+
+<script>
+// "tbr":true marks a book that's on the TBR. To link a week to its Substack post later, add url:"...".
+const SECTIONS = [
+  { kind:"book", title:"Natsume Sōseki", author:"Kokoro, 1914", meta:"2 weeks &middot; the seed", weeks:[
+    { date:"2027-10-17", title:"Week 1 of 2", chap:"Part I: Sensei and I + Part II: My Parents and I &middot; &asymp; 130 pp" },
+    { date:"2027-10-24", title:"Week 2 of 2", chap:"Part III: Sensei's Testament &middot; finish &middot; &asymp; 120 pp",
+      note:"The suicide that follows the emperor's death, General Nogi's junshi. Where loyalty unto death is planted, a Meiji generation before the fascists." }
+  ]},
+  { kind:"book", title:"Yukio Mishima", author:"Confessions of a Mask, 1949", tbr:true, meta:"2 weeks &middot; the self", weeks:[
+    { date:"2027-10-31", title:"Week 1 of 2", chap:"First half &middot; &asymp; 125 pp" },
+    { date:"2027-11-07", title:"Week 2 of 2", chap:"Second half &middot; finish &middot; &asymp; 125 pp",
+      note:"The eroticized violence and death-drive at the root of everything Mishima would go on to build." }
+  ]},
+  { kind:"book", title:"Junichirō Tanizaki", author:"In Praise of Shadows, 1933", tbr:true, meta:"1 week &middot; the aesthetic", weeks:[
+    { date:"2027-11-14", title:"The complete essay", chap:"&asymp; 60 pp",
+      note:"The seductive nativist aesthetic itself: shadow, restraint, the longing for a pure Japanese tradition. The beautiful surface the ideology would drape itself in." }
+  ]},
+  { kind:"book", title:"Yukio Mishima", author:"Runaway Horses, 1969 (The Sea of Fertility, vol. 2)", tbr:true, meta:"4 weeks &middot; the politics", weeks:[
+    { date:"2027-11-21", title:"Week 1 of 4", chap:"First quarter &middot; &asymp; 105 pp" },
+    { date:"2027-11-28", title:"Week 2 of 4", chap:"&asymp; 105 pp" },
+    { date:"2027-12-05", title:"Week 3 of 4", chap:"&asymp; 105 pp" },
+    { date:"2027-12-12", title:"Week 4 of 4", chap:"Finish &middot; &asymp; 105 pp",
+      note:"A young fanatic, 1930s right-wing terror, the League of the Divine Wind. Mishima's direct novel of prewar ultranationalism, and its trial." }
+  ]},
+  { kind:"book", title:"Shōhei Ōoka", author:"Fires on the Plain, 1951", meta:"2 weeks &middot; the reality", weeks:[
+    { date:"2027-12-19", title:"Week 1 of 2", chap:"First half &middot; &asymp; 125 pp" },
+    { date:"2027-12-26", title:"Week 2 of 2", chap:"Second half &middot; finish &middot; &asymp; 125 pp",
+      note:"The Imperial Army annihilated in the Philippines: starvation, cannibalism, the death cult meeting its actual end. The counterweight to every beautiful idea in this season." }
+  ]},
+  { kind:"book", title:"Osamu Dazai", author:"The Setting Sun, 1947", meta:"1 week &middot; the ruin", weeks:[
+    { date:"2028-01-02", title:"The whole novel", chap:"&asymp; 175 pp",
+      note:"The old aristocratic order dissolving in the wreckage of defeat. What was left when the ideology lost." }
+  ]},
+  { kind:"interlude", weeks:[
+    { date:"2028-01-09", title:"The reckoning &mdash; the criticism", chap:"Alan Tansman, The Aesthetics of Japanese Fascism &middot; Introduction + Ch. 2&ndash;3 + Coda &middot; &asymp; 140 pp",
+      note:"The scholar who names the machine: how beauty became the very medium of Japanese fascism. Chapter 2 is literally “The Beauty of Violence”; Chapter 3 covers the aesthetic sublime that runs under Tanizaki and Kawabata." }
+  ]},
+  { kind:"interlude", weeks:[
+    { date:"2028-01-16", title:"The reckoning &mdash; the death", chap:"November 25, 1970 &middot; via Henry Scott Stokes, The Life and Death of Yukio Mishima (final chapters)",
+      note:"The Shield Society, the balcony speech at the Ichigaya barracks, the seppuku. The aesthetic and the ideology collapse into a single act. Read last, once you can see everything that led to it." }
+  ]}
+];
+
+const ALL = [];
+SECTIONS.forEach(s => s.weeks.forEach(w => ALL.push(w)));
+
+function ymd(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y, m-1, d); }
+function fmt(s){ const d=ymd(s); return d.toLocaleDateString("en-US",{month:"short",day:"numeric"}); }
+function todayMid(){ const t=new Date(); return new Date(t.getFullYear(),t.getMonth(),t.getDate()); }
+
+function currentIndex(){
+  const t=todayMid();
+  let idx=-1;
+  for(let i=0;i<ALL.length;i++){ if(ymd(ALL[i].date) <= t) idx=i; }
+  if(idx===ALL.length-1){
+    const wk=ymd(ALL[idx].date); wk.setDate(wk.getDate()+7);
+    if(t>=wk) return -2;
+  }
+  return idx;
+}
+const curIdx = currentIndex();
+
+function render(){
+  const wrap=document.getElementById("schedule");
+  wrap.innerHTML="";
+  let i=0;
+  SECTIONS.forEach(sec=>{
+    if(sec.kind==="book"){
+      const h=document.createElement("div");
+      h.className="bookhead";
+      const tbr = sec.tbr ? ' <span class="tbrtag">on the TBR</span>' : '';
+      h.innerHTML='<span class="bt">'+sec.title+'</span> <span class="ba">'+sec.author+'</span>'+tbr+'<div class="bm">'+sec.meta+'</div>';
+      wrap.appendChild(h);
+    }
+    sec.weeks.forEach(w=>{
+      const idx=i;
+      const el=document.createElement("div");
+      el.className="week"+(sec.kind==="interlude"?" interlude":"");
+      if(idx===curIdx) el.classList.add("current");
+      const now = idx===curIdx ? '<span class="nowtag">This week</span>' : '';
+      const dispatch = w.url ? '<span class="wread"><a href="'+w.url+'" target="_blank" rel="noopener">Read the dispatch &rarr;</a></span>' : '';
+      el.innerHTML =
+        '<span class="wtop"><span class="wtitle">'+w.title+now+'</span><span class="wdate">'+fmt(w.date)+'</span></span>'+
+        '<span class="wchap">'+w.chap+'</span>'+
+        (w.note?'<span class="wnote">'+w.note+'</span>':'')+
+        dispatch;
+      wrap.appendChild(el);
+      i++;
+    });
+  });
+}
+
+function setNow(){
+  const box=document.getElementById("nowbox");
+  if(curIdx===-1){
+    const start=ymd(ALL[0].date), t=todayMid();
+    const days=Math.round((start-t)/86400000);
+    const wks=Math.max(0,Math.ceil(days/7));
+    box.innerHTML = "Begins <b>Oct 17, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
+  } else if(curIdx===-2){
+    box.innerHTML = "<b>Finished.</b> That was Winter 2027&ndash;28.";
+  } else {
+    box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> &middot; "+ALL[curIdx].chap;
+  }
+}
+
+render(); setNow();
+</script>
+</body>
+</html>
