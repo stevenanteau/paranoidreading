@@ -100,16 +100,12 @@
     </svg>
     <p class="eyebrow">The Deep Reads</p>
     <h1>Before Lovecraft</h1>
-    <p class="season">A Season &middot; Summer 2027</p>
+    <p class="season">A Season</p>
     <p class="lens">Lovecraft is the name that made cosmic horror, and like every writer worth reading he built it out of the ones who came before. Books are made out of books, and he said so himself, in a whole essay crediting the writers who got there first. Bierce dreamed up Carcosa, Chambers wrote a play that drives its readers mad, Machen tore the veil, Hodgson sent a house to the death of the sun, and Blackwood found the indifferent gods out in the willows. Read his sources in order, then read what he made of them. <b>Twelve weeks, the tradition behind the master, and the debt he was proud to owe.</b></p>
   </div>
 
   <div class="how">
-    <b>How it works.</b> A new assignment drops every Sunday, and the weeks run about 90 to 110 pages each. The dispatch lands on the Substack and the video on the channel. It's all public domain, so every week links to a free copy you can read online. Read closely.
-  </div>
-
-  <div class="statusbar">
-    <div class="nowbox" id="nowbox"></div>
+    <b>How it works.</b> The read goes in order, one assignment at a time, and the weeks run about 90 to 110 pages each. The dispatch lands on the Substack and the video on the channel. It's all public domain, so every week links to a free copy you can read online. Read closely.
   </div>
 
   <div id="schedule"></div>
@@ -216,12 +212,11 @@ function render(){
       const idx=i;
       const el=document.createElement("div");
       el.className="week"+(sec.kind==="interlude"?" interlude":"");
-      if(idx===curIdx) el.classList.add("current");
       const now = idx===curIdx ? '<span class="nowtag">This week</span>' : '';
       const readLink = w.read ? '<span class="wread">Read it free &middot; <a href="'+w.read.u+'" target="_blank" rel="noopener">'+w.read.t+'</a></span>' : '';
       const dispatch = w.url ? '<span class="wread"><a href="'+w.url+'" target="_blank" rel="noopener">Read the dispatch &rarr;</a></span>' : '';
       el.innerHTML =
-        '<span class="wtop"><span class="wtitle">'+w.title+now+'</span><span class="wdate">'+fmt(w.date)+'</span></span>'+
+        '<span class="wtop"><span class="wtitle">'+w.title+'</span></span>'+
         '<span class="wchap">'+w.chap+'</span>'+
         (w.note?'<span class="wnote">'+w.note+'</span>':'')+
         readLink + dispatch;
@@ -231,21 +226,7 @@ function render(){
   });
 }
 
-function setNow(){
-  const box=document.getElementById("nowbox");
-  if(curIdx===-1){
-    const start=ymd(ALL[0].date), t=todayMid();
-    const days=Math.round((start-t)/86400000);
-    const wks=Math.max(0,Math.ceil(days/7));
-    box.innerHTML = "Begins <b>May 2, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
-  } else if(curIdx===-2){
-    box.innerHTML = "<b>Finished.</b> That was Summer 2027.";
-  } else {
-    box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> &middot; "+ALL[curIdx].chap;
-  }
-}
-
-render(); setNow();
+render();
 </script>
 </body>
 </html>
