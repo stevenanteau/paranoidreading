@@ -105,16 +105,12 @@
     </svg>
     <p class="eyebrow">The Deep Reads</p>
     <h1>Gnostic Villains on Earth</h1>
-    <p class="season">A Season &middot; Fall 2026</p>
+    <p class="season">A Season</p>
     <p class="lens">Three American novels about evil that doesn't answer to anyone. The white whale, Popeye, and Judge Holden, villains who stop reading as men and start reading as something older and worse, running the world like it's theirs. We read <b>Melville, Faulkner, and McCarthy</b> through that lens, with the memoir Blood Meridian was built from and a crash course in Gnosticism to sharpen the knife. Sixteen weeks, one section a week, no skimming.</p>
   </div>
 
   <div class="how">
-    <b>How it works.</b> A new section drops every Sunday. Read the week's chapters, then the dispatch lands on the Substack and the video on the channel. The current week lights up on its own.
-  </div>
-
-  <div class="statusbar">
-    <div class="nowbox" id="nowbox"></div>
+    <b>How it works.</b> The read goes in order, one section at a time. Read the week's chapters, then the dispatch lands on the Substack and the video on the channel.
   </div>
 
   <div id="schedule"></div>
@@ -206,11 +202,10 @@ function render(){
       const linked = !!w.url;
       const el=document.createElement(linked ? "a" : "div");
       el.className="week"+(sec.kind==="interlude"?" interlude":"");
-      if(idx===curIdx) el.classList.add("current");
       if(linked) el.setAttribute("href", w.url);
       const now = idx===curIdx ? '<span class="nowtag">This week</span>' : '';
       el.innerHTML =
-        '<span class="wtop"><span class="wtitle">'+w.title+now+'</span><span class="wdate">'+fmt(w.date)+'</span></span>'+
+        '<span class="wtop"><span class="wtitle">'+w.title+'</span></span>'+
         '<span class="wchap">'+w.chap+'</span>'+
         (w.note?'<span class="wnote">'+w.note+'</span>':'')+
         (linked?'<span class="wgo">Read the dispatch &rarr;</span>':'');
@@ -220,21 +215,7 @@ function render(){
   });
 }
 
-function setNow(){
-  const box=document.getElementById("nowbox");
-  if(curIdx===-1){
-    const start=ymd(ALL[0].date), t=todayMid();
-    const days=Math.round((start-t)/86400000);
-    const wks=Math.max(0,Math.ceil(days/7));
-    box.innerHTML = "Begins <b>Sep 6, 2026</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
-  } else if(curIdx===-2){
-    box.innerHTML = "<b>Finished.</b> That was Fall 2026.";
-  } else {
-    box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> &middot; "+ALL[curIdx].chap;
-  }
-}
-
-render(); setNow();
+render();
 </script>
 </body>
 </html>
