@@ -102,7 +102,7 @@
     </svg>
     <p class="eyebrow">The Deep Reads</p>
     <h1>2666</h1>
-    <p class="season">Roberto Bolaño &middot; A Season &middot; Summer 2027</p>
+    <p class="season">Roberto Bolaño &middot; A Season &middot; Fall 2027</p>
     <p class="lens">Bolaño's last novel, and the one that swallows everything. Five books in one, stitched together by a Mexican border town where the women keep turning up dead. Four scholars hunting a vanished German novelist, a professor coming apart, an American reporter in over his head, three hundred pages of forensic murder, and one soldier's entire century. It refuses to resolve, and that's the point. <b>One book, twelve weeks, read as five separate pieces that quietly turn out to be one.</b></p>
   </div>
 
@@ -131,31 +131,31 @@
 // Any week with a "url" becomes a clickable link; weeks without one stay plain.
 const SECTIONS = [
   { kind:"book", title:"The Part About the Critics", author:"Part One", meta:"2 weeks &middot; the quest", weeks:[
-    { date:"2027-05-02", title:"Week 1 of 2", chap:"First half &middot; &asymp; 80 pp" },
-    { date:"2027-05-09", title:"Week 2 of 2", chap:"Second half &middot; &asymp; 80 pp &middot; to Santa Teresa" }
+    { date:"2027-07-25", title:"Week 1 of 2", chap:"First half &middot; &asymp; 80 pp" },
+    { date:"2027-08-01", title:"Week 2 of 2", chap:"Second half &middot; &asymp; 80 pp &middot; to Santa Teresa" }
   ]},
   { kind:"book", title:"The Part About Amalfitano", author:"Part Two", meta:"1 week", weeks:[
-    { date:"2027-05-16", title:"The whole part", chap:"&asymp; 65 pp" }
+    { date:"2027-08-08", title:"The whole part", chap:"&asymp; 65 pp" }
   ]},
   { kind:"book", title:"The Part About Fate", author:"Part Three", meta:"1 week", weeks:[
-    { date:"2027-05-23", title:"The whole part", chap:"&asymp; 120 pp &middot; the American in Santa Teresa" }
+    { date:"2027-08-15", title:"The whole part", chap:"&asymp; 120 pp &middot; the American in Santa Teresa" }
   ]},
   { kind:"interlude", weeks:[
-    { date:"2027-05-30", title:"Companion &mdash; short story", chap:'Roberto Bolaño, "Last Evenings on Earth"',
+    { date:"2027-08-22", title:"Companion &mdash; short story", chap:'Roberto Bolaño, "Last Evenings on Earth"',
       note:"A breather before the Crimes, and a tuning fork. One story, that same slow Bolaño dread: a trip that curdles, menace that never quite lands. It sets your ear for what's coming." }
   ]},
   { kind:"book", title:"The Part About the Crimes", author:"Part Four", meta:"4 weeks &middot; the long dark", weeks:[
-    { date:"2027-06-06", title:"Week 1 of 4", chap:"&asymp; 70 pp" },
-    { date:"2027-06-13", title:"Week 2 of 4", chap:"&asymp; 70 pp" },
-    { date:"2027-06-20", title:"Week 3 of 4", chap:"&asymp; 70 pp" },
-    { date:"2027-06-27", title:"Week 4 of 4", chap:"&asymp; 70 pp &middot; finish the Crimes" }
+    { date:"2027-08-29", title:"Week 1 of 4", chap:"&asymp; 70 pp" },
+    { date:"2027-09-05", title:"Week 2 of 4", chap:"&asymp; 70 pp" },
+    { date:"2027-09-12", title:"Week 3 of 4", chap:"&asymp; 70 pp" },
+    { date:"2027-09-19", title:"Week 4 of 4", chap:"&asymp; 70 pp &middot; finish the Crimes" }
   ]},
   { kind:"book", title:"The Part About Archimboldi", author:"Part Five", meta:"2 weeks &middot; the whole century", weeks:[
-    { date:"2027-07-04", title:"Week 1 of 2", chap:"First half &middot; &asymp; 130 pp" },
-    { date:"2027-07-11", title:"Week 2 of 2", chap:"Second half &middot; &asymp; 130 pp &middot; finish the novel" }
+    { date:"2027-09-26", title:"Week 1 of 2", chap:"First half &middot; &asymp; 130 pp" },
+    { date:"2027-10-03", title:"Week 2 of 2", chap:"Second half &middot; &asymp; 130 pp &middot; finish the novel" }
   ]},
   { kind:"interlude", weeks:[
-    { date:"2027-07-18", title:"Companion &mdash; the criticism", chap:'Shaj Mathew, "Ciudad Juárez in Roberto Bolaño&rsquo;s 2666" (Critique, 2016)',
+    { date:"2027-10-10", title:"Companion &mdash; the criticism", chap:'Shaj Mathew, "Ciudad Juárez in Roberto Bolaño&rsquo;s 2666" (Critique, 2016)',
       note:"Close with the scholarship. Mathew reads Santa Teresa as the real Ciudad Juárez, and the Crimes as an indictment of modernity itself. The frame that pulls all five parts into one." }
   ]}
 ];
@@ -215,9 +215,9 @@ function setNow(){
     const start=ymd(ALL[0].date), t=todayMid();
     const days=Math.round((start-t)/86400000);
     const wks=Math.max(0,Math.ceil(days/7));
-    box.innerHTML = "Begins <b>May 2, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
+    box.innerHTML = "Begins <b>Jul 25, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
   } else if(curIdx===-2){
-    box.innerHTML = "<b>Finished.</b> That was Summer 2027.";
+    box.innerHTML = "<b>Finished.</b> That was Fall 2027.";
   } else {
     box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> &middot; "+ALL[curIdx].chap;
   }
