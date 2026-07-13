@@ -102,7 +102,7 @@
     </svg>
     <p class="eyebrow">The Deep Reads</p>
     <h1>How to Read a Conspiracy</h1>
-    <p class="season">A Season &middot; Summer 2027</p>
+    <p class="season">A Season &middot; Winter 2027</p>
     <p class="lens">Want to actually understand how the deep state works? Skip the nonfiction. DeLillo turns JFK into an engineered event, Ellroy turns the whole decade into a crime scene, and Eco just makes the conspiracy real. <b>Three books, sixteen weeks:</b> from the engineered event, to the machine behind it, to what pattern-hunting does to your own head. This is the syllabus.</p>
   </div>
 
@@ -128,33 +128,33 @@
 
 <script>
 // To link a week to its Substack post, add a "url" to that week, e.g.
-//   { date:"2027-05-02", title:"Week 1 of 4", chap:"Chapters 1-6", url:"https://paranoidreading.substack.com/p/..." }
+//   { date:"2027-01-10", title:"Week 1 of 4", chap:"Chapters 1-6", url:"https://paranoidreading.substack.com/p/..." }
 // Any week with a "url" becomes a clickable link; weeks without one stay plain.
 const SECTIONS = [
   { kind:"book", title:"Libra", author:"Don DeLillo", meta:"4 weeks &middot; the engineered event", weeks:[
-    { date:"2027-05-02", title:"Week 1 of 4", chap:"Chapters 1&ndash;6" },
-    { date:"2027-05-09", title:"Week 2 of 4", chap:"Chapters 7&ndash;12" },
-    { date:"2027-05-16", title:"Week 3 of 4", chap:"Chapters 13&ndash;18" },
-    { date:"2027-05-23", title:"Week 4 of 4", chap:"Chapters 19&ndash;24 &middot; finish" }
+    { date:"2027-01-10", title:"Week 1 of 4", chap:"Chapters 1&ndash;6" },
+    { date:"2027-01-17", title:"Week 2 of 4", chap:"Chapters 7&ndash;12" },
+    { date:"2027-01-24", title:"Week 3 of 4", chap:"Chapters 13&ndash;18" },
+    { date:"2027-01-31", title:"Week 4 of 4", chap:"Chapters 19&ndash;24 &middot; finish" }
   ]},
   { kind:"book", title:"American Tabloid", author:"James Ellroy", meta:"4 weeks &middot; reads fast", weeks:[
-    { date:"2027-05-30", title:"Week 1 of 4", chap:"Chapters 1&ndash;25" },
-    { date:"2027-06-06", title:"Week 2 of 4", chap:"Chapters 26&ndash;50" },
-    { date:"2027-06-13", title:"Week 3 of 4", chap:"Chapters 51&ndash;75" },
-    { date:"2027-06-20", title:"Week 4 of 4", chap:"Chapters 76&ndash;100 &middot; finish" }
+    { date:"2027-02-07", title:"Week 1 of 4", chap:"Chapters 1&ndash;25" },
+    { date:"2027-02-14", title:"Week 2 of 4", chap:"Chapters 26&ndash;50" },
+    { date:"2027-02-21", title:"Week 3 of 4", chap:"Chapters 51&ndash;75" },
+    { date:"2027-02-28", title:"Week 4 of 4", chap:"Chapters 76&ndash;100 &middot; finish" }
   ]},
   { kind:"interlude", weeks:[
-    { date:"2027-06-27", title:"Buffer + reset", chap:"No new reading",
+    { date:"2027-03-07", title:"Buffer + reset", chap:"No new reading",
       note:"Catch up if you've slipped, then reset. Foucault's Pendulum is a different animal than the two crime novels, denser, stranger, and funnier. Come in rested." }
   ]},
   { kind:"book", title:"Foucault's Pendulum", author:"Umberto Eco", meta:"7 weeks &middot; the hard one", weeks:[
-    { date:"2027-07-04", title:"Week 1 of 7", chap:"Chapters 1&ndash;17" },
-    { date:"2027-07-11", title:"Week 2 of 7", chap:"Chapters 18&ndash;34" },
-    { date:"2027-07-18", title:"Week 3 of 7", chap:"Chapters 35&ndash;51" },
-    { date:"2027-07-25", title:"Week 4 of 7", chap:"Chapters 52&ndash;68" },
-    { date:"2027-08-01", title:"Week 5 of 7", chap:"Chapters 69&ndash;85" },
-    { date:"2027-08-08", title:"Week 6 of 7", chap:"Chapters 86&ndash;103" },
-    { date:"2027-08-15", title:"Week 7 of 7", chap:"Chapters 104&ndash;120 &middot; finish" }
+    { date:"2027-03-14", title:"Week 1 of 7", chap:"Chapters 1&ndash;17" },
+    { date:"2027-03-21", title:"Week 2 of 7", chap:"Chapters 18&ndash;34" },
+    { date:"2027-03-28", title:"Week 3 of 7", chap:"Chapters 35&ndash;51" },
+    { date:"2027-04-04", title:"Week 4 of 7", chap:"Chapters 52&ndash;68" },
+    { date:"2027-04-11", title:"Week 5 of 7", chap:"Chapters 69&ndash;85" },
+    { date:"2027-04-18", title:"Week 6 of 7", chap:"Chapters 86&ndash;103" },
+    { date:"2027-04-25", title:"Week 7 of 7", chap:"Chapters 104&ndash;120 &middot; finish" }
   ]}
 ];
 
@@ -213,9 +213,9 @@ function setNow(){
     const start=ymd(ALL[0].date), t=todayMid();
     const days=Math.round((start-t)/86400000);
     const wks=Math.max(0,Math.ceil(days/7));
-    box.innerHTML = "Begins <b>May 2, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
+    box.innerHTML = "Begins <b>Jan 10, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
   } else if(curIdx===-2){
-    box.innerHTML = "<b>Finished.</b> That was Summer 2027.";
+    box.innerHTML = "<b>Finished.</b> That was Winter 2027.";
   } else {
     box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> &middot; "+ALL[curIdx].chap;
   }
