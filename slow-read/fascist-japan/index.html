@@ -101,16 +101,12 @@
     </svg>
     <p class="eyebrow">The Deep Reads</p>
     <h1>Fascist Japan</h1>
-    <p class="season">A Season &middot; Winter 2027&ndash;28</p>
+    <p class="season">A Season</p>
     <p class="lens">The literature of Japanese ultranationalism and the death-cult aesthetic at its heart, read to understand it, not to admire it. How beauty, loyalty, and violence fused into something men would die for, and what it produced when it finally met the real world. Yukio Mishima sits at the center: the writer who spent his life building the aesthetic, then in 1970 killed himself for it. We read the ideal and the ruin side by side. <b>Fourteen weeks: the seduction, the doctrine, the catastrophe, and the reckoning.</b></p>
   </div>
 
   <div class="how">
-    <b>How it works, and a word on the frame.</b> A new assignment drops every Sunday; the dispatch lands on the Substack and the video on the channel. This is a critical read. We're studying how a beautiful, deadly ideology worked and what it cost, not celebrating it, and we end on the scholarship and the wreckage. Three of these books are already on your TBR.
-  </div>
-
-  <div class="statusbar">
-    <div class="nowbox" id="nowbox"></div>
+    <b>How it works, and a word on the frame.</b> The read goes in order, one assignment at a time; the dispatch lands on the Substack and the video on the channel. This is a critical read. We're studying how a beautiful, deadly ideology worked and what it cost, not celebrating it, and we end on the scholarship and the wreckage. Three of these books are already on your TBR.
   </div>
 
   <div id="schedule"></div>
@@ -203,11 +199,10 @@ function render(){
       const idx=i;
       const el=document.createElement("div");
       el.className="week"+(sec.kind==="interlude"?" interlude":"");
-      if(idx===curIdx) el.classList.add("current");
       const now = idx===curIdx ? '<span class="nowtag">This week</span>' : '';
       const dispatch = w.url ? '<span class="wread"><a href="'+w.url+'" target="_blank" rel="noopener">Read the dispatch &rarr;</a></span>' : '';
       el.innerHTML =
-        '<span class="wtop"><span class="wtitle">'+w.title+now+'</span><span class="wdate">'+fmt(w.date)+'</span></span>'+
+        '<span class="wtop"><span class="wtitle">'+w.title+'</span></span>'+
         '<span class="wchap">'+w.chap+'</span>'+
         (w.note?'<span class="wnote">'+w.note+'</span>':'')+
         dispatch;
@@ -217,21 +212,7 @@ function render(){
   });
 }
 
-function setNow(){
-  const box=document.getElementById("nowbox");
-  if(curIdx===-1){
-    const start=ymd(ALL[0].date), t=todayMid();
-    const days=Math.round((start-t)/86400000);
-    const wks=Math.max(0,Math.ceil(days/7));
-    box.innerHTML = "Begins <b>Oct 17, 2027</b>"+(days>0 && wks>0?" &middot; in about "+wks+" week"+(wks===1?"":"s"):"");
-  } else if(curIdx===-2){
-    box.innerHTML = "<b>Finished.</b> That was Winter 2027&ndash;28.";
-  } else {
-    box.innerHTML = "This week: <b>"+ALL[curIdx].title+"</b> &middot; "+ALL[curIdx].chap;
-  }
-}
-
-render(); setNow();
+render();
 </script>
 </body>
 </html>
