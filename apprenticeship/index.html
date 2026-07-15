@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Apprenticeship — Paranoid Reading</title>
+<style>
+  :root{
+    --ox:#a8342a; --ox-dim:#7a2620; --ink:#eae3d9; --gray:#9a9184; --faint:#4a4238;
+    --bg:#141210; --panel:#1b1815; --card:#211d19; --line:#332c25; --shadow:0 1px 3px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  a{color:var(--ox)}
+  header{padding:22px 24px 0;max-width:760px;margin:0 auto;width:100%}
+  .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  .toplinks{display:flex;gap:16px;margin-top:8px}
+  .toplinks a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);font-weight:bold;border-bottom:1px solid transparent;padding-bottom:1px}
+  .toplinks a:hover{color:var(--ox);border-bottom-color:var(--ox)}
+
+  main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 24px 70px}
+  .back{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:bold;color:var(--gray);text-decoration:none;margin-bottom:20px}
+  .back:hover{color:var(--ox)}
+
+  .hero{text-align:center;margin-bottom:30px}
+  .sigil{margin:0 auto 22px;width:88px;height:88px;opacity:.85;display:block}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ox);font-weight:bold;margin:0 0 12px}
+  h1{font-size:42px;letter-spacing:.01em;color:var(--ink);margin:0 0 8px;line-height:1.1}
+  .tagline{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 22px}
+
+  .manifesto{font-size:16.5px;color:var(--gray);line-height:1.75;text-align:left}
+  .manifesto p{margin:0 0 16px}
+  .manifesto b{color:var(--ink)}
+  .rule-line{color:var(--ink);font-style:italic}
+
+  .sectlabel{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:40px 0 16px;text-align:center;border-top:1px solid var(--line);padding-top:22px}
+
+  .pillar{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:20px 22px;margin:0 0 14px;box-shadow:var(--shadow)}
+  .pillar .pnum{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 6px}
+  .pillar h3{font-size:20px;color:var(--ox);margin:0 0 10px;letter-spacing:.01em}
+  .pillar p{font-size:14.5px;color:var(--gray);line-height:1.68;margin:0 0 10px}
+  .pillar p:last-child{margin-bottom:0}
+  .pillar a{font-weight:bold}
+  .pillar .loop{font-size:13.5px;color:#a89e8f;font-style:italic;border-left:2px solid var(--ox-dim);padding-left:12px;margin-top:12px}
+
+  .creed{background:var(--panel);border:1px dashed var(--ox-dim);border-radius:11px;padding:18px 22px;margin:26px 0 8px;text-align:center;font-size:16px;color:var(--ink);line-height:1.6}
+  .creed b{color:var(--ox)}
+
+  .followrow{margin:30px 0 4px;text-align:center}
+  .followrow a{display:inline-block;padding:9px 18px;border:1px solid var(--ox-dim);border-radius:8px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;color:var(--ink);background:var(--panel);margin:0 4px 8px;text-decoration:none;transition:.15s}
+  .followrow a:hover{background:var(--ox-dim);border-color:var(--ox)}
+
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--gray)}
+  footer a{font-weight:bold}
+
+  @media(max-width:560px){ h1{font-size:32px} .sigil{width:74px;height:74px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Paranoid Reading</div>
+  <div class="toplinks">
+    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Substack</a>
+    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Pagebound</a>
+  </div>
+</header>
+
+<main>
+  <a class="back" href="/">&larr; Paranoid Reading</a>
+
+  <div class="hero">
+    <svg class="sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#a8342a" stroke-width="1.4" fill="none" opacity="0.85">
+        <circle cx="100" cy="100" r="88"/>
+        <circle cx="100" cy="100" r="62"/>
+        <circle cx="100" cy="100" r="36"/>
+        <polygon points="100,20 145,120 55,72 155,72 65,120"/>
+      </g>
+      <g fill="#7a5240" font-family="Georgia, serif" font-size="11" text-anchor="middle" opacity="0.8">
+        <text x="100" y="14">I</text>
+        <text x="100" y="196">XII</text>
+      </g>
+    </svg>
+    <p class="eyebrow">A Self-Taught Education</p>
+    <h1>The Apprenticeship</h1>
+    <p class="tagline">Teaching myself to read like a critic</p>
+  </div>
+
+  <div class="manifesto">
+    <p>I was the first person in my family to go to college. A literature degree was never really in the cards &mdash; there wasn't the time or the money to go chase one for its own sake. But the reading never let up, and neither did the itch to say something sharp about what I'd just read.</p>
+    <p>So this is me doing it myself, the long way. No degree, no MFA, no committee to please. Just a method, a reading list, and the nerve to publish what I find and be wrong in public. Giving myself the education out loud, and getting a little better with each book.</p>
+    <p class="rule-line">One rule runs the whole thing: a review is an argument, not a summary. Every book here, I'm trying to prove one thing about it. Everything below is how I get to that claim with the evidence already in hand.</p>
+  </div>
+
+  <div class="creed">
+    <b>Fiction is how you learn to read power.</b> The novel holds the whole machine in view and puts you inside it.
+  </div>
+
+  <p class="sectlabel">The Program</p>
+
+  <div class="pillar">
+    <div class="pnum">01 &middot; The Method</div>
+    <h3>One lens, run on everything</h3>
+    <p>I read through a single question: <b>how does each character relate to the system above them, and what does the story reveal about how power actually runs?</b> I call it the parapolitical lens. Fiction as a model of the deep state. It works on a border cartel and it works just as well on King Arthur, where the Round Table stops being chivalry and turns into a protection racket.</p>
+    <p>Every book gets the same treatment, so the reps compound. Read it, mark it up with a purpose (not just underline the good line, write down <i>why</i> I underlined it), log the moments that matter with the page, then build those notes into a claim.</p>
+    <p class="loop">Annotating is a conversation, not a highlighter. A note that says "why did I mark this?" a week later is a dead note.</p>
+  </div>
+
+  <div class="pillar">
+    <div class="pnum">02 &middot; The Syllabus</div>
+    <h3>Seasons, not a random pile</h3>
+    <p>The hard reading is structured. Three or four heavy books through one lens, in order, section by section. That's <a href="/slow-read">The Deep Reads</a> &mdash; Gnostic villains, engineered conspiracies, the tradition Lovecraft came out of, Bolaño's border, and more.</p>
+    <p>In between the seasons I read my trash and review that too. You don't get sharper by only reviewing the canon. You get sharper by reviewing <i>everything</i>, and the throwaway thriller often teaches the method faster than the masterpiece.</p>
+  </div>
+
+  <div class="pillar">
+    <div class="pnum">03 &middot; The Practice</div>
+    <h3>The loop that does the work</h3>
+    <p>Read a stretch. Annotate it as I go. Write it up into an argument. Publish the dispatch on the Substack, put the video on the channel. Then do it again next week.</p>
+    <p>The point isn't the hot take. It's the loop. Fifty books read properly and written up honestly, and you back into knowing something real. That's not a metaphor. That's just how it gets built.</p>
+  </div>
+
+  <div class="pillar">
+    <div class="pnum">04 &middot; The Proof</div>
+    <h3>The essays are the transcript</h3>
+    <p>There's no degree waiting at the end of this, so the work has to be the credential. Every review is a page of the transcript. If the method is any good, the writing gets sharper over time, and the whole point of doing it in public is that you get to watch that happen &mdash; the misses included.</p>
+    <p>That's the deal I'm making with anyone reading along: I learn in the open, I show my work, and I don't pretend I arrived already knowing.</p>
+  </div>
+
+  <div class="followrow">
+    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Follow on Substack</a>
+    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Subscribe on YouTube</a>
+  </div>
+</main>
+
+<footer>
+  <p><a href="/slow-read">The Deep Reads</a> &nbsp;&middot;&nbsp; <a href="/every-book">The TBR</a> &nbsp;&middot;&nbsp; <a href="/canon">The Canon</a> &nbsp;&middot;&nbsp; <a href="/noided">The Noided List</a></p>
+</footer>
+</body>
+</html>
