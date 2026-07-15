@@ -91,11 +91,11 @@
     <p class="eyebrow">The Deep Reads</p>
     <h1>Gravity's Rainbow</h1>
     <p class="season">Thomas Pynchon &middot; A Season</p>
-    <p class="lens">The paranoid novel. A screaming comes across the sky, and for seven hundred pages Pynchon never lets it land. Rockets, cartels, Pavlovian conditioning, and a war that turns out to be a front for something worse, all watched by a man who comes apart as the plot closes in around him. It's the hardest, funniest, most rewarding book on the whole list, and the one this program is basically named after. Read it slow, read it with the annotations open, and let the paranoia do its work. <b>Twelve weeks, one rocket's arc.</b></p>
+    <p class="lens">The paranoid novel. A screaming comes across the sky, and for seven hundred pages Pynchon never lets it land. Rockets, cartels, Pavlovian conditioning, and a war that turns out to be a front for something worse, all watched by a man who comes apart as the plot closes in around him. It's the hardest, funniest, most rewarding book on the whole list, and the one this program is basically named after. Read it slow, read it with the annotations open, and let the paranoia do its work. <b>Seventy-three episodes. One a day.</b></p>
   </div>
 
   <div class="how">
-    <b>How it works.</b> The read goes in order, one stretch at a time. The dispatch lands on the Substack and the video on the channel. Page numbers key to the standard Viking / Penguin edition, so go by the section, not the exact page.
+    <b>How it works.</b> One episode a day. Pynchon splits the novel into 73 short episodes, marked by the little squares between sections &mdash; read to the next break and stop. That's seventy-three days, about ten and a half weeks. Go by the section breaks, not the page count. Page spans key to the standard Viking / Penguin edition.
   </div>
 
   <div class="annots">
@@ -115,48 +115,35 @@
 </footer>
 
 <script>
-// Dateless season: sections in order, week rows with title + chap + optional note.
-const SECTIONS = [
-  { title:"Part One: Beyond the Zero", author:"episodes 1&ndash;21", meta:"3 weeks &middot; the hardest to enter", weeks:[
-    { title:"Week 1 of 3", chap:"pp. 3&ndash;60" },
-    { title:"Week 2 of 3", chap:"pp. 60&ndash;120" },
-    { title:"Week 3 of 3", chap:"pp. 120&ndash;177 &middot; finish Part One",
-      note:"Ease in. The disorientation is the whole point; keep the guide open and don't panic when you're lost." }
-  ]},
-  { title:"Part Two: Un Perm' au Casino Hermann Goering", author:"episodes 1&ndash;8", meta:"2 weeks &middot; the readable one", weeks:[
-    { title:"Week 1 of 2", chap:"pp. 181&ndash;230" },
-    { title:"Week 2 of 2", chap:"pp. 230&ndash;278 &middot; finish Part Two",
-      note:"The most conventional stretch, almost a spy caper on the Riviera. Catch your breath before the Zone." }
-  ]},
-  { title:"Part Three: In the Zone", author:"episodes 1&ndash;32", meta:"5 weeks &middot; the long haul", weeks:[
-    { title:"Week 1 of 5", chap:"pp. 281&ndash;348" },
-    { title:"Week 2 of 5", chap:"pp. 348&ndash;415" },
-    { title:"Week 3 of 5", chap:"pp. 415&ndash;482" },
-    { title:"Week 4 of 5", chap:"pp. 482&ndash;549" },
-    { title:"Week 5 of 5", chap:"pp. 549&ndash;616 &middot; finish Part Three",
-      note:"The biggest section and the strangest. Slothrop scatters, the novel goes everywhere at once, and the guide earns its keep here more than anywhere." }
-  ]},
-  { title:"Part Four: The Counterforce", author:"episodes 1&ndash;12", meta:"2 weeks &middot; the descent", weeks:[
-    { title:"Week 1 of 2", chap:"pp. 619&ndash;690" },
-    { title:"Week 2 of 2", chap:"pp. 690&ndash;760 &middot; finish the novel",
-      note:"It comes apart on purpose. Ride it to the last line and the theater going dark." }
-  ]}
+// Dateless season: one episode per day. Parts group the 73 episodes; each day is one episode.
+const PARTS = [
+  { title:"Part One: Beyond the Zero", meta:"21 episodes &middot; pp. 3&ndash;177", eps:21,
+    note:"Ease in. The disorientation is the whole point; keep the guide open and don't panic when you're lost." },
+  { title:"Part Two: Un Perm' au Casino Hermann Goering", meta:"8 episodes &middot; pp. 181&ndash;278", eps:8,
+    note:"The most conventional stretch, almost a spy caper on the Riviera. Catch your breath before the Zone." },
+  { title:"Part Three: In the Zone", meta:"32 episodes &middot; pp. 281&ndash;616", eps:32,
+    note:"The biggest section and the strangest. Slothrop scatters, the novel goes everywhere at once, and the guide earns its keep here more than anywhere." },
+  { title:"Part Four: The Counterforce", meta:"12 episodes &middot; pp. 619&ndash;760", eps:12,
+    note:"It comes apart on purpose. Ride it to the last line and the theater going dark." }
 ];
 
 function render(){
   const wrap=document.getElementById("schedule");
   wrap.innerHTML="";
-  SECTIONS.forEach(sec=>{
+  let day=0;
+  PARTS.forEach(part=>{
     const h=document.createElement("div");
     h.className="bookhead";
-    h.innerHTML='<span class="bt">'+sec.title+'</span> <span class="ba">'+sec.author+'</span><div class="bm">'+sec.meta+'</div>';
+    h.innerHTML='<span class="bt">'+part.title+'</span><div class="bm">'+part.meta+'</div>';
     wrap.appendChild(h);
-    sec.weeks.forEach(w=>{
+    for(let e=1;e<=part.eps;e++){
+      day++;
+      const last=(e===part.eps);
       const el=document.createElement("div");
       el.className="week";
-      el.innerHTML='<span class="wtitle">'+w.title+'</span><span class="wchap">'+w.chap+'</span>'+(w.note?'<span class="wnote">'+w.note+'</span>':'');
+      el.innerHTML='<span class="wtitle">Day '+day+'</span><span class="wchap">Episode '+e+' of '+part.eps+(last?' &middot; finish this part':'')+'</span>'+(last&&part.note?'<span class="wnote">'+part.note+'</span>':'');
       wrap.appendChild(el);
-    });
+    }
   });
 }
 render();
