@@ -21,6 +21,7 @@
   .wrap{margin:0;padding:24px 40px 70px;
     display:grid;grid-template-columns:206px minmax(0,1fr);gap:60px;align-items:start}
 
+  /* ---- sidebar (hugs the left) ---- */
   .side{position:sticky;top:24px}
   .sigilrow{display:flex;align-items:center;gap:10px;margin-bottom:6px}
   .sigil{width:32px;height:32px;opacity:.9;flex:0 0 auto}
@@ -42,6 +43,7 @@
   .now .t{font-size:13px;color:var(--ink);font-weight:bold;margin-top:2px}
   .now .d{font-size:12px;color:var(--gray)}
 
+  /* ---- feed (roomy center) ---- */
   .feed-col{max-width:700px;margin:0 auto}
   .feedhead{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ox);padding-bottom:10px;margin-bottom:6px}
   .feedhead h1{font-size:28px;color:var(--ink);margin:0;letter-spacing:.01em}
@@ -227,123 +229,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(SUBSTAC
     paint(posts);
     document.getElementById("feednote").textContent = "Live from Substack.";
   })
-  .catch(function(){});
+  .catch(function(){ /* keep the baked-in essays */ });
 </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Paranoid Reading — A Reading Program</title>
-<style>
-  :root{
-    --ox:#a8342a; --ox-dim:#7a2620; --ink:#eae3d9; --gray:#9a9184; --faint:#4a4238;
-    --bg:#141210; --panel:#1b1815; --card:#211d19; --line:#332c25;
-  }
-  *{box-sizing:border-box} html,body{margin:0}
-  body{
-    background:var(--bg);color:var(--ink);
-    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
-    line-height:1.6;-webkit-font-smoothing:antialiased;
-    min-height:100vh;display:flex;flex-direction:column;
-  }
-  a{color:var(--ox)}
-  header{padding:22px 24px 0;max-width:940px;margin:0 auto;width:100%}
-  .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
-  .toplinks{display:flex;gap:16px;margin-top:8px}
-  .toplinks a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);font-weight:bold;border-bottom:1px solid transparent;padding-bottom:1px}
-  .toplinks a:hover{color:var(--ox);border-bottom-color:var(--ox)}
-
-  main{flex:1;display:flex;align-items:center;justify-content:center;padding:36px 24px}
-  .center{max-width:940px;width:100%;text-align:center}
-
-  .sigil{margin:0 auto 22px;width:96px;height:96px;opacity:.85}
-  .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ox);font-weight:bold;margin:0 0 12px}
-  h1{font-size:38px;letter-spacing:.02em;color:var(--ink);margin:0 0 14px;line-height:1.15}
-  .tagline{font-size:15px;font-style:italic;color:var(--gray);max-width:520px;margin:0 auto 46px;line-height:1.6}
-
-  .paths{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;text-align:left}
-  .path{
-    flex:1;min-width:280px;max-width:420px;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:28px 26px;transition:.18s;text-decoration:none;display:block;
-  }
-  .path:hover{border-color:var(--ox-dim);transform:translateY(-2px)}
-  .path-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 8px}
-  .path-title{font-size:24px;color:var(--ox);font-weight:bold;margin:0 0 10px;letter-spacing:.01em}
-  .path-desc{font-size:14.5px;color:var(--gray);line-height:1.6;margin:0 0 16px}
-  .path-meta{font-size:12.5px;color:var(--faint);border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;align-items:center}
-  .path-go{color:var(--ox);font-weight:bold;letter-spacing:.05em;text-transform:uppercase;font-size:11px}
-  .path-badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;background:var(--ox-dim);color:var(--ink);margin-bottom:10px}
-  .path-badge.soon{background:var(--panel);color:var(--faint);border:1px solid var(--line)}
-
-  footer{padding:24px;text-align:center;font-size:12px;color:var(--faint)}
-  footer a{color:var(--gray);font-weight:bold}
-
-  @media(max-width:640px){ h1{font-size:28px} .sigil{width:76px;height:76px} .paths{flex-direction:column;align-items:center} }
-</style>
-</head>
-<body>
-<header>
-  <div class="brand">Paranoid Reading</div>
-  <div class="toplinks">
-    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Substack</a>
-    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">YouTube</a>
-    <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Pagebound</a>
-  </div>
-</header>
-
-<main>
-  <div class="center">
-    <svg class="sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="#a8342a" stroke-width="1.4" fill="none" opacity="0.85">
-        <circle cx="100" cy="100" r="88"/>
-        <circle cx="100" cy="100" r="62"/>
-        <circle cx="100" cy="100" r="36"/>
-        <polygon points="100,20 145,120 55,72 155,72 65,120"/>
-      </g>
-      <g fill="#7a5240" font-family="Georgia, serif" font-size="11" text-anchor="middle" opacity="0.8">
-        <text x="100" y="14">I</text>
-        <text x="100" y="196">XII</text>
-      </g>
-    </svg>
-
-    <p class="eyebrow">A Paranoid Reading Program</p>
-    <h1>Three ways in.</h1>
-    <p class="tagline">Reading crime, weird fiction, demonology, and deep politics for how Noided and how Grim it gets.</p>
-
-    <div class="paths">
-      <a class="path" href="/slow-read">
-        <div class="path-badge">Five seasons</div>
-        <div class="path-eyebrow">One lens, a few books, a season</div>
-        <div class="path-title">The Deep Reads</div>
-        <p class="path-desc">A season at a time, three or four hard books through one lens, read properly alongside the channel and the Substack. The first is Gnostic villains on Earth, from Melville to McCarthy.</p>
-        <div class="path-meta"><span>Gnostic Villains on Earth</span><span class="path-go">Enter →</span></div>
-      </a>
-
-      <a class="path" href="/every-book">
-        <div class="path-badge">276 books · 99 routes</div>
-        <div class="path-eyebrow">The full system</div>
-        <div class="path-title">The Curriculum</div>
-        <p class="path-desc">The whole reading system in one place — the TBR, the 116-book Canon by strand, and all ninety-nine themed curriculums. Browse, search, track what you've read.</p>
-        <div class="path-meta"><span>TBR · Canon · Curriculums</span><span class="path-go">Enter →</span></div>
-      </a>
-
-      <a class="path" href="/apprenticeship">
-        <div class="path-badge">In public</div>
-        <div class="path-eyebrow">Teaching myself to read like a critic</div>
-        <div class="path-title">The Apprenticeship</div>
-        <p class="path-desc">No degree, no MFA — just a method, a reading list, and the nerve to publish what I find and be wrong out loud. A self-taught education in reading fiction as power.</p>
-        <div class="path-meta"><span>Method · Syllabus · Proof</span><span class="path-go">Enter →</span></div>
-      </a>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <p><a href="/noided">The Noided List →</a></p>
-</footer>
 </body>
 </html>
