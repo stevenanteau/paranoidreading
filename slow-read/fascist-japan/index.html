@@ -219,7 +219,7 @@ nav.tabs a.on{background:#e6e1d3!important;color:#0b0b0a!important}
 </main>
 
 <footer>
-  <p><a href="/every-book">The TBR</a> &nbsp;·&nbsp; <a href="/canon">The Canon</a> &nbsp;·&nbsp; <a href="/curriculums">The Curriculums</a> &nbsp;·&nbsp; <a href="/noided">The Noided List</a></p>
+  <p><a href="/canon">The Canon</a> &nbsp;·&nbsp; <a href="/curriculums">Pre-Made Curriculums</a></p>
 </footer>
 
 <script>
@@ -292,7 +292,7 @@ function render(){
     if(sec.kind==="book"){
       const h=document.createElement("div");
       h.className="bookhead";
-      const tbr = sec.tbr ? ' <span class="tbrtag">on the TBR</span>' : '';
+      const tbr = '';
       h.innerHTML='<span class="bt">'+sec.title+'</span> <span class="ba">'+sec.author+'</span>'+tbr+'<div class="bm">'+sec.meta+'</div>';
       wrap.appendChild(h);
     }
