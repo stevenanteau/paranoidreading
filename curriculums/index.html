@@ -259,7 +259,7 @@ const DATA = [{"vein":"The Core Slate","items":[{"t":"The Dystopia Canon Didn't 
 const ITEMS = [];
 DATA.forEach((v, vi) => v.items.forEach((c, ci) => {
   ITEMS.push({ ...c, veinName: v.vein, id: vi + "-" + ci,
-    searchable: (c.t + " " + c.b.join(" ") + " " + (c.o||"") + " " + c.h).toLowerCase() });
+    searchable: (c.t + " " + c.b.join(" ") + " " + (c.o||"")).toLowerCase() });
 }));
 const TOTAL = ITEMS.length;
 
@@ -293,7 +293,6 @@ function cardHTML(c){
     +   '<div class="cbody">'
     +     '<div class="ctitle">'+(c.f?'<span class="star">★</span>':'')+esc(c.t)+'</div>'
     +     '<ul class="books">'+books+opt+'</ul>'
-    +     '<p class="hyp">'+esc(c.h)+'</p>'
     +   '</div>'
     + '</div></article>';
 }
