@@ -61,6 +61,107 @@
 
   @media(max-width:560px){ h1{font-size:32px} .sigil{width:74px;height:74px} }
 </style>
+<!--pr-theme--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><style id="pr-theme">:root{--file:"PR/0010"}
+/* Paranoid Reading theme: Declassified palette, Radical Press type. Layered over each page's own CSS. */
+:root,body.light{--ox:#d7263d;--ox2:#e2475b;--ox-dim:#7d1622;--ink:#e6e1d3;--gray:#8e897d;--faint:#5c584f;--paper:#0b0b0a;--bg:#0b0b0a;--panel:#11110f;--card:#0b0b0a;--line:#3d3a33;--wash:#1b1012;--shadow:none}
+html,body,body.light{background:#0b0b0a!important;color:#e6e1d3!important}
+body,button,input,select,textarea,summary,.toast{font-family:"Inter Tight",Helvetica,Arial,sans-serif!important}
+body{counter-reset:exhibit}
+*{border-radius:0!important;box-shadow:none!important;text-shadow:none!important}
+::selection{background:#d7263d;color:#0b0b0a}
+a{color:#d7263d}
+.sub,.ssub,.sb-sub,.tagline,.brand-tag,.feednote,.vsub,.lens .tag,.rdesc,.sbd,.wnote,.chan,.curric-lens,.strand-book .sbd,.ba,.season,.feedhead .sub2{font-style:normal!important}
+header{background:#0b0b0a!important;border-bottom:1px dashed #4a4740!important}
+.banner{border-bottom:1px dashed #4a4740!important}
+.brand{color:#e6e1d3!important;font-weight:900!important;letter-spacing:.01em!important;text-transform:uppercase;font-size:14px!important}
+.brand a{color:#e6e1d3!important}
+.brand::before{content:"FILE NO. " var(--file,"PR/0000");color:#d7263d;font-weight:600;font-size:10.5px;letter-spacing:.16em;margin-right:10px;white-space:nowrap}
+h1{font-weight:900!important;text-transform:uppercase;letter-spacing:-.04em!important;color:#e6e1d3!important;line-height:.95!important}
+header h1{font-size:36px!important;margin:6px 0 6px!important}
+.hero h1{font-size:clamp(40px,8vw,76px)!important;line-height:.9!important;letter-spacing:-.05em!important;margin:10px 0 18px!important}
+section.lens h1{font-size:clamp(46px,8.5vw,104px)!important;line-height:.86!important;letter-spacing:-.055em!important;margin:10px 0 18px!important}
+.feedhead h1,.sb-h1{text-transform:uppercase;font-weight:900!important;letter-spacing:-.03em!important;color:#e6e1d3!important}
+h2,h3,h4{letter-spacing:-.015em}
+section.lens,.hero{position:relative}
+section.lens h1{max-width:760px}
+section.lens::after,.hero::after{content:"CONFIDENTIAL";position:absolute;right:6px;top:10px;transform:rotate(-8deg);border:3px solid #d7263d;color:#d7263d;font:900 18px/1 "Inter Tight",sans-serif;letter-spacing:.18em;padding:7px 12px;pointer-events:none}
+.kicker,.eyebrow,.navlabel,.sb-label,.seclabel,.sectlabel,.p-eyebrow,.season,.lbl,.field>label,.count,.progtext,.feedhead .sub2,.pnum,.wdate,.bm,.strand-count,.curric-vein,.now .l,.tn,.tp-fam,.toc h3,.legend summary,details.legend summary{font-family:"Inter Tight",sans-serif!important;text-transform:uppercase;letter-spacing:.16em!important;font-size:11px!important;font-weight:600!important;color:#8e897d!important;font-style:normal!important}
+.kicker,.eyebrow,.tp-fam,.toc h3,details.legend summary,.role{color:#d7263d!important}
+.lens .tag,.sub,.intro,.tagline,.lens .body{color:#d4cebf!important}
+.card,.row,.post,.portal,.pillar,.week,.curric,.strand:has(.strand-head),.now,details.legend,.how,.creed,.touchcallout,.panel,.equal,.tcard,.toc,.tp-panel{background:#0b0b0a!important;border:1px solid #3d3a33!important}
+.equal div+div,.pillars .pillar+.pillar{border-left:1px dashed #3d3a33!important}
+.card,.row:has(.rbody){position:relative;counter-increment:exhibit;padding-top:28px!important}
+.card::before,.row:has(.rbody)::before{content:"EXHIBIT " counter(exhibit,decimal-leading-zero);position:absolute;top:-1px;left:-1px;background:#e6e1d3;color:#0b0b0a;font:800 10px/1 "Inter Tight",sans-serif;letter-spacing:.18em;padding:4px 9px;z-index:1}
+.card.read,.card.done,.row.done{opacity:.5}
+.week.current{border-color:#d7263d!important}
+.interlude,.creed{border:1px dashed #d7263d!important}
+a.week:hover,.post:hover,.portal:hover,.tcard:hover,.curric-head:hover,.strand-head:hover,.tp-opt:hover,.nav a:hover{background:#141412!important;transform:none!important}
+.post:hover,.portal:hover,.tcard:hover{border-color:#e6e1d3!important}
+.title,.ctitle,.rtitle,.sbt,.curric-title,.strand-title,.p-title,.wtitle,.bt,.post h2,.pillar h3,.tcard .tl,.strand h2,.vein h2,.sec h2,.r-head h2,.now .t{font-weight:800!important;letter-spacing:-.02em!important;color:#e6e1d3!important;font-style:normal!important}
+.ctitle,.bt,.p-title,.post h2{font-size:24px!important;line-height:1.05!important}
+.title{font-size:17px}
+.rtitle,.curric-title,.strand-title,.wtitle{font-size:16.5px!important}
+.r-head h2{text-transform:uppercase;font-weight:900!important;font-size:30px!important}
+.num,.chev,.b-on,.p-go,.post-go,.wgo,.tierbtn b,.pillar .n,.step .num,.tri,.vein .kicker,.sec .kicker,.strand .kicker{color:#d7263d!important}
+.strand-rule,.vein-rule,.sec-rule{background:#e6e1d3!important;height:1px!important;opacity:1!important}
+.feedhead,.bookhead,.r-head{border-bottom:1px solid #e6e1d3!important}
+footer{border-top:1px dashed #3d3a33!important;color:#8e897d!important}
+.author,.rauthor,.sba,.by,.ba,.cite,.lab,.post-when,.markers{color:#8e897d!important}
+.desc,.rdesc,.sbd,.p-desc,.post-ex,.hyp,.wnote,.wchap,.manifesto,.intro,.lens .body,.pillar p,.legend-body,.tb,.equal p,.tp-blurbs,.how,.legend-body p{color:#c9c3b3!important}
+.manifesto b,.intro b,.lens b,.how b,.legend-body b,.tp-blurbs b{color:#e6e1d3!important}
+.note{background:transparent!important;border-left:3px solid #d7263d!important;color:#c9c3b3!important}
+.note b{color:#e6e1d3!important;text-transform:uppercase;font-size:11.5px;letter-spacing:.1em;font-weight:800}
+input[type=search],input[type=text],input[type=number],select,.tp-btn,.topicbar select{background:#0b0b0a!important;color:#e6e1d3!important;border:1px solid #3d3a33!important}
+select option{background:#0b0b0a;color:#e6e1d3}
+input::placeholder{color:#5c584f!important}
+input:focus,select:focus,button:focus-visible{outline:2px solid #d7263d!important;outline-offset:1px}
+.btn,.tierbtn,.navbtn,.presets button,.seg button,.lens-toggle,.dm-toggle button,.followrow a,.swap{background:transparent!important;color:#d7263d!important;border:1px solid #d7263d!important;text-transform:uppercase;font-weight:800!important;letter-spacing:.08em!important;font-size:12px!important;text-decoration:none!important}
+.btn:hover,.navbtn:hover,.presets button:hover,.followrow a:hover,.tierbtn:hover{background:#1b1012!important}
+.btn.primary,.seg button.on,.tierbtn.active{background:#d7263d!important;color:#0b0b0a!important;border-color:#d7263d!important}
+.tierbtn{color:#c9c3b3!important;border-color:#3d3a33!important}
+.tierbtn.active b{color:#0b0b0a!important}
+.veinbtn.active{color:#d7263d!important;border-left-color:#d7263d!important}
+.toggle{background:transparent!important;border:1px solid #3d3a33!important;color:#8e897d!important}
+.dm-toggle{display:none!important}
+.box{border:2px solid #5c584f!important;background:transparent!important}
+.chk input:checked+.box{background:#d7263d!important;border-color:#d7263d!important}
+.chk input:checked+.box::after{color:#0b0b0a!important}
+.progbar{background:#1c1b18!important;border:1px solid #3d3a33!important;height:6px!important}
+.progfill{background:#d7263d!important}
+.badge,.tag,.chip,.p-badge,.nowtag,.tchip,.tcard .tn{background:transparent!important;border:1px solid #3d3a33!important;color:#8e897d!important;font-family:"Inter Tight",sans-serif!important;font-weight:600!important;font-size:10.5px!important;letter-spacing:.12em!important;text-transform:uppercase;font-style:normal!important}
+.chip.on,.tchip.on,.p-badge{border-color:#d7263d!important;color:#e6e1d3!important}
+.tp-btn .chip{border-color:#e6e1d3!important;color:#e6e1d3!important}
+.badge.fmt{background:#e6e1d3!important;color:#0b0b0a!important;border-color:#e6e1d3!important}
+.badge[class*=" g-"],.badge[class^="g-"],.tag-touchstone,.flag{color:#d7263d!important;border:2px solid #d7263d!important;background:transparent!important;font-weight:900!important;transform:rotate(-3deg);display:inline-block}
+.flag{border:0!important;transform:none}
+.badge.canon{color:#e6e1d3!important;border-color:#e6e1d3!important}
+.badge.weak,.badge.auto{font-style:normal!important;text-transform:uppercase}
+nav.tabs a{color:#8e897d!important;border:0!important;background:transparent!important;margin-bottom:0!important;padding:7px 12px!important;text-transform:uppercase;font-weight:600;font-size:12.5px!important;letter-spacing:.06em}
+nav.tabs a.on{background:#e6e1d3!important;color:#0b0b0a!important}
+.head-inner{padding-bottom:12px!important;align-items:center!important}
+.sidebar{background:#0b0b0a!important;border-right:1px dashed #3d3a33!important}
+.nav a{border-left:2px solid transparent!important}
+.nav a:hover,.nav a.lead{color:#d7263d!important;border-left-color:#d7263d!important}
+.sub a,.toplinks a,.back{color:#8e897d!important}
+.sub a:hover,.toplinks a:hover,.back:hover{color:#d7263d!important}
+.tp-panel{border-color:#e6e1d3!important}
+.tp-head{border-bottom:1px dashed #3d3a33!important}
+.balance .bar{background:#1c1b18!important}
+.balance .bar i{background:#d7263d!important}
+.warn{background:transparent!important;border:1px dashed #d7263d!important;color:#e6e1d3!important}
+.mixout b,.tp-blurbs b{color:#d7263d!important}
+.intro p:first-child:first-letter{color:#d7263d!important;font-weight:900}
+.pr-tags{display:flex;flex-wrap:wrap;gap:3px 14px;margin:6px 0 4px;font:600 10.5px/1.35 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.pr-tags a{color:#8e897d!important;text-decoration:none}
+.pr-tags a::before{content:"› ";color:#d7263d}
+.pr-tags a:hover,.pr-tags a.on{color:#e6e1d3!important}
+@media(max-width:640px){section.lens::after,.hero::after{display:none}.brand::before{display:none}header h1{font-size:28px!important}}
+@media print{body,html{background:#fff!important;color:#000!important}}
+.lens p.tag{border:0!important;font-size:20px!important;line-height:1.35!important;letter-spacing:-.01em!important;text-transform:none!important;font-weight:400!important;color:#d4cebf!important;padding:0!important}
+
+.sidebar .brand::before,.side .brand::before{display:block;margin:0 0 4px}
+.banner svg text{font-family:"Inter Tight",Helvetica,Arial,sans-serif!important;font-weight:900}
+</style><!--/pr-theme-->
 </head>
 <body>
 <header>
