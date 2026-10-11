@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Screen — Paranoid Reading</title>
+<style>
+  :root{
+    --ox:#6B1414; --ox2:#8f2320; --ink:#1a1a1a; --gray:#5a5a5a; --faint:#c9b8b8;
+    --paper:#faf7f2; --card:#ffffff; --line:#e7ddd6; --shadow:0 1px 2px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:Georgia,"Iowan Old Style","Times New Roman",serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--ox)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px 80px}
+  header{background:linear-gradient(180deg,#fbf9f5,#f4ede4);border-bottom:3px solid var(--ox);position:sticky;top:0;z-index:20}
+  .head-inner{max-width:900px;margin:0 auto;padding:14px 18px 12px}
+  .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  h1{margin:2px 0 2px;font-size:28px;letter-spacing:.05em;color:var(--ox)}
+  .sub{margin:0;color:var(--gray);font-style:italic;font-size:14px}
+  .progwrap{margin-top:10px;display:flex;align-items:center;gap:10px}
+  .progbar{flex:1;height:9px;background:#eaded4;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+  .progfill{height:100%;width:0;background:linear-gradient(90deg,var(--ox),var(--ox2));transition:width .3s}
+  .progtext{font-size:12.5px;color:var(--gray);white-space:nowrap}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;align-items:center}
+  .controls input[type=search],.controls select{font-family:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+  .controls input[type=search]{flex:1;min-width:180px}
+  .btn{font-family:inherit;font-size:13px;color:var(--ox);background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 10px;cursor:pointer}
+  .btn:hover{background:#fbf3f0}
+  .count{font-size:12.5px;color:var(--gray);margin:4px 2px 14px}
+  details.legend{margin:0 0 16px;border:1px solid var(--line);border-radius:10px;background:#fff}
+  details.legend summary{cursor:pointer;padding:9px 12px;font-size:13px;color:var(--ox);font-weight:bold;letter-spacing:.02em}
+  .legend-body{padding:0 12px 12px;font-size:13px;color:var(--gray);line-height:1.7}
+  .legend-body b{color:var(--ink)}
+  .vein{margin:26px 0 6px}
+  .vein .kicker{font-size:11px;letter-spacing:.22em;color:var(--ox);font-weight:bold;text-transform:uppercase}
+  .vein h2{margin:1px 0 4px;font-size:21px;letter-spacing:.03em;color:var(--ink)}
+  .vein .vsub{margin:0 0 8px;font-size:13.5px;color:var(--gray);font-style:italic}
+  .vein-rule{height:2px;background:var(--ox);opacity:.85;border:0;margin:0 0 12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 10px;box-shadow:var(--shadow);transition:opacity .2s}
+  .card.done{opacity:.6}
+  .ctop{display:flex;gap:10px;align-items:flex-start}
+  .chk{flex:0 0 auto;padding-top:2px}
+  .chk input{position:absolute;opacity:0;width:22px;height:22px;cursor:pointer}
+  .box{display:inline-block;width:22px;height:22px;border:2px solid var(--faint);border-radius:6px;position:relative;cursor:pointer;transition:.15s}
+  .chk input:checked + .box{background:var(--ox);border-color:var(--ox)}
+  .chk input:checked + .box::after{content:"✓";color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:14px;font-weight:bold}
+  .chk input:focus-visible + .box{outline:2px solid var(--ox2);outline-offset:2px}
+  .cbody{flex:1;min-width:0}
+  .ctitle{font-size:17px;font-weight:bold;color:var(--ox);line-height:1.3}
+  .card.done .ctitle{text-decoration:line-through;text-decoration-color:var(--faint)}
+  .cite{margin:4px 0 0;font-size:13px;color:var(--gray)}
+  .badges{margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .badge{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--gray);background:#fbf9f5}
+  .badge.kind{color:var(--ox);border-color:#e3cfcf;background:#fbf3f0}
+  .badge.g-documented{color:#2f5d3a;border-color:#cfe0d2;background:#f2f8f3}
+  .badge.g-contested{color:#8a6a1f;border-color:#e8dcbd;background:#fbf7ea}
+  .badge.g-disputed{color:var(--ox2);border-color:#e3cfcf;background:#fbf3f0}
+  .badge.g-dramatization{color:#4a4a6a;border-color:#d6d6e4;background:#f5f5fa}
+  .badge.g-fiction{color:var(--gray)}
+  .note{margin:8px 0 0;font-size:13.5px;color:#444;background:#fbf9f5;border-left:3px solid var(--faint);padding:6px 10px;border-radius:0 6px 6px 0}
+  .note b{color:var(--ink)}
+  .hyp{margin:10px 0 0;font-size:14.5px;color:#333;line-height:1.55}
+  .pairs{margin:8px 0 0;font-size:13.5px;color:var(--gray)}
+  .pairs b{color:var(--ink);font-weight:normal;font-style:italic}
+  .empty{padding:40px 10px;text-align:center;color:var(--gray);font-style:italic}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--gray)}
+  footer a{font-weight:bold}
+  @media(max-width:560px){h1{font-size:22px}.controls input[type=search]{min-width:120px}.ctitle{font-size:16px}}
+</style>
+<!--pr-theme--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><style id="pr-theme">:root{--file:"PR/0007"}
+/* Paranoid Reading theme: Declassified palette, Radical Press type. Layered over each page's own CSS. */
+:root,body.light{--ox:#d7263d;--ox2:#e2475b;--ox-dim:#7d1622;--ink:#e6e1d3;--gray:#8e897d;--faint:#5c584f;--paper:#0b0b0a;--bg:#0b0b0a;--panel:#11110f;--card:#0b0b0a;--line:#3d3a33;--wash:#1b1012;--shadow:none}
+html,body,body.light{background:#0b0b0a!important;color:#e6e1d3!important}
+body,button,input,select,textarea,summary,.toast{font-family:"Inter Tight",Helvetica,Arial,sans-serif!important}
+body{counter-reset:exhibit}
+*{border-radius:0!important;box-shadow:none!important;text-shadow:none!important}
+::selection{background:#d7263d;color:#0b0b0a}
+a{color:#d7263d}
+.sub,.ssub,.sb-sub,.tagline,.brand-tag,.feednote,.vsub,.lens .tag,.rdesc,.sbd,.wnote,.chan,.curric-lens,.strand-book .sbd,.ba,.season,.feedhead .sub2{font-style:normal!important}
+header{background:#0b0b0a!important;border-bottom:1px dashed #4a4740!important}
+.banner{border-bottom:1px dashed #4a4740!important}
+.brand{color:#e6e1d3!important;font-weight:900!important;letter-spacing:.01em!important;text-transform:uppercase;font-size:14px!important}
+.brand a{color:#e6e1d3!important}
+.brand::before{content:"FILE NO. " var(--file,"PR/0000");color:#d7263d;font-weight:600;font-size:10.5px;letter-spacing:.16em;margin-right:10px;white-space:nowrap}
+h1{font-weight:900!important;text-transform:uppercase;letter-spacing:-.04em!important;color:#e6e1d3!important;line-height:.95!important}
+header h1{font-size:36px!important;margin:6px 0 6px!important}
+.hero h1{font-size:clamp(40px,8vw,76px)!important;line-height:.9!important;letter-spacing:-.05em!important;margin:10px 0 18px!important}
+section.lens h1{font-size:clamp(46px,8.5vw,104px)!important;line-height:.86!important;letter-spacing:-.055em!important;margin:10px 0 18px!important}
+.feedhead h1,.sb-h1{text-transform:uppercase;font-weight:900!important;letter-spacing:-.03em!important;color:#e6e1d3!important}
+h2,h3,h4{letter-spacing:-.015em}
+section.lens,.hero{position:relative}
+section.lens h1{max-width:760px}
+section.lens::after,.hero::after{content:"CONFIDENTIAL";position:absolute;right:6px;top:10px;transform:rotate(-8deg);border:3px solid #d7263d;color:#d7263d;font:900 18px/1 "Inter Tight",sans-serif;letter-spacing:.18em;padding:7px 12px;pointer-events:none}
+.kicker,.eyebrow,.navlabel,.sb-label,.seclabel,.sectlabel,.p-eyebrow,.season,.lbl,.field>label,.count,.progtext,.feedhead .sub2,.pnum,.wdate,.bm,.strand-count,.curric-vein,.now .l,.tn,.tp-fam,.toc h3,.legend summary,details.legend summary{font-family:"Inter Tight",sans-serif!important;text-transform:uppercase;letter-spacing:.16em!important;font-size:11px!important;font-weight:600!important;color:#8e897d!important;font-style:normal!important}
+.kicker,.eyebrow,.tp-fam,.toc h3,details.legend summary,.role{color:#d7263d!important}
+.lens .tag,.sub,.intro,.tagline,.lens .body{color:#d4cebf!important}
+.card,.row,.post,.portal,.pillar,.week,.curric,.strand:has(.strand-head),.now,details.legend,.how,.creed,.touchcallout,.panel,.equal,.tcard,.toc,.tp-panel{background:#0b0b0a!important;border:1px solid #3d3a33!important}
+.equal div+div,.pillars .pillar+.pillar{border-left:1px dashed #3d3a33!important}
+.card,.row:has(.rbody){position:relative;counter-increment:exhibit;padding-top:28px!important}
+.card::before,.row:has(.rbody)::before{content:"EXHIBIT " counter(exhibit,decimal-leading-zero);position:absolute;top:-1px;left:-1px;background:#e6e1d3;color:#0b0b0a;font:800 10px/1 "Inter Tight",sans-serif;letter-spacing:.18em;padding:4px 9px;z-index:1}
+.card.read,.card.done,.row.done{opacity:.5}
+.week.current{border-color:#d7263d!important}
+.interlude,.creed{border:1px dashed #d7263d!important}
+a.week:hover,.post:hover,.portal:hover,.tcard:hover,.curric-head:hover,.strand-head:hover,.tp-opt:hover,.nav a:hover{background:#141412!important;transform:none!important}
+.post:hover,.portal:hover,.tcard:hover{border-color:#e6e1d3!important}
+.title,.ctitle,.rtitle,.sbt,.curric-title,.strand-title,.p-title,.wtitle,.bt,.post h2,.pillar h3,.tcard .tl,.strand h2,.vein h2,.sec h2,.r-head h2,.now .t{font-weight:800!important;letter-spacing:-.02em!important;color:#e6e1d3!important;font-style:normal!important}
+.ctitle,.bt,.p-title,.post h2{font-size:24px!important;line-height:1.05!important}
+.title{font-size:17px}
+.rtitle,.curric-title,.strand-title,.wtitle{font-size:16.5px!important}
+.r-head h2{text-transform:uppercase;font-weight:900!important;font-size:30px!important}
+.num,.chev,.b-on,.p-go,.post-go,.wgo,.tierbtn b,.pillar .n,.step .num,.tri,.vein .kicker,.sec .kicker,.strand .kicker{color:#d7263d!important}
+.strand-rule,.vein-rule,.sec-rule{background:#e6e1d3!important;height:1px!important;opacity:1!important}
+.feedhead,.bookhead,.r-head{border-bottom:1px solid #e6e1d3!important}
+footer{border-top:1px dashed #3d3a33!important;color:#8e897d!important}
+.author,.rauthor,.sba,.by,.ba,.cite,.lab,.post-when,.markers{color:#8e897d!important}
+.desc,.rdesc,.sbd,.p-desc,.post-ex,.hyp,.wnote,.wchap,.manifesto,.intro,.lens .body,.pillar p,.legend-body,.tb,.equal p,.tp-blurbs,.how,.legend-body p{color:#c9c3b3!important}
+.manifesto b,.intro b,.lens b,.how b,.legend-body b,.tp-blurbs b{color:#e6e1d3!important}
+.note{background:transparent!important;border-left:3px solid #d7263d!important;color:#c9c3b3!important}
+.note b{color:#e6e1d3!important;text-transform:uppercase;font-size:11.5px;letter-spacing:.1em;font-weight:800}
+input[type=search],input[type=text],input[type=number],select,.tp-btn,.topicbar select{background:#0b0b0a!important;color:#e6e1d3!important;border:1px solid #3d3a33!important}
+select option{background:#0b0b0a;color:#e6e1d3}
+input::placeholder{color:#5c584f!important}
+input:focus,select:focus,button:focus-visible{outline:2px solid #d7263d!important;outline-offset:1px}
+.btn,.tierbtn,.navbtn,.presets button,.seg button,.lens-toggle,.dm-toggle button,.followrow a,.swap{background:transparent!important;color:#d7263d!important;border:1px solid #d7263d!important;text-transform:uppercase;font-weight:800!important;letter-spacing:.08em!important;font-size:12px!important;text-decoration:none!important}
+.btn:hover,.navbtn:hover,.presets button:hover,.followrow a:hover,.tierbtn:hover{background:#1b1012!important}
+.btn.primary,.seg button.on,.tierbtn.active{background:#d7263d!important;color:#0b0b0a!important;border-color:#d7263d!important}
+.tierbtn{color:#c9c3b3!important;border-color:#3d3a33!important}
+.tierbtn.active b{color:#0b0b0a!important}
+.veinbtn.active{color:#d7263d!important;border-left-color:#d7263d!important}
+.toggle{background:transparent!important;border:1px solid #3d3a33!important;color:#8e897d!important}
+.dm-toggle{display:none!important}
+.box{border:2px solid #5c584f!important;background:transparent!important}
+.chk input:checked+.box{background:#d7263d!important;border-color:#d7263d!important}
+.chk input:checked+.box::after{color:#0b0b0a!important}
+.progbar{background:#1c1b18!important;border:1px solid #3d3a33!important;height:6px!important}
+.progfill{background:#d7263d!important}
+.badge,.tag,.chip,.p-badge,.nowtag,.tchip,.tcard .tn{background:transparent!important;border:1px solid #3d3a33!important;color:#8e897d!important;font-family:"Inter Tight",sans-serif!important;font-weight:600!important;font-size:10.5px!important;letter-spacing:.12em!important;text-transform:uppercase;font-style:normal!important}
+.chip.on,.tchip.on,.p-badge{border-color:#d7263d!important;color:#e6e1d3!important}
+.tp-btn .chip{border-color:#e6e1d3!important;color:#e6e1d3!important}
+.badge.fmt{background:#e6e1d3!important;color:#0b0b0a!important;border-color:#e6e1d3!important}
+.badge[class*=" g-"],.badge[class^="g-"],.tag-touchstone,.flag{color:#d7263d!important;border:2px solid #d7263d!important;background:transparent!important;font-weight:900!important;transform:rotate(-3deg);display:inline-block}
+.flag{border:0!important;transform:none}
+.badge.canon{color:#e6e1d3!important;border-color:#e6e1d3!important}
+.badge.weak,.badge.auto{font-style:normal!important;text-transform:uppercase}
+nav.tabs a{color:#8e897d!important;border:0!important;background:transparent!important;margin-bottom:0!important;padding:7px 12px!important;text-transform:uppercase;font-weight:600;font-size:12.5px!important;letter-spacing:.06em}
+nav.tabs a.on{background:#e6e1d3!important;color:#0b0b0a!important}
+.head-inner{padding-bottom:12px!important;align-items:center!important}
+.sidebar{background:#0b0b0a!important;border-right:1px dashed #3d3a33!important}
+.nav a{border-left:2px solid transparent!important}
+.nav a:hover,.nav a.lead{color:#d7263d!important;border-left-color:#d7263d!important}
+.sub a,.toplinks a,.back{color:#8e897d!important}
+.sub a:hover,.toplinks a:hover,.back:hover{color:#d7263d!important}
+.tp-panel{border-color:#e6e1d3!important}
+.tp-head{border-bottom:1px dashed #3d3a33!important}
+.balance .bar{background:#1c1b18!important}
+.balance .bar i{background:#d7263d!important}
+.warn{background:transparent!important;border:1px dashed #d7263d!important;color:#e6e1d3!important}
+.mixout b,.tp-blurbs b{color:#d7263d!important}
+.intro p:first-child:first-letter{color:#d7263d!important;font-weight:900}
+.pr-tags{display:flex;flex-wrap:wrap;gap:3px 14px;margin:6px 0 4px;font:600 10.5px/1.35 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.pr-tags a{color:#8e897d!important;text-decoration:none}
+.pr-tags a::before{content:"› ";color:#d7263d}
+.pr-tags a:hover,.pr-tags a.on{color:#e6e1d3!important}
+@media(max-width:640px){section.lens::after,.hero::after{display:none}.brand::before{display:none}header h1{font-size:28px!important}}
+@media print{body,html{background:#fff!important;color:#000!important}}
+.lens p.tag{border:0!important;font-size:20px!important;line-height:1.35!important;letter-spacing:-.01em!important;text-transform:none!important;font-weight:400!important;color:#d4cebf!important;padding:0!important}
+
+.sidebar .brand::before,.side .brand::before{display:block;margin:0 0 4px}
+.banner svg text{font-family:"Inter Tight",Helvetica,Arial,sans-serif!important;font-weight:900}
+</style><!--/pr-theme-->
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <div class="brand">Paranoid Reading</div>
+    <h1>The Screen</h1>
+    <p class="sub">14 films, series and documentaries on covert power, graded for what they actually claim</p>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 14 watched</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search a title, director, or subject…" autocomplete="off">
+    <select id="shelf" aria-label="Filter by shelf"></select>
+    <select id="grade" aria-label="Filter by grade">
+      <option value="ALL">All grades</option>
+      <option value="Documented">Documented</option>
+      <option value="Contested">Contested</option>
+      <option value="Disputed">Disputed</option>
+      <option value="Dramatization">Dramatization</option>
+      <option value="Fiction">Fiction</option>
+    </select>
+    <select id="sort" aria-label="Sort">
+      <option value="canon">Default order</option>
+      <option value="title">Title A–Z</option>
+      <option value="year">Year</option>
+      <option value="unread">Not watched first</option>
+    </select>
+    <button class="btn" id="reset">Reset progress</button>
+  </div>
+  <div class="count" id="count"></div>
+
+  <details class="legend">
+    <summary>How this page is graded</summary>
+    <div class="legend-body">
+      <p>Every entry carries a grade describing what the work claims about the real world, not how good it is. Quality is what the Noided and Grim ratings are for, and those stay on the book pages.</p>
+      <p><b>Documented.</b> Non fiction. The claims rest on the public record: testimony, parliamentary inquiry, declassified material. Where specialists dispute part of it, the dispute is named.</p>
+      <p><b>Contested.</b> Non fiction whose central claim is argued by serious researchers and rejected by others. Read it with the counter argument in hand.</p>
+      <p><b>Disputed.</b> Non fiction that is substantially challenged, or whose sourcing is thin, or whose author has a documented interest in the story being told. Kept because it is part of the literature, flagged so it is not mistaken for the record.</p>
+      <p><b>Dramatization.</b> Fiction built directly on documented events, naming real people or real operations. The events are real, the scenes are invented.</p>
+      <p><b>Fiction.</b> Invented throughout. Belongs here because of what it makes thinkable, not because of what it reports.</p>
+      <p>Progress is saved in this browser only. Nothing is uploaded.</p>
+    </div>
+  </details>
+
+  <div id="list"></div>
+
+  <footer>
+    <p>Part of <b>Paranoid Reading</b>. Your progress here is saved privately in this browser, nothing gets uploaded.</p>
+    <p><a href="/canon">← The Canon (116 books)</a> &nbsp;·&nbsp; <a href="/curriculums">The Curriculums (119)</a> &nbsp;·&nbsp; <a href="/every-book">Every Book (577) →</a></p>
+  </footer>
+</div>
+
+<script>
+const DATA = [
+{"shelf":"Covert Power and the Stay Behind State","sub":"The paradigm cases: secret armies, exported counterinsurgency, and the men built to run them.","items":[
+ {"t":"Gladio","cite":"Dir. Allan Francovich. The Observer Film Company for BBC Television, 1992. Three parts.","y":1992,"kind":"Documentary","grade":"Documented","note":"Francovich's sourcing is first hand: convicted terrorist Vincenzo Vinciguerra on camera, plus the head of the Italian parliamentary inquiry. The existence of the stay behind networks is admitted history, confirmed by Andreotti in 1990 and by the Italian and Belgian inquiries. What remains argued among historians is the degree of operational control over specific massacres.","h":"The essential visual companion to Ganser. It traces the network from its origins through the Years of Lead massacres at Piazza Fontana and Bologna to the Moro kidnapping, and reconstructs the Brabant massacres in part three. Its value is that it turns an abstraction into identifiable people with specific jobs. Hidden power is not a weather system, it is staffed.","pairs":"NATO's Secret Armies, Daniele Ganser · Stefano delle Chiaie, Stuart Christie"},
+ {"t":"State of Siege","cite":"Dir. Costa-Gavras. Written by Franco Solinas. Cinema 10, 1972.","y":1972,"kind":"Film","grade":"Dramatization","note":"Based on the 1970 kidnapping and killing of USAID officer Dan Mitrione by the Tupamaros. Mitrione's role training Latin American police is documented; the film's interrogation scenes are invented structure around it.","h":"Shot in Chile a year before the coup against Allende. The film opens with the body and works backward through the interrogation, which shifts the question from whether he survives to why he was taken. The answer it reaches is the one that matters here: the torture training was not deviance, it was policy. It also catches how power rewrites language, reclassifying prisoners as terrorists before touching them.","pairs":"Gladio, Francovich · the counterinsurgency shelf"},
+ {"t":"The Good Shepherd","cite":"Dir. Robert De Niro. Written by Eric Roth. Universal Pictures, 2006.","y":2006,"kind":"Film","grade":"Dramatization","note":"Edward Wilson is a composite, drawn mainly from James Jesus Angleton. The institutional history around him, OSS counterintelligence, the founding of the CIA, the Bay of Pigs, is real.","h":"Where Ellroy externalizes conspiracy as violent action, De Niro internalizes it. The subject is the psychological architecture that clandestine work requires and then consumes: a man made incapable of trust because trust is an operational liability. The agency's inscribed promise about the truth setting you free hangs over every scene. The apparatus is built out of people stripped of whatever might compromise their usefulness.","pairs":"American Tabloid, James Ellroy"},
+ {"t":"1985","cite":"Created by Willem Wallyn and Wouter Bouvijn. VRT/RTBF, 2023. Eight parts.","y":2023,"kind":"Series","grade":"Dramatization","note":"Built on the Belgian parliamentary investigation into the Brabant killers, who left 28 dead between 1982 and 1985. The case is formally unsolved; the Gendarmerie and stay behind connections it dramatizes are the subject of the inquiry, not settled fact.","h":"Three young people, two into the Gendarmerie and one into law, and the gang's violence closes around all of them. Bouvijn has said the aim was to show how ordinary people get drawn into extremist violence, and he connects it forward to January 6th. It is the bridge between the documentary record of Gladio and the fiction that imagines it, because in Belgium that record is still open.","pairs":"Gladio part three, Francovich"}
+]},
+{"shelf":"Money, Banks and the Membrane","sub":"Where state authority and illicit commerce stop being separate things.","items":[
+ {"t":"The Bankers of God: The Calvi Affair","cite":"Dir. Giuseppe Ferrara. Written by Giuseppe Ferrara and Arrigo Petacco. A.G. Srl, 2002.","y":2002,"kind":"Film","grade":"Dramatization","note":"Roberto Calvi was found hanging beneath Blackfriars Bridge in 1982. The initial suicide ruling was later overturned and Italian prosecutors treated it as murder, though nobody has been convicted. Banco Ambrosiano's collapse, the Vatican Bank exposure and the P2 membership are documented.","h":"The film follows the money out of the bank and into the Vatican, the secret services, the Mafia and the parties, which is the same period and the same cast as the strategy of tension. God's Banker is a useful nickname because it marks how far the networks reached into institutions that are supposed to sit outside politics. Dense and dialogue heavy, which is appropriate to a story designed not to be traceable.","pairs":"The Last Supper, Philip Willan · In God's Name, David Yallop"},
+ {"t":"The International","cite":"Dir. Tom Tykwer. Written by Eric Warren Singer. Columbia Pictures, 2009.","y":2009,"kind":"Film","grade":"Fiction","note":"The IBBC is invented, but openly modeled on BCCI, whose arms financing, laundering and intelligence connections were established by the Senate investigation.","h":"An Interpol agent and a New York prosecutor chase a bank that deals arms, launders money and destabilizes governments, and find that its reach runs through intelligence services on several continents. The useful argument is structural rather than historical: the point where money meets violence is not a past scandal, it is a permanent feature. Tykwer shoots institutional architecture as a character, which makes the scale of the mismatch visible.","pairs":"the dark money shelf"},
+ {"t":"American Gangster","cite":"Dir. Ridley Scott. Written by Steven Zaillian. Universal Pictures, 2007.","y":2007,"kind":"Film","grade":"Dramatization","note":"Frank Lucas's heroin network is real and his conviction is on the record. His claim to have shipped product in the coffins of American servicemen is disputed, denied by the DEA agents involved, and should not be read as established.","h":"Lucas rising while an honest detective works his way into a police department that turns out to be rotten from the middle outward. Vietnam is the infrastructure in both directions: it creates the supply line and it creates the men who use it. The film is most valuable where it is least dramatic, in showing how a war abroad builds permanent channels for commerce and violence at home.","pairs":"The Politics of Heroin, Alfred McCoy"}
+]},
+{"shelf":"Police, Labor and the American Grain","sub":"Private force, corrupt departments, and violence that the law was never going to contain.","items":[
+ {"t":"L.A. Confidential","cite":"Dir. Curtis Hanson. Screenplay by Curtis Hanson and Brian Helgeland, from the novel by James Ellroy. Warner Bros., 1997.","y":1997,"kind":"Film","grade":"Fiction","note":"Invented case, real institution. The LAPD of the period, Hush-Hush as a stand in for Confidential magazine, and the department's relationship with organized crime are drawn from the record Ellroy works in.","h":"Three cops with incompatible methods pull on the same thread and find the department at the other end of it. The tagline does the epistemology for the whole project: everything is suspect, everyone is for sale, nothing is what it seems. It is the cleanest screen translation of the Ellroy position, which is that institutional corruption is not a failure of the system but its working state.","pairs":"The Ellroy Strand"},
+ {"t":"True Detective","cite":"Season 1. Created by Nic Pizzolatto. HBO, 2014. Eight episodes.","y":2014,"kind":"Series","grade":"Fiction","note":"Invented, though it borrows the shape of real Louisiana abuse cases involving politically protected families.","h":"Two detectives reopen a 1995 killing and find ritual violence protected by a family with the standing to make it disappear. The Chambers and Lovecraft material is not decoration: it supplies a vocabulary for evil that outlasts any particular perpetrator, which is also the problem with institutions that protect themselves across decades. Cosmic horror as a theory of impunity.","pairs":"the Carcosa Strand"},
+ {"t":"Quarry","cite":"Created by Graham Gordy and Michael D. Fuller, from the novels by Max Allan Collins. Cinemax, 2016. Eight episodes.","y":2016,"kind":"Series","grade":"Fiction","note":"Invented. The conditions around it, hostility to returning veterans and the recruitment of trained men into private violence, are documented.","h":"A Marine sniper comes home to Memphis in 1972, finds the country will not have him, and is recruited by a broker into contract killing. It is the operational outline of how disillusioned military men get absorbed into private networks of force, which is the same pipeline the stay behind literature describes from the other end. The privatization of violence, shown as a hiring process.","pairs":"NATO's Secret Armies, Daniele Ganser"},
+ {"t":"Matewan","cite":"Dir. John Sayles. Cinecom Pictures, 1987.","y":1987,"kind":"Film","grade":"Dramatization","note":"The Matewan massacre of 1920 and the Baldwin-Felts agency's role are documented labor history. Joe Kenehan is invented.","h":"Miners try to organize, the coal operators send a private detective agency to evict them, and the violence arrives before the union does. The film's argument is that the fusion of corporate interest, state power and extra legal force is not an import from Cold War Europe, it is native and old. Baldwin-Felts is an early draft of the private armies the rest of this shelf is about. It also shows the counter move, which is the refusal to be split by race.","pairs":"the labor and capital shelf"}
+]},
+{"shelf":"Bureaucracy, Spectacle and the Weird","sub":"The forms that conventional narrative cannot hold.","items":[
+ {"t":"Brazil","cite":"Dir. Terry Gilliam. Written by Terry Gilliam, Tom Stoppard and Charles McKeown. Universal Pictures, 1985.","y":1985,"kind":"Film","grade":"Fiction","note":"Invented throughout.","h":"A clerk tries to correct a paperwork error and is fed into the machine that produced it. Gilliam takes the bureaucratic logic of fascism and extrapolates it into a complete visual world of ducts, forms and casual torture. The uncomfortable part, and the useful part, is that the film enjoys the thing it is attacking. That tension is worth sitting with, because it is the same one that runs through every aestheticized account of covert power, this site included.","pairs":"the Dystopia and the Machine vein"},
+ {"t":"Impolex","cite":"Dir. Alex Ross Perry. Cinema Conservancy, 2011. Loosely after Gravity's Rainbow.","y":2011,"kind":"Film","grade":"Fiction","note":"Invented. An oblique riff on Pynchon rather than an adaptation.","h":"A soldier wanders a forest looking for two lost V-2 rockets, interrupted by apparitions, informants and a talking octopus. The most avant garde thing on the shelf and the least informative, which is the point: it reproduces the disorientation that the documentary record produces in anyone who reads enough of it. Conventional narrative form may simply be the wrong instrument for this material.","pairs":"Gravity's Rainbow slow read"},
+ {"t":"The Society of the Spectacle","cite":"Dir. Guy Debord, after his 1967 book. 1973.","y":1973,"kind":"Essay film","grade":"Documented","note":"Theory rather than reportage. Graded for what it is: an argument, made with found footage, that stands or falls on its reasoning.","h":"Debord reads his own theses over appropriated images, which is the method and the demonstration at once. The spectacle is a social relation mediated by images, and its function is to conceal how power operates while appearing to show everything. This is the page's own theoretical floor. It explains why a shelf of films about covert power is necessary and why it is also dangerous, since the glamour is doing work even when the analysis is right.","pairs":"the theory shelf"}
+]}
+];
+
+const ITEMS = [];
+DATA.forEach((v, vi) => v.items.forEach((c, ci) => {
+  ITEMS.push({ ...c, shelfName: v.shelf, id: vi + "-" + ci,
+    searchable: (c.t + " " + c.cite + " " + c.h + " " + c.note + " " + (c.pairs||"") + " " + c.kind + " " + c.grade).toLowerCase() });
+}));
+const TOTAL = ITEMS.length;
+
+const KEY = "paranoid_screen_watched_v1";
+let done = new Set(), storageOK = true;
+try { const raw = localStorage.getItem(KEY); if (raw) done = new Set(JSON.parse(raw)); } catch(_) { storageOK = false; }
+function saveDone(){ if(!storageOK) return; try{ localStorage.setItem(KEY, JSON.stringify([...done])); }catch(_){ storageOK=false; } }
+
+function esc(s){ return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+const $ = id => document.getElementById(id);
+
+const shelfSel = $("shelf");
+shelfSel.innerHTML = '<option value="ALL">All shelves</option>' + DATA.map(v => '<option value="'+esc(v.shelf)+'">'+esc(v.shelf)+'</option>').join('');
+
+function currentFilters(){
+  return { q: $("search").value.trim().toLowerCase(), shelf: shelfSel.value, grade: $("grade").value, sort: $("sort").value };
+}
+function sortItems(arr, mode){
+  const a = [...arr];
+  if (mode === "title") a.sort((x,y) => x.t.localeCompare(y.t));
+  else if (mode === "year") a.sort((x,y) => x.y - y.y);
+  else if (mode === "unread") a.sort((x,y) => (done.has(x.id) - done.has(y.id)));
+  return a;
+}
+function cardHTML(c){
+  const isDone = done.has(c.id);
+  return '<article class="card'+(isDone?" done":"")+'">'
+    + '<div class="ctop">'
+    +   '<label class="chk"><input type="checkbox" data-id="'+c.id+'"'+(isDone?" checked":"")+' aria-label="Mark watched"><span class="box"></span></label>'
+    +   '<div class="cbody">'
+    +     '<div class="ctitle">'+esc(c.t)+'</div>'
+    +     '<p class="cite">'+esc(c.cite)+'</p>'
+    +     '<div class="badges"><span class="badge kind">'+esc(c.kind)+'</span>'
+    +       '<span class="badge g-'+c.grade.toLowerCase()+'">'+esc(c.grade)+'</span>'
+    +       '<span class="badge">'+c.y+'</span></div>'
+    +     '<p class="note"><b>On the record:</b> '+esc(c.note)+'</p>'
+    +     '<p class="hyp">'+esc(c.h)+'</p>'
+    +     (c.pairs ? '<p class="pairs">Read alongside: <b>'+esc(c.pairs)+'</b></p>' : '')
+    +   '</div>'
+    + '</div></article>';
+}
+function render(){
+  const f = currentFilters();
+  let items = ITEMS.filter(c => {
+    if (f.q && !c.searchable.includes(f.q)) return false;
+    if (f.shelf !== "ALL" && c.shelfName !== f.shelf) return false;
+    if (f.grade !== "ALL" && c.grade !== f.grade) return false;
+    return true;
+  });
+  $("count").textContent = "Showing " + items.length + " of " + TOTAL;
+  const list = $("list"); list.innerHTML = "";
+  if (!items.length) { list.innerHTML = '<div class="empty">Nothing matches. Try clearing filters.</div>'; return; }
+
+  if (f.shelf !== "ALL" || f.grade !== "ALL" || f.sort !== "canon") {
+    const sec = document.createElement("div");
+    sortItems(items, f.sort).forEach(c => sec.insertAdjacentHTML("beforeend", cardHTML(c)));
+    list.appendChild(sec);
+  } else {
+    DATA.forEach(v => {
+      const group = items.filter(c => c.shelfName === v.shelf);
+      if (!group.length) return;
+      const sec = document.createElement("section");
+      sec.className = "vein";
+      sec.innerHTML = '<div class="kicker">Shelf</div><h2>'+esc(v.shelf)+'</h2><p class="vsub">'+esc(v.sub)+'</p><hr class="vein-rule">';
+      group.forEach(c => sec.insertAdjacentHTML("beforeend", cardHTML(c)));
+      list.appendChild(sec);
+    });
+  }
+}
+function updateProgress(){
+  const n = done.size, pct = Math.round(n / TOTAL * 100);
+  $("progfill").style.width = pct + "%";
+  $("progtext").textContent = n + " / " + TOTAL + " watched · " + pct + "%";
+}
+$("list").addEventListener("change", e => {
+  const cb = e.target.closest('input[type=checkbox][data-id]');
+  if (!cb) return;
+  if (cb.checked) done.add(cb.dataset.id); else done.delete(cb.dataset.id);
+  saveDone(); updateProgress();
+  const card = cb.closest(".card");
+  if (card) card.classList.toggle("done", cb.checked);
+});
+["search","shelf","grade","sort"].forEach(id => $(id).addEventListener("input", render));
+$("reset").addEventListener("click", () => {
+  if (confirm("Clear all watched progress?")) { done.clear(); saveDone(); updateProgress(); render(); }
+});
+updateProgress();
+render();
+</script>
+<!--pr-theme--><script id="pr-tags">(function(){var B={"gravitysrainbow": [["dystopia", "Dystopia and the Machine"], ["paranoid-novel", "The Paranoid Novel"], ["capital-horror", "Capital as Cosmic Horror"]], "out": [["east-asia", "Japanese and East Asian Darkness"], ["noir", "Crime and Noir"]], "demons": [["pessimism", "Pessimism, Theology and Despair"], ["disaster", "Disaster, Obsession and the Void"], ["occult", "Demonology and the Occult"]], "we": [["paranoid-novel", "The Paranoid Novel"], ["deep-politics", "Deep Politics and the Dual State"], ["surveillance", "Surveillance and Predictive Policing"]], "americantabloid": [["ellroy", "James Ellroy and the Underworld USA"]], "laconfidential": [["noir", "Crime and Noir"], ["ellroy", "James Ellroy and the Underworld USA"]], "capital": [["marxism", "Marxism and Left Theory"], ["capital-horror", "Capital as Cosmic Horror"]], "thesocietyofthespectacle": [["marxism", "Marxism and Left Theory"], ["spectacle", "The Spectacle and Media Critique"]], "v": [["paranoid-novel", "The Paranoid Novel"], ["pynchon", "Pynchon and the Cartel"]], "siege": [["right-texts", "The Right's Own Texts"], ["far-right", "The Contemporary Far Right"], ["fascism", "Fascism: History and Theory"]], "gladio": [["gladio", "Gladio and the Stay Behind Networks"], ["cia", "The CIA and Covert Action"], ["brabant", "The Brabant Killers and Belgium"]], "stateofsiege": [["gladio", "Gladio and the Stay Behind Networks"], ["cia", "The CIA and Covert Action"], ["phoenix", "Phoenix Program and Counterinsurgency"]], "thegoodshepherd": [["gladio", "Gladio and the Stay Behind Networks"], ["cia", "The CIA and Covert Action"], ["ellroy", "James Ellroy and the Underworld USA"]], "1985": [["gladio", "Gladio and the Stay Behind Networks"], ["cia", "The CIA and Covert Action"], ["brabant", "The Brabant Killers and Belgium"]], "thebankersofgodthecalviaffair": [["orgcrime", "Organised Crime and the Mafia"], ["money", "Banks, Dark Money and Corruption"], ["tension", "The Strategy of Tension and the Years of Lead"]], "thebankersofgod": [["orgcrime", "Organised Crime and the Mafia"], ["money", "Banks, Dark Money and Corruption"], ["tension", "The Strategy of Tension and the Years of Lead"]], "theinternational": [["orgcrime", "Organised Crime and the Mafia"], ["money", "Banks, Dark Money and Corruption"]], "americangangster": [["orgcrime", "Organised Crime and the Mafia"], ["money", "Banks, Dark Money and Corruption"], ["drugs", "Drugs and the Narco Networks"]], "truedetective": [["noir", "Crime and Noir"], ["policing", "Policing and Police Violence"], ["weird", "Weird Fiction and Cosmic Horror"]], "quarry": [["domestic-gladio", "Domestic Gladio (Ongoing)"], ["noir", "Crime and Noir"], ["policing", "Policing and Police Violence"]], "matewan": [["noir", "Crime and Noir"], ["policing", "Policing and Police Violence"], ["bleak", "International Bleakness"]], "brazil": [["dystopia", "Dystopia and the Machine"], ["spectacle", "The Spectacle and Media Critique"], ["phoenix", "Phoenix Program and Counterinsurgency"]], "impolex": [["dystopia", "Dystopia and the Machine"], ["spectacle", "The Spectacle and Media Critique"], ["pynchon", "Pynchon and the Cartel"]]},R={},C=[{"sel": ".card .ctitle"}];
+function n(s){return (s||'').toLowerCase().replace(/[^a-z0-9]/g,'');}
+function look(t){t=t.replace(/[★☆]/g,'');var a=B[n(t).slice(0,40)];if(a)return a;return B[n(t.split(/[:(]/)[0]).slice(0,40)];}
+function box(v){var d=document.createElement('div');d.className='pr-tags';d.innerHTML=v.map(function(x){return '<a href="/library/#library?t='+x[0]+'">'+x[1]+'<\/a>';}).join('');return d;}
+function run(){C.forEach(function(c){document.querySelectorAll(c.sel).forEach(function(el){if(el.getAttribute('data-prt'))return;el.setAttribute('data-prt','1');
+ var v=c.kind==='route'?R[n(el.textContent.replace(/[★☆]/g,'')).slice(0,40)]:look(el.textContent);if(!v||!v.length)return;
+ var at=el;if(c.after==='next'&&el.nextElementSibling)at=el.nextElementSibling;else if(c.after&&c.after.indexOf('closest:')===0)at=el.closest(c.after.slice(8))||el;
+ at.insertAdjacentElement('afterend',box(v));});});}
+var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(run,0);}).observe(document.body,{childList:true,subtree:true});run();})();</script><!--/pr-theme-->
+</body>
+</html>
