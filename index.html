@@ -3,77 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
 <title>Paranoid Reading</title>
+<meta name="description" content="A one stop reading list for the parapolitical, the paranoid and the Marxist: fiction, film and TV, non-fiction and academic articles.">
 <style>
-  :root{
-    --ox:#a8342a; --ox-dim:#7a2620; --ink:#eae3d9; --gray:#9a9184; --faint:#4a4238;
-    --bg:#141210; --panel:#1b1815; --card:#211d19; --line:#332c25; --shadow:0 1px 3px rgba(0,0,0,.4);
-  }
-  *{box-sizing:border-box} html,body{margin:0}
-  body{
-    background:var(--bg);color:var(--ink);
-    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
-    line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;
-  }
-  a{color:var(--ox);text-decoration:none}
+:root{color-scheme:dark;--red:#d7263d;--ink:#e6e1d3;--ink2:#c9c3b3;--gray:#8e897d;--faint:#5c584f;--line:#3d3a33;--bg:#0b0b0a;--hov:#141412}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--red)}
+.x-main{max-width:1080px;margin:0 auto;padding:30px 40px 80px}
+.x-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--red);margin:0 0 6px}
+.x-lede{font-size:18px;line-height:1.5;color:#d4cebf;max-width:720px;margin:0 0 6px}
+.x-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:760px){.x-main{padding:20px 16px 60px}.x-lede{font-size:16px}}
 
-  .wrap{margin:0;padding:24px 40px 70px;
-    display:grid;grid-template-columns:206px minmax(0,1fr);gap:60px;align-items:start}
-
-  /* ---- sidebar (hugs the left) ---- */
-  .side{position:sticky;top:24px}
-  .sigilrow{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-  .sigil{width:32px;height:32px;opacity:.9;flex:0 0 auto}
-  .brand{font-size:12.5px;letter-spacing:.24em;color:var(--ox);font-weight:bold;text-transform:uppercase;line-height:1.4}
-  .brand-tag{font-size:11.5px;color:var(--gray);font-style:italic;margin:6px 0 22px;line-height:1.5}
-
-  .navlabel{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:bold;margin:0 0 10px}
-  .nav{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
-  .nav a{font-size:14px;color:var(--ink);padding:6px 9px;border-radius:7px;border-left:2px solid transparent;transition:.14s}
-  .nav a:hover{background:var(--card);border-left-color:var(--ox);color:var(--ox)}
-  .nav a .n-sub{display:block;font-size:11px;color:var(--gray);font-style:italic}
-  .nav a.lead{color:var(--ox);font-weight:bold}
-
-  .sub{border-top:1px solid var(--line);padding-top:16px}
-  .sub a{display:block;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;color:var(--gray);padding:5px 0}
-  .sub a:hover{color:var(--ox)}
-  .now{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
-  .now .l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:bold}
-  .now .t{font-size:13px;color:var(--ink);font-weight:bold;margin-top:2px}
-  .now .d{font-size:12px;color:var(--gray)}
-
-  /* ---- feed (roomy center) ---- */
-  .feed-col{max-width:700px;margin:0 auto}
-  .feedhead{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ox);padding-bottom:10px;margin-bottom:6px}
-  .feedhead h1{font-size:28px;color:var(--ink);margin:0;letter-spacing:.01em}
-  .feedhead .sub2{font-size:12px;color:var(--gray);font-style:italic}
-
-  .chips{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0 22px}
-  .chip{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;color:var(--gray);
-    background:transparent;border:1px solid var(--line);border-radius:20px;padding:4px 12px;cursor:pointer;transition:.14s}
-  .chip:hover{border-color:var(--ox-dim);color:var(--ink)}
-  .chip.on{background:var(--ox-dim);border-color:var(--ox-dim);color:var(--ink)}
-
-  .post{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
-    overflow:hidden;margin-bottom:22px;box-shadow:var(--shadow);transition:.16s}
-  .post:hover{border-color:var(--ox-dim);transform:translateY(-2px)}
-  .post-img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
-  .post-body{padding:18px 22px}
-  .post-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
-  .badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:bold;color:var(--ink);background:var(--ox-dim);border-radius:20px;padding:2px 10px}
-  .post-when{font-size:11.5px;color:var(--faint);white-space:nowrap;letter-spacing:.04em}
-  .post h2{font-size:22px;color:var(--ox);margin:0 0 9px;line-height:1.2}
-  .post-ex{font-size:14.5px;color:var(--gray);line-height:1.65;margin:0 0 14px}
-  .post-foot{display:flex;align-items:center;justify-content:flex-end;gap:10px;border-top:1px solid var(--line);padding-top:11px}
-  .post-go{font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:bold;color:var(--ox)}
-  .feednote{font-size:12px;color:var(--faint);font-style:italic;margin-top:6px}
-
-  @media(max-width:760px){
-    .wrap{grid-template-columns:1fr;gap:26px;padding:20px 22px 60px}
-    .side{position:static}
-    .feed-col{max-width:none}
-  }
+.hero{padding:24px 0 26px;border-bottom:1px solid var(--ink);margin-bottom:28px}
+.hero h1{max-width:760px}
+.x-mission{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);margin:22px 0 0}
+.x-mission div{padding:14px 16px}
+.x-mission div+div{border-left:1px dashed var(--line)}
+.x-mission b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:4px}
+.x-mission span{font-size:14px;color:var(--ink2);line-height:1.5}
+.x-sh{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gray);margin:0 0 12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.x-portal{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:34px}
+.x-tile{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);padding:20px 22px 18px;text-decoration:none;color:var(--ink);position:relative;min-height:250px;transition:border-color .15s}
+.x-tile:hover,.x-tile:focus-visible{border-color:var(--ink);background:var(--hov)}
+.x-tile .x-ex{position:absolute;top:-1px;left:-1px;background:var(--ink);color:var(--bg);font:800 10px/1 "Inter Tight",sans-serif;letter-spacing:.18em;padding:4px 9px}
+.x-tile h2{font-size:clamp(28px,4vw,40px);font-weight:900;text-transform:uppercase;letter-spacing:-.035em;line-height:.95;margin:16px 0 2px;color:var(--ink)}
+.x-tile .x-n{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--red)}
+.x-tile p{font-size:14.5px;color:var(--ink2);margin:2px 0 4px;line-height:1.5}
+.x-tile ul{list-style:none;margin:auto 0 0;padding:10px 0 0;border-top:1px dashed var(--line);font-size:13px;color:var(--gray)}
+.x-tile li{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x-tile li::before{content:"› ";color:var(--red)}
+.x-tile .x-go{font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px}
+.x-search{display:flex;gap:8px;flex-wrap:wrap;border:1px solid var(--line);padding:14px;margin:0 0 34px}
+.x-search input,.x-search select{font:inherit;font-size:15px;padding:10px 12px;background:var(--bg);color:var(--ink);border:1px solid var(--line);min-width:0}
+.x-search input{flex:1 1 260px}
+.x-search button{font:800 12px/1 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:var(--bg);border:0;padding:0 18px;cursor:pointer;min-height:42px}
+.x-routes{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}
+.x-route{border:1px solid var(--line);padding:16px 18px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px}
+.x-route:hover{border-color:var(--ink);background:var(--hov)}
+.x-route.lead{border-color:var(--red)}
+.x-route h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.x-route p{margin:0;font-size:13.5px;color:var(--ink2)}
+.x-route span{font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:auto;padding-top:6px}
+@media(max-width:900px){.x-portal{grid-template-columns:1fr}.x-routes{grid-template-columns:1fr}.x-mission{grid-template-columns:1fr}.x-mission div+div{border-left:0;border-top:1px dashed var(--line)}.x-tile{min-height:0}}
 </style>
 <!--pr-theme--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><style id="pr-theme">:root{--file:"PR/0001"}
 /* Paranoid Reading theme: Declassified palette, Radical Press type. Layered over each page's own CSS. */
@@ -210,171 +183,83 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
 </head>
 <body><!--pr-theme--><aside class="pr-side" aria-label="Site navigation">
   <a class="pr-sigilrow" href="/"><svg class="pr-sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke="#d7263d" stroke-width="3" fill="none" opacity="0.9"><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="58"/><polygon points="100,20 145,120 55,72 155,72 65,120"/></g></svg><span class="pr-brand">Paranoid Reading</span></a>
-  <p class="pr-tagline">Crime, weird fiction, demonology, and deep politics. Read for how Noided and how Grim it gets.</p>
-  <p class="pr-label">The Library</p>
+  <p class="pr-tagline">A reading list for the parapolitical, the paranoid and the Marxist.</p>
+  <p class="pr-label">Choose Your Media</p>
   <nav>
-    <a href="/" data-m="^/$|^/index.html$">Substack</a>
+    <a href="/" data-m="^/$|^/index.html$">All Media</a>
+    <a href="/novels/" data-m="^/novels">Fiction</a>
+    <a href="/film-tv/" data-m="^/film-tv">Film and TV</a>
+    <a href="/nonfiction/" data-m="^/nonfiction">Non-Fiction</a>
+    <a href="/articles/" data-m="^/articles">Articles and Journals</a>
+  </nav>
+  <p class="pr-label">Routes</p>
+  <nav>
     <a href="/library/#build" data-m="^/library">Build a Curriculum</a>
-    <a href="/slow-read/" data-m="^/slow-read">Deep Reads</a>
     <a href="/curriculums/" data-m="^/curriculums">Pre-Made Curriculums</a>
+    <a href="/slow-read/" data-m="^/slow-read">Deep Reads</a>
+  </nav>
+  <style>@media(max-width:900px){.pr-side nav.pr-more{display:none}}</style>
+  <p class="pr-label">More Files</p>
+  <nav class="pr-more">
+    <a href="/topics/" data-m="^/topics">The Index</a>
+    <a href="/screen/" data-m="^/screen">The Screen</a>
+    <a href="/dossiers/gladio/" data-m="^/dossiers">Gladio Dossier</a>
   </nav>
   <div class="pr-social">
-    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Subscribe on Substack</a>
     <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Watch on YouTube</a>
     <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Follow on Pagebound</a>
   </div>
 </aside><script>(function(){var p=location.pathname;document.querySelectorAll('.pr-side nav a').forEach(function(a){if(new RegExp(a.getAttribute('data-m')).test(p))a.classList.add('on');});})();</script><!--/pr-theme-->
-
-<div class="wrap">
-
-  <aside class="side">
-    <div class="sigilrow">
-      <svg class="sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="#a8342a" stroke-width="3" fill="none" opacity="0.9">
-          <circle cx="100" cy="100" r="88"/>
-          <circle cx="100" cy="100" r="58"/>
-          <polygon points="100,20 145,120 55,72 155,72 65,120"/>
-        </g>
-      </svg>
-      <span class="brand">Paranoid<br>Reading</span>
+<main class="x-main">
+  <section class="hero">
+    <p class="x-eyebrow">The Paranoid Reading List · 997 entries on file</p>
+    <h1>Choose Your Media</h1>
+    <p class="x-lede">A one stop reading list for the parapolitical, the paranoid and the Marxist. Fiction to conceive the deep event, non-fiction and the academic record to document it, and film to watch it play out. Pick a format, then filter by year, keyword, author or director.</p>
+    <div class="x-mission">
+      <div><b>The Parapolitical</b><span>Gladio, the strategy of tension, the CIA, deep events and the dual state.</span></div>
+      <div><b>The Paranoid</b><span>The paranoid novel, conspiracy culture, the weird and capital as cosmic horror.</span></div>
+      <div><b>The Marxist</b><span>Dialectical materialism, the spectacle, empire and the theory to read it all with.</span></div>
     </div>
-    <p class="brand-tag">Crime, weird fiction, demonology, and deep politics. Read for how Noided and how Grim it gets.</p>
-
-    <p class="navlabel">The Library</p>
-    <nav class="nav">
-      <a class="lead" href="/">Substack</a>
-      <a href="/library/#build">Build a Curriculum</a>
-      <a href="/slow-read">Deep Reads</a>
-      <a href="/curriculums">Pre-Made Curriculums</a>
-    </nav>
-
-    <div class="sub">
-      <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Subscribe on Substack</a>
-      <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Watch on YouTube</a>
-      <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Follow on Pagebound</a>
-    </div>
-
-  </aside>
-
-  <main class="feed-col">
-    <div class="feedhead">
-      <h1>Substack</h1>
-      <span class="sub2">from the Substack</span>
-    </div>
-
-    <div class="chips" id="chips"></div>
-    <div id="feed"></div>
-    <p class="feednote" id="feednote">Your Substack essays, newest first. New posts appear here automatically.</p>
-  </main>
-
-</div>
-
+  </section>
+  <p class="x-sh"><span>Four formats</span><span>Every entry: title, year, author or director, type, keywords and a one sentence summary</span></p>
+  <div class="x-portal">
+    <a class="x-tile" href="/novels/"><span class="x-ex">EXHIBIT A</span>
+      <h2>Fiction</h2><span class="x-n">281 entries</span>
+      <p>Fiction is how the deep event gets conceived before it gets documented. Paranoid novels, noir, weird fiction, dystopias and the bleak international canon.</p>
+      <ul><li>The Twenty Days of Turin <span style="color:var(--faint)">(1977)</span></li><li>Gravity&#x27;s Rainbow <span style="color:var(--faint)">(1973)</span></li><li>American Tabloid <span style="color:var(--faint)">(1995)</span></li><li>The Iron Heel <span style="color:var(--faint)">(1908)</span></li></ul><span class="x-go">Enter the fiction files →</span></a>
+    <a class="x-tile" href="/film-tv/"><span class="x-ex">EXHIBIT B</span>
+      <h2>Film and TV</h2><span class="x-n">105 entries</span>
+      <p>The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system.</p>
+      <ul><li>The Parallax View <span style="color:var(--faint)">(1974)</span></li><li>Z <span style="color:var(--faint)">(1969)</span></li><li>Investigation of a Citizen Above Suspicion <span style="color:var(--faint)">(1970)</span></li><li>The Wire <span style="color:var(--faint)">(2002)</span></li></ul><span class="x-go">Enter the film and tv files →</span></a>
+    <a class="x-tile" href="/nonfiction/"><span class="x-ex">EXHIBIT C</span>
+      <h2>Non-Fiction</h2><span class="x-n">390 entries</span>
+      <p>The documentary shelf: covert action, Gladio, the CIA, fascism, organized crime, empire, and the Marxist theory to read it all with. Graded by kind of evidence.</p>
+      <ul><li>NATO&#x27;s Secret Armies <span style="color:var(--faint)">(2005)</span></li><li>Deep Politics and the Death of JFK <span style="color:var(--faint)">(1993)</span></li><li>The Jakarta Method <span style="color:var(--faint)">(2020)</span></li><li>Capital <span style="color:var(--faint)">(1867)</span></li></ul><span class="x-go">Enter the non-fiction files →</span></a>
+    <a class="x-tile" href="/articles/"><span class="x-ex">EXHIBIT D</span>
+      <h2>Articles and Journals</h2><span class="x-n">221 entries</span>
+      <p>Peer reviewed papers, parapolitical journals, investigative reportage and the press record, from the 1990 Gladio revelations to now.</p>
+      <ul><li>Covert Netherworld <span style="color:var(--faint)">(2016)</span></li><li>On Terrorism and the State <span style="color:var(--faint)">(1979)</span></li><li>The ghost of Machiavelli <span style="color:var(--faint)">(2006)</span></li><li>Palantir Secretly Used New Orleans to Test Predictive Policing <span style="color:var(--faint)">(2018)</span></li></ul><span class="x-go">Enter the articles and journals files →</span></a>
+    
+  </div>
+  <p class="x-sh"><span>Search a format</span></p>
+  <form class="x-search" id="qs" role="search">
+    <label class="x-sr" for="qsq">Search terms</label><input id="qsq" type="search" placeholder="Gladio, Pynchon, MK Ultra, Debord…">
+    <label class="x-sr" for="qss">Format</label><select id="qss"><option value="novels">Fiction</option><option value="film-tv">Film and TV</option><option value="nonfiction">Non-Fiction</option><option value="articles">Articles and Journals</option></select>
+    <button type="submit">Search</button>
+  </form>
+  <p class="x-sh"><span>Or take a route</span></p>
+  <div class="x-routes">
+    <a class="x-route lead" href="/library/#build"><h3>Build a Curriculum</h3><p>Pick up to three topics, a length and a balance of fiction to non-fiction, and get a reading route drawn from the whole catalogue.</p><span>Build one →</span></a>
+    <a class="x-route" href="/curriculums/"><h3>Pre-Made Curriculums</h3><p>Themed routes and nonfiction shelves, ready to read.</p><span>Browse →</span></a>
+    <a class="x-route" href="/slow-read/"><h3>Deep Reads</h3><p>Slow read guides through the hardest books on the list.</p><span>Read →</span></a>
+  </div>
+</main>
 <script>
-const SUBSTACK_FEED = "https://paranoidreading.substack.com/feed";
-
-const SEED = [
-  { section:"", title:"Carcosa, USA", when:"Jul 16, 2026",
-    link:"https://paranoidreading.substack.com/p/carcosa-usa",
-    img:"https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good/https://substack-post-media.s3.amazonaws.com/public/images/f4f839f9-3591-4d6b-8c21-8334a96e5e85_2256x1280.png",
-    excerpt:"My second read through of The King in Yellow, trying to figure out why it haunts True Detective. Chambers hands you a clean, “purified” 1920 America, legal suicide centers, solved “problems,” cities rebuilt around decency, then spends the whole book exposing the rot underneath the order. It’s the same machine the show runs on, the golden official story and the disposable bodies holding it up. The cursed play is the trick: it tears the lie off the world you already live in." },
-  { section:"", title:"I Mostly Read Trash (Relaunch Hype)", when:"Jul 12, 2026",
-    link:"https://paranoidreading.substack.com/p/i-mostly-read-trash-relaunch-hype",
-    img:"https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good/https://substack-post-media.s3.amazonaws.com/public/images/a318d9a9-abbe-4f98-a735-6df487598b00_1080x1432.png",
-    excerpt:"I’m deciding what to do with this space, a bit inspired by a slow read of Paradise Lost. My story is I was a big reader from a family who wasn’t. I’m the first person in my family to go to college, have a passport, leave the country, so on and so forth. I didn’t have a guiding hand so much as an aunt with a mountain of horror paperbacks and a library…" },
-  { section:"", title:"American Psycho and the Church of Capitalism", when:"Mar 22, 2026",
-    link:"https://paranoidreading.substack.com/p/american-psycho-and-the-church-of",
-    img:"https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good/https://substack-post-media.s3.amazonaws.com/public/images/a133bb19-c99c-4629-8586-8df5a6711852_1108x1470.png",
-    excerpt:"“I could stand in the middle of Fifth Avenue and shoot somebody, and I wouldn’t lose any voters, OK?” — Donald Trump. To be offended by Bret Easton Ellis’s American Psycho is to be offended by capitalism. It is not a funhouse distortion. It is the world we inhabit, consume, and celebrate. Ellis’s 1990 work reads less like a satire of a bygone era and more like a prophecy. The book does not attack greed in the abstract…" },
-  { section:"", title:"Debord’s Hammer: The Spectacle as the Hammer", when:"Jan 25, 2026",
-    link:"https://paranoidreading.substack.com/p/debords-hammer-the-spectacle-as-the",
-    img:"https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good/https://substack-post-media.s3.amazonaws.com/public/images/3d957f78-5a09-47ed-ba11-72ec353bbeed_1178x1622.png",
-    excerpt:"I finished Comments on The Society of the Spectacle by Guy Debord the day Alex Pretti was murdered in the streets of Minneapolis by masked ICE agents. My YouTube channel went from a Twitch streamer racking up points in Balatro to a Bellingcat analysis of the shooting — several shots to the back as he lay face down on the ground — and then a video essay by rewboss…" },
-  { section:"", title:"My 2025 Year in Review", when:"Jan 1, 2026",
-    link:"https://paranoidreading.substack.com/p/my-2025-year-in-review",
-    img:"https://substackcdn.com/image/fetch/w_728,c_limit,f_auto,q_auto:good/https://substack-post-media.s3.amazonaws.com/public/images/2e2c5ff1-7a9a-495e-8745-dbe9ec897452_2790x1430.png",
-    excerpt:"2025 is just about finished and I thought I’d kill an afternoon looking back at my readings of the year. I started 2025 thinking I’d read less (writing, you know) and it turns out I did, but a lot got accomplished. Five stars: The Anxious Generation by Jonathan Haidt — mandatory for parents and educators, essential reading on the modern childhood mental-health crisis. 2001: A Space Odyssey by Arthur C. Clarke — technical, accessible…" },
-  { section:"", title:"Super Sad True Love Story by Gary Shteyngart", when:"Apr 5, 2025",
-    link:"https://paranoidreading.substack.com/p/super-sad-true-love-story-by-gary",
-    img:"https://substackcdn.com/image/youtube/w_728,c_limit/KPOvajV2KGc",
-    excerpt:"Today I’m beyond excited to share a book that has somehow slipped under the radar for many but has become a deeply cherished part of my collection. It’s one of those books I’ve read and loved so much that I’ve picked it up no fewer than five times, and still people give me a look of confusion or outright disdain when I mention it. This book is Super Sad True Love Story by Gary Shteyngart…" },
-  { section:"", title:"Norwegian Wood: A Journey Through Love, Loss, and Reflection", when:"Jan 16, 2025",
-    link:"https://paranoidreading.substack.com/p/norwegian-wood-a-journey-through",
-    img:"https://substackcdn.com/image/youtube/w_728,c_limit/nWtCv0yA-v0",
-    excerpt:"Norwegian Wood is not just a book; it’s a journey through time, emotions, and memories. Picture this: a guy on a plane, hearing a song that catapults him back to his college days. That’s how it all starts. For me, this book is a reflection of life, love, loss, and the moments that shape who we become…" },
-  { section:"", title:"My 2024 Reading Review", when:"Dec 27, 2024",
-    link:"https://paranoidreading.substack.com/p/my-2024-reading-review",
-    img:"",
-    excerpt:"2024 is just about finished and I thought I’d kill an afternoon looking back at my readings of the year. I started with the goal of reading 52 books (one a week) and smoked that. Oldest to newest: The Shadow of the Torturer by Gene Wolfe — five stars, a challenging but rewarding fantasy/sci-fi hybrid that blends intricate prose and epic storytelling. The Time Keeper by Mitch Albom — three stars…" }
-];
-
-let ALL = [];
-let currentFilter = "all";
-
-function card(p){
-  const img = p.img ? '<img class="post-img" src="'+p.img+'" alt="" loading="lazy">' : '';
-  return '<a class="post" data-section="'+(p.section||'')+'" href="'+(p.link||'#')+'"'+
-    (/^https?:/.test(p.link||'')?' target="_blank" rel="noopener"':'')+'>'+
-    img+
-    '<div class="post-body">'+
-      '<div class="post-top">'+(p.section?'<span class="badge">'+p.section+'</span>':'<span></span>')+
-      '<span class="post-when">'+(p.when||'')+'</span></div>'+
-      '<h2>'+p.title+'</h2>'+
-      '<p class="post-ex">'+p.excerpt+'</p>'+
-      '<div class="post-foot"><span class="post-go">Read on Substack &rarr;</span></div>'+
-    '</div></a>';
-}
-
-function renderChips(){
-  const secs = [...new Set(ALL.map(p=>p.section).filter(Boolean))];
-  const box = document.getElementById("chips");
-  if(secs.length < 2){ box.innerHTML = ""; return; }
-  box.innerHTML = ["all"].concat(secs).map(function(s){
-    return '<button class="chip'+(s===currentFilter?" on":"")+'" data-f="'+s+'">'+(s==="all"?"All":s)+'</button>';
-  }).join("");
-}
-
-function applyFilter(f){
-  currentFilter = f;
-  document.querySelectorAll("#chips .chip").forEach(c=>c.classList.toggle("on", c.dataset.f===f));
-  document.querySelectorAll("#feed .post").forEach(el=>{
-    el.style.display = (f==="all"||el.dataset.section===f) ? "block" : "none";
-  });
-}
-
-function paint(posts){
-  ALL = posts;
-  document.getElementById("feed").innerHTML = posts.map(card).join("");
-  renderChips();
-  applyFilter("all");
-}
-
-document.getElementById("chips").addEventListener("click", e=>{
-  if(e.target.classList.contains("chip")) applyFilter(e.target.dataset.f);
+document.getElementById('qs').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var q = document.getElementById('qsq').value.trim(), s = document.getElementById('qss').value;
+  location.href = '/' + s + '/' + (q ? '#q=' + encodeURIComponent(q) : '');
 });
-
-paint(SEED);
-
-fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(SUBSTACK_FEED))
-  .then(r=>r.json())
-  .then(d=>{
-    if(!d || d.status!=="ok" || !d.items || !d.items.length) return;
-    const posts = d.items.slice(0,15).map(function(it){
-      const dt = new Date(it.pubDate);
-      const when = isNaN(dt) ? "" : dt.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
-      const tmp = document.createElement("div");
-      tmp.innerHTML = it.content || it.description || "";
-      let img = it.thumbnail || (it.enclosure && it.enclosure.link) || "";
-      if(!img){ const im = tmp.querySelector("img"); if(im) img = im.getAttribute("src") || ""; }
-      const text = (tmp.textContent||"").replace(/\s+/g," ").trim();
-      const words = text.split(" ");
-      const excerpt = words.slice(0,80).join(" ") + (words.length>80 ? "…" : "");
-      const section = (it.categories && it.categories.length) ? it.categories[0] : "";
-      return { section:section, title:it.title, when:when, link:it.link, img:img, excerpt:excerpt };
-    });
-    paint(posts);
-    document.getElementById("feednote").textContent = "Live from Substack.";
-  })
-  .catch(function(){ /* keep the baked-in essays */ });
 </script>
 </body>
 </html>
