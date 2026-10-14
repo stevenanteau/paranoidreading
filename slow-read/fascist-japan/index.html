@@ -207,16 +207,29 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
 </head>
 <body><!--pr-theme--><aside class="pr-side" aria-label="Site navigation">
   <a class="pr-sigilrow" href="/"><svg class="pr-sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke="#d7263d" stroke-width="3" fill="none" opacity="0.9"><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="58"/><polygon points="100,20 145,120 55,72 155,72 65,120"/></g></svg><span class="pr-brand">Paranoid Reading</span></a>
-  <p class="pr-tagline">Crime, weird fiction, demonology, and deep politics. Read for how Noided and how Grim it gets.</p>
-  <p class="pr-label">The Library</p>
+  <p class="pr-tagline">A reading list for the parapolitical, the paranoid and the Marxist.</p>
+  <p class="pr-label">Choose Your Media</p>
   <nav>
-    <a href="/" data-m="^/$|^/index.html$">Substack</a>
+    <a href="/" data-m="^/$|^/index.html$">All Media</a>
+    <a href="/novels/" data-m="^/novels">Fiction</a>
+    <a href="/film-tv/" data-m="^/film-tv">Film and TV</a>
+    <a href="/nonfiction/" data-m="^/nonfiction">Non-Fiction</a>
+    <a href="/articles/" data-m="^/articles">Articles and Journals</a>
+  </nav>
+  <p class="pr-label">Routes</p>
+  <nav>
     <a href="/library/#build" data-m="^/library">Build a Curriculum</a>
-    <a href="/slow-read/" data-m="^/slow-read">Deep Reads</a>
     <a href="/curriculums/" data-m="^/curriculums">Pre-Made Curriculums</a>
+    <a href="/slow-read/" data-m="^/slow-read">Deep Reads</a>
+  </nav>
+  <style>@media(max-width:900px){.pr-side nav.pr-more{display:none}}</style>
+  <p class="pr-label">More Files</p>
+  <nav class="pr-more">
+    <a href="/topics/" data-m="^/topics">The Index</a>
+    <a href="/screen/" data-m="^/screen">The Screen</a>
+    <a href="/dossiers/gladio/" data-m="^/dossiers">Gladio Dossier</a>
   </nav>
   <div class="pr-social">
-    <a href="https://substack.com/@paranoidreading" target="_blank" rel="noopener">Subscribe on Substack</a>
     <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Watch on YouTube</a>
     <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Follow on Pagebound</a>
   </div>
