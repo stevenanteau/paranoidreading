@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Film and TV · Paranoid Reading</title>
+<meta name="description" content="The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system.">
+<style>
+:root{color-scheme:dark;--red:#d7263d;--ink:#e6e1d3;--ink2:#c9c3b3;--gray:#8e897d;--faint:#5c584f;--line:#3d3a33;--bg:#0b0b0a;--hov:#141412}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--red)}
+.x-main{max-width:1080px;margin:0 auto;padding:30px 40px 80px}
+.x-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--red);margin:0 0 6px}
+.x-lede{font-size:18px;line-height:1.5;color:#d4cebf;max-width:720px;margin:0 0 6px}
+.x-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:760px){.x-main{padding:20px 16px 60px}.x-lede{font-size:16px}}
+
+.x-head{border-bottom:1px solid var(--ink);padding-bottom:16px;margin-bottom:22px}
+.x-head h1{font-size:clamp(38px,7vw,64px);margin:4px 0 12px}
+.x-filters{border:1px solid var(--line);padding:16px 16px 12px;margin-bottom:18px;display:grid;grid-template-columns:repeat(12,1fr);gap:12px 14px}
+.x-f{display:flex;flex-direction:column;gap:5px;min-width:0}
+.x-f>label,.x-f>.x-lab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gray)}
+.x-f input,.x-f select{width:100%;font:inherit;font-size:14px;padding:8px 10px;background:var(--bg);color:var(--ink);border:1px solid var(--line);min-width:0}
+.x-f.q{grid-column:span 6}.x-f.a{grid-column:span 6}
+.x-f.y{grid-column:span 5}.x-f.kw{grid-column:span 7}
+.x-f.s3{grid-column:span 3}.x-f.s4{grid-column:span 4}
+.x-yr{display:flex;align-items:center;gap:8px}.x-yr input{width:50%}.x-yr span{color:var(--faint);font-size:12px}
+.x-eras{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.x-era,.x-btn{font:600 11px/1 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--gray);border:1px solid var(--line);padding:7px 10px;cursor:pointer}
+.x-era:hover,.x-btn:hover{color:var(--ink);border-color:var(--gray)}
+.x-era.on{color:var(--bg);background:var(--red);border-color:var(--red)}
+.x-btn.red{color:var(--red);border-color:var(--red)}
+.x-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+.x-count{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--gray)}
+.x-count b{color:var(--ink)}
+.x-active{display:flex;flex-wrap:wrap;gap:6px}
+.x-pill{font:600 10.5px/1 "Inter Tight",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border:1px solid var(--red);background:transparent;padding:6px 8px;cursor:pointer}
+.x-pill::after{content:" ×";color:var(--red)}
+.x-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.x-entry{border:1px solid var(--line);padding:16px 18px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.x-entry:hover{border-color:var(--gray)}
+.x-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gray)}
+.x-top .x-k{color:var(--red)}
+.x-yrb{font-size:13px;color:var(--ink);letter-spacing:.04em}
+.x-title{font-size:19px;line-height:1.15;font-weight:800;letter-spacing:-.015em;margin:2px 0 0;color:var(--ink);overflow-wrap:anywhere}
+.x-by{font-size:14px;color:var(--ink2)}
+.x-by button{all:unset;cursor:pointer;border-bottom:1px dotted var(--faint)}
+.x-by button:hover{color:var(--red);border-color:var(--red)}
+.x-sum{font-size:14.5px;line-height:1.55;color:var(--ink2);margin:4px 0 2px}
+.x-sum.pend{color:var(--faint);font-style:italic}
+.x-meta{font-size:12px;color:var(--gray)}
+.x-meta b{font-weight:600;color:var(--ink2)}
+.x-kws{display:flex;flex-wrap:wrap;gap:3px 12px;margin-top:2px}
+.x-kws button{all:unset;cursor:pointer;font:600 10.5px/1.4 "Inter Tight",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.x-kws button::before{content:"› ";color:var(--red)}
+.x-kws button:hover{color:var(--ink)}
+.x-note{font-size:13px;color:var(--ink2);border-left:2px solid var(--red);padding:2px 0 2px 10px;margin-top:4px}
+.x-note summary{cursor:pointer;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gray)}
+.x-note p{margin:6px 0 2px}
+.x-link{font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-top:4px;align-self:flex-start}
+.x-link:hover{text-decoration:underline}
+.x-more{display:flex;justify-content:center;margin:22px 0 0}
+.x-empty{border:1px dashed var(--line);padding:30px;text-align:center;color:var(--gray)}
+@media(max-width:900px){.x-list{grid-template-columns:1fr}}
+@media(max-width:760px){.x-filters{grid-template-columns:1fr 1fr;padding:12px}.x-f.q,.x-f.a,.x-f.y,.x-f.kw{grid-column:1/-1}.x-f.s3,.x-f.s4{grid-column:span 1}}
+</style>
+<!--pr-theme--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><style id="pr-theme">:root{--file:"PR/0022"}
+/* Paranoid Reading theme: Declassified palette, Radical Press type. Layered over each page's own CSS. */
+:root,body.light{--ox:#d7263d;--ox2:#e2475b;--ox-dim:#7d1622;--ink:#e6e1d3;--gray:#8e897d;--faint:#5c584f;--paper:#0b0b0a;--bg:#0b0b0a;--panel:#11110f;--card:#0b0b0a;--line:#3d3a33;--wash:#1b1012;--shadow:none}
+html,body,body.light{background:#0b0b0a!important;color:#e6e1d3!important}
+body,button,input,select,textarea,summary,.toast{font-family:"Inter Tight",Helvetica,Arial,sans-serif!important}
+body{counter-reset:exhibit}
+*{border-radius:0!important;box-shadow:none!important;text-shadow:none!important}
+::selection{background:#d7263d;color:#0b0b0a}
+a{color:#d7263d}
+.sub,.ssub,.sb-sub,.tagline,.brand-tag,.feednote,.vsub,.lens .tag,.rdesc,.sbd,.wnote,.chan,.curric-lens,.strand-book .sbd,.ba,.season,.feedhead .sub2{font-style:normal!important}
+header{background:#0b0b0a!important;border-bottom:1px dashed #4a4740!important}
+.banner{border-bottom:1px dashed #4a4740!important}
+.brand{color:#e6e1d3!important;font-weight:900!important;letter-spacing:.01em!important;text-transform:uppercase;font-size:14px!important}
+.brand a{color:#e6e1d3!important}
+.brand::before{content:"FILE NO. " var(--file,"PR/0000");color:#d7263d;font-weight:600;font-size:10.5px;letter-spacing:.16em;margin-right:10px;white-space:nowrap}
+h1{font-weight:900!important;text-transform:uppercase;letter-spacing:-.04em!important;color:#e6e1d3!important;line-height:.95!important}
+header h1{font-size:36px!important;margin:6px 0 6px!important}
+.hero h1{font-size:clamp(40px,8vw,76px)!important;line-height:.9!important;letter-spacing:-.05em!important;margin:10px 0 18px!important}
+section.lens h1{font-size:clamp(46px,8.5vw,104px)!important;line-height:.86!important;letter-spacing:-.055em!important;margin:10px 0 18px!important}
+.feedhead h1,.sb-h1{text-transform:uppercase;font-weight:900!important;letter-spacing:-.03em!important;color:#e6e1d3!important}
+h2,h3,h4{letter-spacing:-.015em}
+section.lens,.hero{position:relative}
+section.lens h1{max-width:760px}
+section.lens::after,.hero::after{content:"CONFIDENTIAL";position:absolute;right:6px;top:10px;transform:rotate(-8deg);border:3px solid #d7263d;color:#d7263d;font:900 18px/1 "Inter Tight",sans-serif;letter-spacing:.18em;padding:7px 12px;pointer-events:none}
+.kicker,.eyebrow,.navlabel,.sb-label,.seclabel,.sectlabel,.p-eyebrow,.season,.lbl,.field>label,.count,.progtext,.feedhead .sub2,.pnum,.wdate,.bm,.strand-count,.curric-vein,.now .l,.tn,.tp-fam,.toc h3,.legend summary,details.legend summary{font-family:"Inter Tight",sans-serif!important;text-transform:uppercase;letter-spacing:.16em!important;font-size:11px!important;font-weight:600!important;color:#8e897d!important;font-style:normal!important}
+.kicker,.eyebrow,.tp-fam,.toc h3,details.legend summary,.role{color:#d7263d!important}
+.lens .tag,.sub,.intro,.tagline,.lens .body{color:#d4cebf!important}
+.card,.row,.post,.portal,.pillar,.week,.curric,.strand:has(.strand-head),.now,details.legend,.how,.creed,.touchcallout,.panel,.equal,.tcard,.toc,.tp-panel{background:#0b0b0a!important;border:1px solid #3d3a33!important}
+.equal div+div,.pillars .pillar+.pillar{border-left:1px dashed #3d3a33!important}
+.card,.row:has(.rbody){position:relative;counter-increment:exhibit;padding-top:28px!important}
+.card::before,.row:has(.rbody)::before{content:"EXHIBIT " counter(exhibit,decimal-leading-zero);position:absolute;top:-1px;left:-1px;background:#e6e1d3;color:#0b0b0a;font:800 10px/1 "Inter Tight",sans-serif;letter-spacing:.18em;padding:4px 9px;z-index:1}
+.card.read,.card.done,.row.done{opacity:.5}
+.week.current{border-color:#d7263d!important}
+.interlude,.creed{border:1px dashed #d7263d!important}
+a.week:hover,.post:hover,.portal:hover,.tcard:hover,.curric-head:hover,.strand-head:hover,.tp-opt:hover,.nav a:hover{background:#141412!important;transform:none!important}
+.post:hover,.portal:hover,.tcard:hover{border-color:#e6e1d3!important}
+.title,.ctitle,.rtitle,.sbt,.curric-title,.strand-title,.p-title,.wtitle,.bt,.post h2,.pillar h3,.tcard .tl,.strand h2,.vein h2,.sec h2,.r-head h2,.now .t{font-weight:800!important;letter-spacing:-.02em!important;color:#e6e1d3!important;font-style:normal!important}
+.ctitle,.bt,.p-title,.post h2{font-size:24px!important;line-height:1.05!important}
+.title{font-size:17px}
+.rtitle,.curric-title,.strand-title,.wtitle{font-size:16.5px!important}
+.r-head h2{text-transform:uppercase;font-weight:900!important;font-size:30px!important}
+.num,.chev,.b-on,.p-go,.post-go,.wgo,.tierbtn b,.pillar .n,.step .num,.tri,.vein .kicker,.sec .kicker,.strand .kicker{color:#d7263d!important}
+.strand-rule,.vein-rule,.sec-rule{background:#e6e1d3!important;height:1px!important;opacity:1!important}
+.feedhead,.bookhead,.r-head{border-bottom:1px solid #e6e1d3!important}
+footer{border-top:1px dashed #3d3a33!important;color:#8e897d!important}
+.author,.rauthor,.sba,.by,.ba,.cite,.lab,.post-when,.markers{color:#8e897d!important}
+.desc,.rdesc,.sbd,.p-desc,.post-ex,.hyp,.wnote,.wchap,.manifesto,.intro,.lens .body,.pillar p,.legend-body,.tb,.equal p,.tp-blurbs,.how,.legend-body p{color:#c9c3b3!important}
+.manifesto b,.intro b,.lens b,.how b,.legend-body b,.tp-blurbs b{color:#e6e1d3!important}
+.note{background:transparent!important;border-left:3px solid #d7263d!important;color:#c9c3b3!important}
+.note b{color:#e6e1d3!important;text-transform:uppercase;font-size:11.5px;letter-spacing:.1em;font-weight:800}
+input[type=search],input[type=text],input[type=number],select,.tp-btn,.topicbar select{background:#0b0b0a!important;color:#e6e1d3!important;border:1px solid #3d3a33!important}
+select option{background:#0b0b0a;color:#e6e1d3}
+input::placeholder{color:#5c584f!important}
+input:focus,select:focus,button:focus-visible{outline:2px solid #d7263d!important;outline-offset:1px}
+.btn,.tierbtn,.navbtn,.presets button,.seg button,.lens-toggle,.dm-toggle button,.followrow a,.swap{background:transparent!important;color:#d7263d!important;border:1px solid #d7263d!important;text-transform:uppercase;font-weight:800!important;letter-spacing:.08em!important;font-size:12px!important;text-decoration:none!important}
+.btn:hover,.navbtn:hover,.presets button:hover,.followrow a:hover,.tierbtn:hover{background:#1b1012!important}
+.btn.primary,.seg button.on,.tierbtn.active{background:#d7263d!important;color:#0b0b0a!important;border-color:#d7263d!important}
+.tierbtn{color:#c9c3b3!important;border-color:#3d3a33!important}
+.tierbtn.active b{color:#0b0b0a!important}
+.veinbtn.active{color:#d7263d!important;border-left-color:#d7263d!important}
+.toggle{background:transparent!important;border:1px solid #3d3a33!important;color:#8e897d!important}
+.dm-toggle{display:none!important}
+.box{border:2px solid #5c584f!important;background:transparent!important}
+.chk input:checked+.box{background:#d7263d!important;border-color:#d7263d!important}
+.chk input:checked+.box::after{color:#0b0b0a!important}
+.progbar{background:#1c1b18!important;border:1px solid #3d3a33!important;height:6px!important}
+.progfill{background:#d7263d!important}
+.badge,.tag,.chip,.p-badge,.nowtag,.tchip,.tcard .tn{background:transparent!important;border:1px solid #3d3a33!important;color:#8e897d!important;font-family:"Inter Tight",sans-serif!important;font-weight:600!important;font-size:10.5px!important;letter-spacing:.12em!important;text-transform:uppercase;font-style:normal!important}
+.chip.on,.tchip.on,.p-badge{border-color:#d7263d!important;color:#e6e1d3!important}
+.tp-btn .chip{border-color:#e6e1d3!important;color:#e6e1d3!important}
+.badge.fmt{background:#e6e1d3!important;color:#0b0b0a!important;border-color:#e6e1d3!important}
+.badge[class*=" g-"],.badge[class^="g-"],.tag-touchstone,.flag{color:#d7263d!important;border:2px solid #d7263d!important;background:transparent!important;font-weight:900!important;transform:rotate(-3deg);display:inline-block}
+.flag{border:0!important;transform:none}
+.badge.canon{color:#e6e1d3!important;border-color:#e6e1d3!important}
+.badge.weak,.badge.auto{font-style:normal!important;text-transform:uppercase}
+nav.tabs a{color:#8e897d!important;border:0!important;background:transparent!important;margin-bottom:0!important;padding:7px 12px!important;text-transform:uppercase;font-weight:600;font-size:12.5px!important;letter-spacing:.06em}
+nav.tabs a.on{background:#e6e1d3!important;color:#0b0b0a!important}
+.head-inner{padding-bottom:12px!important;align-items:center!important}
+.sidebar{background:#0b0b0a!important;border-right:1px dashed #3d3a33!important}
+.nav a{border-left:2px solid transparent!important}
+.nav a:hover,.nav a.lead{color:#d7263d!important;border-left-color:#d7263d!important}
+.sub a,.toplinks a,.back{color:#8e897d!important}
+.sub a:hover,.toplinks a:hover,.back:hover{color:#d7263d!important}
+.tp-panel{border-color:#e6e1d3!important}
+.tp-head{border-bottom:1px dashed #3d3a33!important}
+.balance .bar{background:#1c1b18!important}
+.balance .bar i{background:#d7263d!important}
+.warn{background:transparent!important;border:1px dashed #d7263d!important;color:#e6e1d3!important}
+.mixout b,.tp-blurbs b{color:#d7263d!important}
+.intro p:first-child:first-letter{color:#d7263d!important;font-weight:900}
+.pr-tags{display:flex;flex-wrap:wrap;gap:3px 14px;margin:6px 0 4px;font:600 10.5px/1.35 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.pr-tags a{color:#8e897d!important;text-decoration:none}
+.pr-tags a::before{content:"› ";color:#d7263d}
+.pr-tags a:hover,.pr-tags a.on{color:#e6e1d3!important}
+@media(max-width:640px){section.lens::after,.hero::after{display:none}.brand::before{display:none}header h1{font-size:28px!important}}
+@media print{body,html{background:#fff!important;color:#000!important}}
+.lens p.tag{border:0!important;font-size:20px!important;line-height:1.35!important;letter-spacing:-.01em!important;text-transform:none!important;font-weight:400!important;color:#d4cebf!important;padding:0!important}
+
+.sidebar .brand::before,.side .brand::before{display:block;margin:0 0 4px}
+.banner svg text{font-family:"Inter Tight",Helvetica,Arial,sans-serif!important;font-weight:900}
+
+/* shared sidebar, injected on every page */
+.pr-side{position:fixed;left:0;top:0;bottom:0;width:236px;background:#0b0b0a;border-right:1px dashed #3d3a33;padding:22px 20px;overflow-y:auto;z-index:60;font-family:"Inter Tight",Helvetica,Arial,sans-serif;line-height:1.5}
+body:has(> .pr-side){padding-left:236px}
+.pr-side .pr-sigilrow{display:flex;align-items:center;gap:10px;margin-bottom:6px;text-decoration:none}
+.pr-side .pr-sigil{width:32px;height:32px;flex:0 0 auto}
+.pr-side .pr-brand{display:block;font-weight:900;font-size:14px;letter-spacing:.01em;text-transform:uppercase;color:#e6e1d3;line-height:1.2}
+.pr-side .pr-brand::before{content:"FILE NO. " var(--file,"PR/0000");display:block;color:#d7263d;font-weight:600;font-size:10px;letter-spacing:.16em;margin-bottom:3px}
+.pr-side .pr-tagline{font-size:12px;color:#8e897d;margin:8px 0 22px;line-height:1.5}
+.pr-side .pr-label{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#8e897d;font-weight:600;margin:0 0 10px}
+.pr-side nav{display:flex;flex-direction:column;gap:2px;margin-bottom:22px}
+.pr-side nav a{display:block;font-size:15px;color:#e6e1d3;padding:7px 10px;border-left:2px solid transparent;text-decoration:none}
+.pr-side nav a:hover{color:#d7263d;border-left-color:#d7263d;background:#141412}
+.pr-side nav a.on{color:#d7263d;border-left-color:#d7263d;font-weight:800}
+.pr-side .pr-social{border-top:1px dashed #3d3a33;padding-top:16px}
+.pr-side .pr-social a{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#8e897d;padding:5px 0;text-decoration:none}
+.pr-side .pr-social a:hover{color:#d7263d}
+body:has(> .pr-side) .wrap > .side{display:none!important}
+body:has(> .pr-side) .wrap:has(> .side){display:block!important;padding:24px 40px 70px!important}
+body:has(> .pr-side) > header{z-index:30}
+@media(max-width:900px){
+ .pr-side{position:static;width:auto;border-right:0;border-bottom:1px dashed #3d3a33;padding:14px 16px}
+ body:has(> .pr-side){padding-left:0}
+ .pr-side .pr-tagline,.pr-side .pr-label,.pr-side .pr-social{display:none}
+ .pr-side nav{flex-direction:row;flex-wrap:wrap;gap:4px 6px;margin:10px 0 0}
+ .pr-side nav a{font-size:13px;padding:5px 8px;border-left:0;border-bottom:2px solid transparent}
+ .pr-side nav a.on{border-bottom-color:#d7263d}
+ body:has(> .pr-side) .wrap:has(> .side){padding:20px 18px 60px!important}
+}
+body:has(> .pr-side) > header:has(> .toplinks){display:none!important}
+body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display:none!important}
+</style><!--/pr-theme-->
+</head>
+<body><!--pr-theme--><aside class="pr-side" aria-label="Site navigation">
+  <a class="pr-sigilrow" href="/"><svg class="pr-sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke="#d7263d" stroke-width="3" fill="none" opacity="0.9"><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="58"/><polygon points="100,20 145,120 55,72 155,72 65,120"/></g></svg><span class="pr-brand">Paranoid Reading</span></a>
+  <p class="pr-tagline">A reading list for the parapolitical, the paranoid and the Marxist.</p>
+  <p class="pr-label">Choose Your Media</p>
+  <nav>
+    <a href="/" data-m="^/$|^/index.html$">All Media</a>
+    <a href="/novels/" data-m="^/novels">Fiction</a>
+    <a href="/film-tv/" data-m="^/film-tv">Film and TV</a>
+    <a href="/nonfiction/" data-m="^/nonfiction">Non-Fiction</a>
+    <a href="/articles/" data-m="^/articles">Articles and Journals</a>
+  </nav>
+  <p class="pr-label">Routes</p>
+  <nav>
+    <a href="/library/#build" data-m="^/library">Build a Curriculum</a>
+    <a href="/curriculums/" data-m="^/curriculums">Pre-Made Curriculums</a>
+    <a href="/slow-read/" data-m="^/slow-read">Deep Reads</a>
+  </nav>
+  <style>@media(max-width:900px){.pr-side nav.pr-more{display:none}}</style>
+  <p class="pr-label">More Files</p>
+  <nav class="pr-more">
+    <a href="/topics/" data-m="^/topics">The Index</a>
+    <a href="/screen/" data-m="^/screen">The Screen</a>
+    <a href="/dossiers/gladio/" data-m="^/dossiers">Gladio Dossier</a>
+  </nav>
+  <div class="pr-social">
+    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Follow on Pagebound</a>
+  </div>
+</aside><script>(function(){var p=location.pathname;document.querySelectorAll('.pr-side nav a').forEach(function(a){if(new RegExp(a.getAttribute('data-m')).test(p))a.classList.add('on');});})();</script><!--/pr-theme-->
+<main class="x-main">
+  <div class="x-head">
+    <p class="x-eyebrow">Exhibit B · Features, series and documentaries</p>
+    <h1>Film and TV</h1>
+    <p class="x-lede">The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system.</p>
+  </div>
+  <form class="x-filters" id="filters" onsubmit="return false" role="search" aria-label="Filter Film and TV">
+    <div class="x-f q"><label for="fQ">Search</label><input id="fQ" type="search" placeholder="Title, summary, keyword…" autocomplete="off"></div>
+    <div class="x-f a"><label for="fA">Director or creator</label><input id="fA" type="search" list="dlPeople" placeholder="Any director" autocomplete="off"><datalist id="dlPeople"></datalist></div>
+    <div class="x-f y"><span class="x-lab">Year</span><div class="x-yr"><label class="x-sr" for="yFrom">From year</label><input id="yFrom" type="number" inputmode="numeric" min="0" max="2100"><span>to</span><label class="x-sr" for="yTo">To year</label><input id="yTo" type="number" inputmode="numeric" min="0" max="2100"></div></div>
+    <div class="x-f kw"><label for="fKw">Keyword</label><select id="fKw"></select></div>
+    <div class="x-f s3"><label for="fKind">Type</label><select id="fKind"></select></div>
+    <div class="x-f s3" id="wGrade"><label for="fGrade">Evidence</label><select id="fGrade"></select></div>
+    <div class="x-f s3" id="wCountry"><label for="fCountry">Country</label><select id="fCountry"></select></div>
+    <div class="x-f s3"><label for="fSort">Sort</label><select id="fSort"><option value="title">Title, A to Z</option><option value="author">Director, A to Z</option><option value="old">Year, oldest first</option><option value="new">Year, newest first</option></select></div>
+    <div class="x-eras" id="eras" aria-label="Year presets"></div>
+  </form>
+  <div class="x-bar"><span class="x-count" id="count" aria-live="polite"></span><div class="x-active" id="active"></div><button type="button" class="x-btn" id="reset">Clear all</button></div>
+  <div class="x-list" id="list"></div>
+  <div class="x-more" id="more"><button type="button" class="x-btn red" id="moreBtn">Show more</button></div>
+</main>
+<script>
+const SEC = {"creator": "Director or creator", "unit": "entries"};
+const DATA = [{"id":"sc-gladio","t":"Gladio","by":"Dir. Allan Francovich","y":1992,"k":"Documentary","g":"Documented","s":"Allan Francovich's three-part BBC documentary on NATO's stay-behind armies, featuring the convicted terrorist Vincenzo Vinciguerra and Italy's parliamentary investigators.","kw":["The CIA and Covert Action","Gladio and the Stay Behind Networks","The Strategy of Tension and the Years of Lead","The Brabant Killers and Belgium","Terrorism and the State","International Bleakness"],"note":"Francovich's sourcing is first hand: convicted terrorist Vincenzo Vinciguerra on camera, plus the head of the Italian parliamentary inquiry. The existence of the stay behind networks is admitted history, confirmed by Andreotti in 1990 and by the Italian and Belgian inquiries. What remains argued among historians is the degree of operational control over specific massacres.","c":"UK"},{"id":"sc-the-society-of-the-spectacle","t":"The Society of the Spectacle","by":"Dir. Guy Debord","y":1973,"k":"Film","g":"Documented","s":"Debord's film version of his own book, a collage of found footage, advertising and newsreels set against his narration.","kw":["Dystopia and the Machine","The Spectacle and Media Critique","Demonology and the Occult"],"note":"Theory rather than reportage. Graded for what it is: an argument, made with found footage, that stands or falls on its reasoning.","c":"France"},{"id":"z-85VJJF2L","t":"Grant Bristow, CSIS and the Heritage Front: Good for Business","by":"CBC, The Fifth Estate","y":1994,"k":"Documentary","g":"Documented","s":"A CBC Fifth Estate report on Grant Bristow, a Canadian intelligence informant who helped build the neo-Nazi Heritage Front.","kw":["Gladio and the Stay Behind Networks","The Contemporary Far Right"],"url":"https://www.youtube.com/watch?v=d8CQ6pjKaJ8"},{"id":"z-ITN2QDYA","t":"From Screen Time to Extremism: How One Family Fought Back","by":"Inside 764","y":2026,"k":"Video","g":"Documented","s":"A video report on how one family fought back after their child was drawn into the online extremist network 764.","kw":["The Contemporary Far Right","O9A, 764 and Occult Extremism","US Empire and Imperialism","AI, Information and the Archive"],"url":"https://www.youtube.com/watch?v=oIVVmAe70Kg"},{"id":"z-G9RIC6ZC","t":"LAPD Informant Louis Tackwood: The Glass House Tapes (KPFK radio, 1971 and 1975)","by":"KPFK Pacifica Radio","y":1971,"k":"Audio","g":"Documented","s":"Radio recordings of LAPD informant Louis Tackwood describing police and federal plots against Black radical groups.","kw":["The FBI, Informants and Infiltration","Policing and Police Violence"]},{"id":"z-CCJQHQAG","t":"Retrospective on the Louis Tackwood Police Informant Story","by":"","y":null,"k":"Video","g":"Documented","s":"A retrospective look back at the Louis Tackwood police informant story and the Glass House Tapes.","kw":["The FBI, Informants and Infiltration","Policing and Police Violence"]},{"id":"z-8STYJMX7","t":"Sex Cult Survivor Interview: Onami","by":"Soft White Underbelly","y":2024,"k":"Video","g":"Documented","s":"A long-form interview with a survivor of a sex cult, from the Soft White Underbelly channel.","kw":["Fascism: History and Theory","Pessimism, Theology and Despair"],"url":"https://www.youtube.com/watch?v=N4iknPcwge4"},{"id":"sc-state-of-siege","t":"State of Siege","by":"Dir. Costa-Gavras","y":1972,"k":"Film","g":"Dramatization","s":"In 1970 Uruguay, Tupamaro guerrillas kidnap an American official and interrogate him about his role training Latin American police in torture.","kw":["The CIA and Covert Action","Gladio and the Stay Behind Networks","Phoenix Program and Counterinsurgency","Terrorism and the State","US Empire and Imperialism","Policing and Police Violence"],"c":"France / Italy","src":"Written by Franco Solinas. Cinema 10, 1972.","note":"Based on the 1970 kidnapping and killing of USAID officer Dan Mitrione by the Tupamaros. Mitrione's role training Latin American police is documented; the film's interrogation scenes are invented structure around it."},{"id":"sc-the-good-shepherd","t":"The Good Shepherd","by":"Dir. Robert De Niro","y":2006,"k":"Film","g":"Dramatization","s":"A founding officer of the CIA sacrifices his family and his humanity to the Agency, from Yale secret societies to the Bay of Pigs.","kw":["The CIA and Covert Action","Gladio and the Stay Behind Networks","James Ellroy and the Underworld USA"],"c":"USA","src":"Written by Eric Roth. Universal Pictures, 2006.","note":"Edward Wilson is a composite, drawn mainly from James Jesus Angleton. The institutional history around him, OSS counterintelligence, the founding of the CIA, the Bay of Pigs, is real."},{"id":"sc-1985","t":"1985","by":"Created by Willem Wallyn and Wouter Bouvijn","y":2023,"k":"Series","g":"Dramatization","s":"Three young friends in 1980s Belgium, two of them joining the Gendarmerie, are drawn into the shadow of the Brabant killings and the state cover-up.","kw":["The CIA and Covert Action","Gladio and the Stay Behind Networks","The Brabant Killers and Belgium"],"c":"Belgium","src":"VRT/RTBF, 2023. Eight parts.","note":"Built on the Belgian parliamentary investigation into the Brabant killers, who left 28 dead between 1982 and 1985. The case is formally unsolved; the Gendarmerie and stay behind connections it dramatizes are the subject of the inquiry, not settled fact."},{"id":"sc-the-bankers-of-god-the-calvi-affair","t":"The Bankers of God: The Calvi Affair","by":"Dir. Giuseppe Ferrara","y":2002,"k":"Film","g":"Dramatization","s":"A dramatization of the life and 1982 death of banker Roberto Calvi, caught between the Vatican Bank, the P2 lodge and the Mafia.","kw":["Banks, Dark Money and Corruption","Organised Crime and the Mafia","The Strategy of Tension and the Years of Lead","Political Assassinations","Pessimism, Theology and Despair"],"c":"Italy","src":"Written by Giuseppe Ferrara and Arrigo Petacco. A.G. Srl, 2002.","note":"Roberto Calvi was found hanging beneath Blackfriars Bridge in 1982. The initial suicide ruling was later overturned and Italian prosecutors treated it as murder, though nobody has been convicted. Banco Ambrosiano's collapse, the Vatican Bank exposure and the P2 membership are documented."},{"id":"sc-the-international","t":"The International","by":"Dir. Tom Tykwer","y":2009,"k":"Film","g":"Fiction","s":"An Interpol agent and a New York prosecutor pursue a global bank that finances arms deals and kills to protect itself.","kw":["Banks, Dark Money and Corruption","Organised Crime and the Mafia"],"c":"USA / Germany","src":"Written by Eric Warren Singer. Columbia Pictures, 2009.","note":"The IBBC is invented, but openly modeled on BCCI, whose arms financing, laundering and intelligence connections were established by the Senate investigation."},{"id":"sc-american-gangster","t":"American Gangster","by":"Dir. Ridley Scott","y":2007,"k":"Film","g":"Dramatization","s":"Frank Lucas builds a heroin empire with drugs smuggled from Southeast Asia during the Vietnam War while an honest detective hunts him through a corrupt police force.","kw":["Banks, Dark Money and Corruption","Organised Crime and the Mafia","Drugs and the Narco Networks","Policing and Police Violence"],"c":"USA","src":"Written by Steven Zaillian. Universal Pictures, 2007.","note":"Frank Lucas's heroin network is real and his conviction is on the record. His claim to have shipped product in the coffins of American servicemen is disputed, denied by the DEA agents involved, and should not be read as established."},{"id":"sc-l-a-confidential","t":"L.A. Confidential","by":"Dir. Curtis Hanson","y":1997,"k":"Film","g":"Fiction","s":"Three LAPD officers investigate a coffee shop massacre in 1950s Los Angeles and uncover corruption at the top of the department.","kw":["Crime and Noir","Policing and Police Violence","Organised Crime and the Mafia","James Ellroy and the Underworld USA"],"c":"USA","src":"Screenplay by Curtis Hanson and Brian Helgeland, from the novel by James Ellroy. Warner Bros., 1997.","note":"Invented case, real institution. The LAPD of the period, Hush-Hush as a stand in for Confidential magazine, and the department's relationship with organized crime are drawn from the record Ellroy works in."},{"id":"sc-true-detective","t":"True Detective","by":"Created by Nic Pizzolatto","y":2014,"k":"Series","g":"Fiction","s":"Two Louisiana detectives reopen a 1995 ritual killing and find a network of abuse protected by a powerful family.","kw":["Crime and Noir","Policing and Police Violence","Weird Fiction and Cosmic Horror"],"c":"USA","src":"HBO, 2014. Eight episodes.","note":"Invented, though it borrows the shape of real Louisiana abuse cases involving politically protected families."},{"id":"sc-quarry","t":"Quarry","by":"Created by Graham Gordy and Michael D","y":2016,"k":"Series","g":"Fiction","s":"A Marine sniper returning to Memphis from Vietnam in 1972 is recruited into a shadowy network of contract killers.","kw":["Domestic Gladio (Ongoing)","Crime and Noir","Policing and Police Violence","Gladio and the Stay Behind Networks"],"c":"USA","src":"Fuller, from the novels by Max Allan Collins. Cinemax, 2016. Eight episodes.","note":"Invented. The conditions around it, hostility to returning veterans and the recruitment of trained men into private violence, are documented."},{"id":"sc-matewan","t":"Matewan","by":"Dir. John Sayles","y":1987,"k":"Film","g":"Dramatization","s":"In 1920 West Virginia, a union organizer tries to unite striking coal miners against the company and its hired gunmen.","kw":["Crime and Noir","Policing and Police Violence","Capital as Cosmic Horror","International Bleakness"],"c":"USA","src":"Cinecom Pictures, 1987.","note":"The Matewan massacre of 1920 and the Baldwin-Felts agency's role are documented labor history. Joe Kenehan is invented."},{"id":"sc-brazil","t":"Brazil","by":"Dir. Terry Gilliam","y":1985,"k":"Film","g":"Fiction","s":"A low-level bureaucrat in a retro-futurist surveillance state tries to correct a clerical error that sent an innocent man to his death.","kw":["Dystopia and the Machine","The Spectacle and Media Critique","The FBI, Informants and Infiltration","Phoenix Program and Counterinsurgency","Fascism: History and Theory"],"c":"UK","src":"Written by Terry Gilliam, Tom Stoppard and Charles McKeown. Universal Pictures, 1985.","note":"Invented throughout."},{"id":"sc-impolex","t":"Impolex","by":"Dir. Alex Ross Perry","y":2011,"k":"Film","g":"Fiction","s":"A soldier wanders a forest after World War II searching for unexploded V2 rockets, in a loose riff on Gravity's Rainbow.","kw":["Dystopia and the Machine","The Spectacle and Media Critique","The FBI, Informants and Infiltration","Pynchon and the Cartel"],"c":"USA","src":"Cinema Conservancy, 2011. Loosely after Gravity's Rainbow.","note":"Invented. An oblique riff on Pynchon rather than an adaptation."},{"id":"ft-the-parallax-view","t":"The Parallax View","by":"Dir. Alan J. Pakula","y":1974,"k":"Film","g":"Fiction","s":"A reporter investigating the mysterious deaths of witnesses to a senator's assassination infiltrates the Parallax Corporation, a firm that recruits assassins.","kw":["Political Assassinations","Conspiracy Culture and Paranoia","Deep Politics and the Dual State"],"c":"USA"},{"id":"ft-three-days-of-the-condor","t":"Three Days of the Condor","by":"Dir. Sydney Pollack","y":1975,"k":"Film","g":"Fiction","s":"A CIA researcher returns from lunch to find his entire office murdered and must evade a rogue faction inside his own Agency.","kw":["The CIA and Covert Action","Deep Politics and the Dual State"],"c":"USA"},{"id":"ft-all-the-president-s-men","t":"All the President's Men","by":"Dir. Alan J. Pakula","y":1976,"k":"Film","g":"Dramatization","s":"Washington Post reporters Bob Woodward and Carl Bernstein follow the money from the Watergate break-in to the Nixon White House.","kw":["Deep Politics and the Dual State","Surveillance and Predictive Policing"],"c":"USA"},{"id":"ft-klute","t":"Klute","by":"Dir. Alan J. Pakula","y":1971,"k":"Film","g":"Fiction","s":"A small-town detective searching for a missing executive becomes involved with a New York call girl who is being watched and stalked.","kw":["Surveillance and Predictive Policing","Crime and Noir"],"c":"USA"},{"id":"ft-the-conversation","t":"The Conversation","by":"Dir. Francis Ford Coppola","y":1974,"k":"Film","g":"Fiction","s":"A professional surveillance expert becomes consumed by guilt and paranoia over a recording he fears will lead to murder.","kw":["Surveillance and Predictive Policing","Conspiracy Culture and Paranoia"],"c":"USA"},{"id":"ft-blow-out","t":"Blow Out","by":"Dir. Brian De Palma","y":1981,"k":"Film","g":"Fiction","s":"A movie sound effects man accidentally records evidence that a governor's fatal car crash was an assassination.","kw":["Political Assassinations","Conspiracy Culture and Paranoia"],"c":"USA"},{"id":"ft-jfk","t":"JFK","by":"Dir. Oliver Stone","y":1991,"k":"Film","g":"Dramatization","s":"New Orleans district attorney Jim Garrison investigates the Kennedy assassination and comes to believe it was a coup by elements of the national security state.","kw":["Political Assassinations","Deep Politics and the Dual State","The CIA and Covert Action"],"c":"USA"},{"id":"ft-executive-action","t":"Executive Action","by":"Dir. David Miller. Written by Dalton Trumbo","y":1973,"k":"Film","g":"Dramatization","s":"Right-wing industrialists and intelligence operatives plan and carry out the assassination of President Kennedy.","kw":["Political Assassinations","Deep Politics and the Dual State"],"c":"USA"},{"id":"ft-winter-kills","t":"Winter Kills","by":"Dir. William Richert","y":1979,"k":"Film","g":"Fiction","s":"The half-brother of an assassinated president follows a deathbed confession into a labyrinth of conspiracies, adapted from Richard Condon's novel.","kw":["Political Assassinations","The Paranoid Novel"],"c":"USA"},{"id":"ft-the-manchurian-candidate","t":"The Manchurian Candidate","by":"Dir. John Frankenheimer","y":1962,"k":"Film","g":"Fiction","s":"A Korean War veteran brainwashed by communist captors becomes a sleeper assassin in a plot to seize the White House.","kw":["MK Ultra, Mind Control and Human Experiments","Political Assassinations"],"c":"USA"},{"id":"ft-seven-days-in-may","t":"Seven Days in May","by":"Dir. John Frankenheimer","y":1964,"k":"Film","g":"Fiction","s":"A Marine colonel uncovers a plan by the Joint Chiefs of Staff to overthrow a president who has signed a nuclear disarmament treaty.","kw":["Deep Politics and the Dual State"],"c":"USA"},{"id":"ft-z","t":"Z","by":"Dir. Costa-Gavras","y":1969,"k":"Film","g":"Dramatization","s":"A magistrate investigating the killing of a pacifist politician in an unnamed Greece exposes the complicity of police, army and right-wing thugs.","kw":["Political Assassinations","Fascism: History and Theory","Terrorism and the State"],"c":"France / Algeria"},{"id":"ft-the-battle-of-algiers","t":"The Battle of Algiers","by":"Dir. Gillo Pontecorvo","y":1966,"k":"Film","g":"Dramatization","s":"The Algerian independence movement fights a guerrilla war in the Casbah while French paratroopers use torture to break it.","kw":["US Empire and Imperialism","Phoenix Program and Counterinsurgency","Terrorism and the State"],"c":"Italy / Algeria"},{"id":"ft-burn-queimada","t":"Burn! (Queimada)","by":"Dir. Gillo Pontecorvo","y":1969,"k":"Film","g":"Fiction","s":"A British agent foments a slave revolt on a Caribbean sugar island for commercial ends, then returns to destroy the revolutionary he created.","kw":["US Empire and Imperialism","Capital as Cosmic Horror"],"c":"Italy / France"},{"id":"ft-investigation-of-a-citizen-above-suspicion","t":"Investigation of a Citizen Above Suspicion","by":"Dir. Elio Petri","y":1970,"k":"Film","g":"Fiction","s":"A Rome police chief murders his mistress and leaves clues to prove that his power places him above suspicion.","kw":["Policing and Police Violence","The Strategy of Tension and the Years of Lead","Fascism: History and Theory"],"c":"Italy"},{"id":"ft-the-working-class-goes-to-heaven","t":"The Working Class Goes to Heaven","by":"Dir. Elio Petri","y":1971,"k":"Film","g":"Fiction","s":"A record-setting piecework factory worker loses a finger on the line and is pulled between unions, students and management.","kw":["Marxism and Left Theory","Capital as Cosmic Horror"],"c":"Italy"},{"id":"ft-illustrious-corpses","t":"Illustrious Corpses","by":"Dir. Francesco Rosi","y":1976,"k":"Film","g":"Fiction","s":"A police inspector investigating a series of murders of judges uncovers a conspiracy reaching the top of the state.","kw":["The Strategy of Tension and the Years of Lead","Deep Politics and the Dual State","Political Assassinations"],"c":"Italy"},{"id":"ft-salvatore-giuliano","t":"Salvatore Giuliano","by":"Dir. Francesco Rosi","y":1962,"k":"Film","g":"Dramatization","s":"A reconstruction of the death of the Sicilian bandit Giuliano that reveals the collusion of Mafia, police and politicians behind it.","kw":["Organised Crime and the Mafia","Deep Politics and the Dual State"],"c":"Italy"},{"id":"ft-the-mattei-affair","t":"The Mattei Affair","by":"Dir. Francesco Rosi","y":1972,"k":"Film","g":"Dramatization","s":"An investigation into the life and 1962 plane crash death of Enrico Mattei, the Italian oil boss who challenged the Anglo-American oil majors.","kw":["Political Assassinations","Banks, Dark Money and Corruption"],"c":"Italy"},{"id":"ft-il-divo","t":"Il Divo","by":"Dir. Paolo Sorrentino","y":2008,"k":"Film","g":"Dramatization","s":"A portrait of Giulio Andreotti, seven times Italy's prime minister, and the scandals, murders and Mafia trials that shadowed him.","kw":["Deep Politics and the Dual State","The Strategy of Tension and the Years of Lead","Organised Crime and the Mafia"],"c":"Italy"},{"id":"ft-romanzo-criminale","t":"Romanzo Criminale","by":"Dir. Michele Placido","y":2005,"k":"Film","g":"Dramatization","s":"A Rome street gang modeled on the Banda della Magliana rises to power in the 1970s while entangled with the secret services and the strategy of tension.","kw":["The Strategy of Tension and the Years of Lead","Organised Crime and the Mafia"],"c":"Italy"},{"id":"ft-exterior-night-esterno-notte","t":"Exterior Night (Esterno notte)","by":"Dir. Marco Bellocchio","y":2022,"k":"Series","g":"Dramatization","s":"The 1978 kidnapping and murder of Aldo Moro by the Red Brigades, told from the perspectives of politicians, the Pope, the terrorists and Moro's wife.","kw":["The Strategy of Tension and the Years of Lead","Political Assassinations"],"c":"Italy"},{"id":"ft-good-morning-night","t":"Good Morning, Night","by":"Dir. Marco Bellocchio","y":2003,"k":"Film","g":"Dramatization","s":"The Aldo Moro kidnapping seen through the eyes of a young woman in the Red Brigades cell holding him.","kw":["The Strategy of Tension and the Years of Lead"],"c":"Italy"},{"id":"ft-the-baader-meinhof-complex","t":"The Baader Meinhof Complex","by":"Dir. Uli Edel","y":2008,"k":"Film","g":"Dramatization","s":"The rise and fall of West Germany's Red Army Faction from the student movement to the \"German Autumn\" of 1977.","kw":["Terrorism and the State"],"c":"Germany"},{"id":"ft-carlos","t":"Carlos","by":"Dir. Olivier Assayas","y":2010,"k":"Series","g":"Dramatization","s":"The career of the Venezuelan terrorist Carlos the Jackal across two decades of Cold War state sponsorship.","kw":["Terrorism and the State","The CIA and Covert Action"],"c":"France"},{"id":"ft-missing","t":"Missing","by":"Dir. Costa-Gavras","y":1982,"k":"Film","g":"Dramatization","s":"An American father searches for his son, who disappeared during the 1973 Chilean coup, and discovers his own government's role.","kw":["The CIA and Covert Action","US Empire and Imperialism"],"c":"USA"},{"id":"ft-salvador","t":"Salvador","by":"Dir. Oliver Stone","y":1986,"k":"Film","g":"Dramatization","s":"A burnt-out American photojournalist covers El Salvador's civil war and the US-backed death squads.","kw":["US Empire and Imperialism","The CIA and Covert Action"],"c":"USA"},{"id":"ft-under-fire","t":"Under Fire","by":"Dir. Roger Spottiswoode","y":1983,"k":"Film","g":"Fiction","s":"American journalists covering the Nicaraguan revolution of 1979 are drawn into taking sides.","kw":["US Empire and Imperialism","The CIA and Covert Action"],"c":"USA"},{"id":"ft-syriana","t":"Syriana","by":"Dir. Stephen Gaghan","y":2005,"k":"Film","g":"Fiction","s":"Interlocking stories of a CIA officer, an energy analyst, oil lawyers and a young migrant worker reveal the politics of oil in the Persian Gulf.","kw":["The CIA and Covert Action","Banks, Dark Money and Corruption","US Empire and Imperialism"],"c":"USA"},{"id":"ft-michael-clayton","t":"Michael Clayton","by":"Dir. Tony Gilroy","y":2007,"k":"Film","g":"Fiction","s":"A law firm's \"fixer\" discovers that his firm's agrochemical client covered up a product that kills people.","kw":["Capital as Cosmic Horror","Banks, Dark Money and Corruption"],"c":"USA"},{"id":"ft-the-insider","t":"The Insider","by":"Dir. Michael Mann","y":1999,"k":"Film","g":"Dramatization","s":"A tobacco company scientist turns whistleblower and a 60 Minutes producer fights his own network to air the story.","kw":["Capital as Cosmic Horror","The Spectacle and Media Critique"],"c":"USA"},{"id":"ft-dark-waters","t":"Dark Waters","by":"Dir. Todd Haynes","y":2019,"k":"Film","g":"Dramatization","s":"A corporate defense lawyer spends two decades exposing DuPont's poisoning of a West Virginia town with toxic chemicals.","kw":["Capital as Cosmic Horror","Banks, Dark Money and Corruption"],"c":"USA"},{"id":"ft-kill-the-messenger","t":"Kill the Messenger","by":"Dir. Michael Cuesta","y":2014,"k":"Film","g":"Dramatization","s":"Journalist Gary Webb exposes CIA links to the crack cocaine trade and is destroyed by the press that should have defended him.","kw":["Drugs and the Narco Networks","The CIA and Covert Action","The Spectacle and Media Critique"],"c":"USA"},{"id":"ft-citizenfour","t":"Citizenfour","by":"Dir. Laura Poitras","y":2014,"k":"Documentary","g":"Documented","s":"Filmed in a Hong Kong hotel room as Edward Snowden hands journalists the NSA's mass surveillance files.","kw":["Surveillance and Predictive Policing","Silicon Valley and Tech Power"],"c":"USA / Germany"},{"id":"ft-enemy-of-the-state","t":"Enemy of the State","by":"Dir. Tony Scott","y":1998,"k":"Film","g":"Fiction","s":"A lawyer unknowingly given evidence of a political murder is hunted by a rogue NSA unit with total surveillance powers.","kw":["Surveillance and Predictive Policing"],"c":"USA"},{"id":"ft-the-lives-of-others","t":"The Lives of Others","by":"Dir. Florian Henckel von Donnersmarck","y":2006,"k":"Film","g":"Fiction","s":"A Stasi captain assigned to bug a playwright in 1984 East Berlin begins to protect the people he is spying on.","kw":["Surveillance and Predictive Policing"],"c":"Germany"},{"id":"ft-arlington-road","t":"Arlington Road","by":"Dir. Mark Pellington","y":1999,"k":"Film","g":"Fiction","s":"A widowed professor who teaches about domestic terrorism begins to suspect that his friendly new neighbors are planning a bombing.","kw":["The Contemporary Far Right","Terrorism and the State"],"c":"USA"},{"id":"ft-they-live","t":"They Live","by":"Dir. John Carpenter","y":1988,"k":"Film","g":"Fiction","s":"A drifter finds sunglasses that reveal the subliminal commands of a ruling class of aliens hidden among the wealthy.","kw":["Capital as Cosmic Horror","The Spectacle and Media Critique"],"c":"USA"},{"id":"ft-videodrome","t":"Videodrome","by":"Dir. David Cronenberg","y":1983,"k":"Film","g":"Fiction","s":"A sleazy TV programmer discovers a snuff broadcast that causes hallucinations and a mutating body, and the conspiracy behind it.","kw":["The Spectacle and Media Critique","Transgression and the Self"],"c":"Canada"},{"id":"ft-network","t":"Network","by":"Dir. Sidney Lumet","y":1976,"k":"Film","g":"Fiction","s":"A network anchor's on-air breakdown becomes a ratings hit, and the corporation exploits his rage until it becomes a liability.","kw":["The Spectacle and Media Critique"],"c":"USA"},{"id":"ft-serpico","t":"Serpico","by":"Dir. Sidney Lumet","y":1973,"k":"Film","g":"Dramatization","s":"An honest New York cop refuses to take bribes and is isolated and endangered as he tries to expose police corruption.","kw":["Policing and Police Violence"],"c":"USA"},{"id":"ft-prince-of-the-city","t":"Prince of the City","by":"Dir. Sidney Lumet","y":1981,"k":"Film","g":"Dramatization","s":"An NYPD narcotics detective agrees to inform on police corruption and is consumed by the betrayals it requires.","kw":["Policing and Police Violence","The FBI, Informants and Infiltration"],"c":"USA"},{"id":"ft-chinatown","t":"Chinatown","by":"Dir. Roman Polanski","y":1974,"k":"Film","g":"Fiction","s":"A private eye hired to investigate an affair uncovers a conspiracy over Los Angeles's water supply and a monstrous family secret.","kw":["Crime and Noir","Banks, Dark Money and Corruption"],"c":"USA"},{"id":"ft-inherent-vice","t":"Inherent Vice","by":"Dir. Paul Thomas Anderson","y":2014,"k":"Film","g":"Fiction","s":"A stoned private eye in 1970 Los Angeles searches for his ex-girlfriend's missing lover and finds a drug cartel called the Golden Fang.","kw":["Pynchon and the Cartel","Crime and Noir","Conspiracy Culture and Paranoia"],"c":"USA"},{"id":"ft-under-the-silver-lake","t":"Under the Silver Lake","by":"Dir. David Robert Mitchell","y":2018,"k":"Film","g":"Fiction","s":"An aimless young man in Los Angeles hunts for a vanished neighbor and finds coded messages hidden in pop culture.","kw":["Conspiracy Culture and Paranoia"],"c":"USA"},{"id":"ft-memories-of-murder","t":"Memories of Murder","by":"Dir. Bong Joon-ho","y":2003,"k":"Film","g":"Dramatization","s":"Two detectives under the military dictatorship of 1986 hunt Korea's first serial killer with brutal, incompetent methods.","kw":["Violence, Serial Killers and the Record","Policing and Police Violence","Japanese and East Asian Darkness"],"c":"South Korea"},{"id":"ft-zodiac","t":"Zodiac","by":"Dir. David Fincher","y":2007,"k":"Film","g":"Dramatization","s":"A cartoonist, a reporter and a detective become obsessed with the hunt for the Zodiac killer.","kw":["Violence, Serial Killers and the Record"],"c":"USA"},{"id":"ft-come-and-see","t":"Come and See","by":"Dir. Elem Klimov","y":1985,"k":"Film","g":"Fiction","s":"A Belarusian boy joins the partisans and witnesses the Nazi extermination of villages in 1943.","kw":["Fascism: History and Theory"],"c":"USSR"},{"id":"ft-sal-or-the-120-days-of-sodom","t":"Salò, or the 120 Days of Sodom","by":"Dir. Pier Paolo Pasolini","y":1975,"k":"Film","g":"Fiction","s":"Four libertines of Mussolini's Salò Republic subject kidnapped teenagers to escalating torture, a parable of fascism and consumer power.","kw":["Fascism: History and Theory","Transgression and the Self"],"c":"Italy"},{"id":"ft-the-conformist","t":"The Conformist","by":"Dir. Bernardo Bertolucci","y":1970,"k":"Film","g":"Fiction","s":"A weak man desperate to be normal becomes an agent of Mussolini's secret police and is sent to kill his former professor.","kw":["Fascism: History and Theory"],"c":"Italy"},{"id":"ft-night-and-fog","t":"Night and Fog","by":"Dir. Alain Resnais","y":1956,"k":"Documentary","g":"Documented","s":"A short documentary on the Nazi concentration camps, cutting between archival footage and the empty sites ten years later.","kw":["Fascism: History and Theory"],"c":"France"},{"id":"ft-children-of-men","t":"Children of Men","by":"Dir. Alfonso Cuarón","y":2006,"k":"Film","g":"Fiction","s":"In a world where humanity has become infertile, a bureaucrat in a Britain of refugee camps must protect a pregnant migrant.","kw":["Dystopia and the Machine","Immigration, ICE and Deportation"],"c":"UK"},{"id":"ft-sorry-to-bother-you","t":"Sorry to Bother You","by":"Dir. Boots Riley","y":2018,"k":"Film","g":"Fiction","s":"A Black telemarketer in Oakland rises through his company with a \"white voice\" and finds the monstrous secret behind its labor model.","kw":["Capital as Cosmic Horror","Marxism and Left Theory"],"c":"USA"},{"id":"ft-severance","t":"Severance","by":"Created by Dan Erickson","y":2022,"k":"Series","g":"Fiction","s":"Employees of a biotech company have their memories surgically split between work and home, and begin to investigate what they do.","kw":["Capital as Cosmic Horror","Dystopia and the Machine"],"c":"USA"},{"id":"ft-andor","t":"Andor","by":"Created by Tony Gilroy","y":2022,"k":"Series","g":"Fiction","s":"A thief is radicalized into a rebel under an Empire of prisons, surveillance and bureaucratic terror.","kw":["Fascism: History and Theory","US Empire and Imperialism","Surveillance and Predictive Policing"],"c":"USA"},{"id":"ft-mr-robot","t":"Mr. Robot","by":"Created by Sam Esmail","y":2015,"k":"Series","g":"Fiction","s":"A paranoid cybersecurity engineer is recruited by an anarchist hacker group to erase all consumer debt.","kw":["Silicon Valley and Tech Power","Capital as Cosmic Horror","Conspiracy Culture and Paranoia"],"c":"USA"},{"id":"ft-the-wire","t":"The Wire","by":"Created by David Simon","y":2002,"k":"Series","g":"Fiction","s":"Baltimore's drug trade, police, port, city hall, schools and newspapers, shown as one system that grinds everyone down.","kw":["Policing and Police Violence","Drugs and the Narco Networks","Capital as Cosmic Horror"],"c":"USA"},{"id":"ft-twin-peaks","t":"Twin Peaks","by":"Created by David Lynch and Mark Frost","y":1990,"k":"Series","g":"Fiction","s":"An FBI agent investigates the murder of a homecoming queen in a logging town hiding abuse and supernatural evil.","kw":["Weird Fiction and Cosmic Horror","Crime and Noir","Demonology and the Occult"],"c":"USA"},{"id":"ft-the-x-files","t":"The X-Files","by":"Created by Chris Carter","y":1993,"k":"Series","g":"Fiction","s":"Two FBI agents investigate paranormal cases and a government conspiracy to hide the truth about alien colonization.","kw":["Conspiracy Culture and Paranoia","UFOs, the Phenomenon and Disinformation"],"c":"USA"},{"id":"ft-utopia","t":"Utopia","by":"Created by Dennis Kelly","y":2013,"k":"Series","g":"Fiction","s":"A small group of fans of a cult graphic novel are hunted by a shadowy organization called The Network.","kw":["Conspiracy Culture and Paranoia","The Paranoid Novel"],"c":"UK"},{"id":"ft-edge-of-darkness","t":"Edge of Darkness","by":"Written by Troy Kennedy Martin. Dir. Martin Campbell","y":1985,"k":"Series","g":"Fiction","s":"A police detective investigating his activist daughter's murder uncovers a conspiracy involving the nuclear industry and the intelligence services.","kw":["Deep Politics and the Dual State","Surveillance and Predictive Policing"],"c":"UK"},{"id":"ft-a-very-british-coup","t":"A Very British Coup","by":"Dir. Mick Jackson. Written by Alan Plater","y":1988,"k":"Series","g":"Fiction","s":"A left-wing Labour prime minister is undermined by MI5, the press, the City and Washington, from Chris Mullin's novel.","kw":["Deep Politics and the Dual State","The CIA and Covert Action"],"c":"UK"},{"id":"ft-tinker-tailor-soldier-spy","t":"Tinker Tailor Soldier Spy","by":"Dir. John Irvin","y":1979,"k":"Series","g":"Fiction","s":"George Smiley is recalled from retirement to find a Soviet mole at the top of British intelligence.","kw":["Deep Politics and the Dual State"],"c":"UK"},{"id":"ft-the-spy-who-came-in-from-the-cold","t":"The Spy Who Came in from the Cold","by":"Dir. Martin Ritt","y":1965,"k":"Film","g":"Fiction","s":"A burnt-out British agent is sent on a final mission in East Germany that turns out to be a betrayal within a betrayal.","kw":["Deep Politics and the Dual State"],"c":"UK"},{"id":"ft-wormwood","t":"Wormwood","by":"Dir. Errol Morris","y":2017,"k":"Series","g":"Documented","s":"A docudrama about the 1953 death of Army scientist Frank Olson, who was secretly dosed with LSD by the CIA, and his son's lifelong investigation.","kw":["MK Ultra, Mind Control and Human Experiments","The CIA and Covert Action"],"c":"USA"},{"id":"ft-the-act-of-killing","t":"The Act of Killing","by":"Dir. Joshua Oppenheimer","y":2012,"k":"Documentary","g":"Documented","s":"Leaders of Indonesia's 1965 death squads reenact their mass killings in the style of their favorite movies.","kw":["US Empire and Imperialism","Fascism: History and Theory"],"c":"Denmark / Indonesia"},{"id":"ft-the-look-of-silence","t":"The Look of Silence","by":"Dir. Joshua Oppenheimer","y":2014,"k":"Documentary","g":"Documented","s":"An optometrist whose brother was murdered in the 1965 Indonesian killings confronts the men who did it.","kw":["US Empire and Imperialism"],"c":"Denmark / Indonesia"},{"id":"ft-harlan-county-usa","t":"Harlan County, USA","by":"Dir. Barbara Kopple","y":1976,"k":"Documentary","g":"Documented","s":"A year with striking coal miners in Kentucky as they battle the company, its gun thugs and their own union's corruption.","kw":["Marxism and Left Theory","Capital as Cosmic Horror"],"c":"USA"},{"id":"ft-manufacturing-consent-noam-chomsky-and-the-media","t":"Manufacturing Consent: Noam Chomsky and the Media","by":"Dir. Mark Achbar and Peter Wintonick","y":1992,"k":"Documentary","g":"Documented","s":"A documentary on Chomsky's propaganda model, including the media's coverage of East Timor.","kw":["The Spectacle and Media Critique"],"c":"Canada"},{"id":"ft-hypernormalisation","t":"HyperNormalisation","by":"Dir. Adam Curtis","y":2016,"k":"Documentary","g":"Documented","s":"Adam Curtis argues that politicians and financiers have built a fake, simplified world because they cannot manage the real one.","kw":["The Spectacle and Media Critique","Conspiracy Culture and Paranoia"],"c":"UK"},{"id":"ft-the-century-of-the-self","t":"The Century of the Self","by":"Dir. Adam Curtis","y":2002,"k":"Series","g":"Documented","s":"How Freud's nephew Edward Bernays and his heirs used psychoanalysis to sell products and manage democracy.","kw":["The Spectacle and Media Critique"],"c":"UK"},{"id":"ft-the-power-of-nightmares","t":"The Power of Nightmares","by":"Dir. Adam Curtis","y":2004,"k":"Series","g":"Documented","s":"Curtis compares American neoconservatives and radical Islamists and argues that both built power on an exaggerated fear.","kw":["Terrorism and the State","9/11 and the Anthrax Attacks"],"c":"UK"},{"id":"ft-the-murder-of-fred-hampton","t":"The Murder of Fred Hampton","by":"Dir. Howard Alk","y":1971,"k":"Documentary","g":"Documented","s":"Footage of Black Panther leader Fred Hampton's organizing, followed by the evidence that his 1969 killing by police was an assassination.","kw":["The FBI, Informants and Infiltration","Policing and Police Violence","Political Assassinations"],"c":"USA"},{"id":"ft-cointelpro-101","t":"COINTELPRO 101","by":"Freedom Archives","y":2010,"k":"Documentary","g":"Documented","s":"An introduction to the FBI's illegal counterintelligence program against the American Indian, Black, Puerto Rican and New Left movements.","kw":["The FBI, Informants and Infiltration"],"c":"USA"},{"id":"ft-judas-and-the-black-messiah","t":"Judas and the Black Messiah","by":"Dir. Shaka King","y":2021,"k":"Film","g":"Dramatization","s":"An FBI informant infiltrates Fred Hampton's Black Panther chapter in Chicago, leading to Hampton's killing in a police raid.","kw":["The FBI, Informants and Infiltration","Policing and Police Violence","Political Assassinations"],"c":"USA"},{"id":"ft-13th","t":"13th","by":"Dir. Ava DuVernay","y":2016,"k":"Documentary","g":"Documented","s":"How the Thirteenth Amendment's exception for criminal punishment led to mass incarceration of Black Americans.","kw":["Policing and Police Violence"],"c":"USA"},{"id":"ft-gomorrah","t":"Gomorrah","by":"Dir. Matteo Garrone","y":2008,"k":"Film","g":"Fiction","s":"Five stories of people caught in the Camorra's economy of drugs, toxic waste and counterfeit fashion around Naples.","kw":["Organised Crime and the Mafia","Capital as Cosmic Horror"],"c":"Italy"},{"id":"ft-sicario","t":"Sicario","by":"Dir. Denis Villeneuve","y":2015,"k":"Film","g":"Fiction","s":"An idealistic FBI agent is recruited into a covert CIA task force waging a lawless war on a Mexican cartel.","kw":["Drugs and the Narco Networks","The CIA and Covert Action","US Empire and Imperialism"],"c":"USA"},{"id":"ft-american-made","t":"American Made","by":"Dir. Doug Liman","y":2017,"k":"Film","g":"Dramatization","s":"The story of pilot Barry Seal, who flew guns for the CIA and cocaine for the Medellín cartel in the 1980s.","kw":["Drugs and the Narco Networks","The CIA and Covert Action"],"c":"USA"},{"id":"ft-narcos","t":"Narcos","by":"Created by Chris Brancato, Carlo Bernard and Doug Miro","y":2015,"k":"Series","g":"Dramatization","s":"The rise and fall of Pablo Escobar's Medellín cartel and the US agents who hunted him.","kw":["Drugs and the Narco Networks","The CIA and Covert Action"],"c":"USA / Colombia"},{"id":"ft-the-looming-tower","t":"The Looming Tower","by":"Created by Dan Futterman, Alex Gibney and Lawrence Wright","y":2018,"k":"Series","g":"Dramatization","s":"The rivalry between the FBI and CIA that allowed the rise of al-Qaeda and the attacks of 9/11.","kw":["9/11 and the Anthrax Attacks","The CIA and Covert Action"],"c":"USA"},{"id":"ft-why-we-fight","t":"Why We Fight","by":"Dir. Eugene Jarecki","y":2005,"k":"Documentary","g":"Documented","s":"An examination of the military-industrial complex Eisenhower warned of and its role in the Iraq War.","kw":["US Empire and Imperialism"],"c":"USA"},{"id":"ft-the-fog-of-war","t":"The Fog of War","by":"Dir. Errol Morris","y":2003,"k":"Documentary","g":"Documented","s":"Former defense secretary Robert McNamara reflects on his role in the firebombing of Japan and the Vietnam War.","kw":["US Empire and Imperialism"],"c":"USA"},{"id":"ft-hearts-and-minds","t":"Hearts and Minds","by":"Dir. Peter Davis","y":1974,"k":"Documentary","g":"Documented","s":"A documentary on the Vietnam War and the American attitudes that produced and sustained it.","kw":["US Empire and Imperialism"],"c":"USA"},{"id":"ft-dirty-wars","t":"Dirty Wars","by":"Dir. Rick Rowley","y":2013,"k":"Documentary","g":"Documented","s":"Journalist Jeremy Scahill follows the trail of the Joint Special Operations Command's covert kill missions from Afghanistan to Yemen and Somalia.","kw":["Mercenaries and Private Military","US Empire and Imperialism","The CIA and Covert Action"],"c":"USA"},{"id":"ft-shadow-company","t":"Shadow Company","by":"Dir. Nick Bicanic and Jason Bourque","y":2006,"k":"Documentary","g":"Documented","s":"A documentary on the rise of private military contractors in Iraq and around the world.","kw":["Mercenaries and Private Military"],"c":"Canada"}];
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+const people = e => String(e.by || '').replace(/^(Dir\.|Directed by|Created by|Written by)\s*/i, '')
+  .split(/\.\s*(?:Written by|Dir\.)\s*|\s+and\s+|\s*&\s*|,\s*|;\s*/).map(s => s.replace(/\s*\((eds?|ed)\.\)\s*$/,'').trim()).filter(s => s && s.length > 1 && !/^et al\.?$/i.test(s) && !/^others$/i.test(s));
+DATA.forEach((e, i) => { e._i = i; e._p = people(e); e._h = norm([e.t, e.by, e.s, e.src, e.k, e.c, e.g, (e.kw||[]).join(' '), e.note].join(' ')); });
+const YEARS = DATA.map(e => e.y).filter(Boolean), YMIN = Math.min(...YEARS), YMAX = Math.max(new Date().getFullYear(), ...YEARS);
+const NOW = new Date().getFullYear();
+const ERAS = [['Any', '', ''], ['Before 1945', '', 1944], ['1945 to 1991', 1945, 1991], ['1992 to 2000', 1992, 2000], ['Since 2001', 2001, ''], ['Last ten years', NOW - 9, '']];
+function opts(sel, values, all) {
+  sel.innerHTML = '<option value="">' + all + '</option>' + values.map(([v, n]) => '<option value="' + esc(v) + '">' + esc(v) + (n != null ? ' (' + n + ')' : '') + '</option>').join('');
+}
+function counted(fn) {
+  const m = new Map(); DATA.forEach(e => [].concat(fn(e) || []).forEach(v => v && m.set(v, (m.get(v) || 0) + 1)));
+  return [...m.entries()];
+}
+opts($('fKw'), counted(e => e.kw).sort((a, b) => a[0].localeCompare(b[0])), 'All keywords');
+opts($('fKind'), counted(e => e.k).sort((a, b) => b[1] - a[1]), 'All types');
+const grades = counted(e => e.g).sort((a, b) => b[1] - a[1]);
+if (grades.length > 1) opts($('fGrade'), grades, 'Any evidence'); else $('wGrade').style.display = 'none';
+const countries = counted(e => e.c ? e.c.split(' / ') : null).sort((a, b) => b[1] - a[1]);
+if (countries.length > 1) opts($('fCountry'), countries, 'Any country'); else $('wCountry').style.display = 'none';
+const ppl = counted(e => e._p).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+$('dlPeople').innerHTML = ppl.map(([p]) => '<option value="' + esc(p) + '">').join('');
+$('yFrom').placeholder = YMIN; $('yTo').placeholder = YMAX;
+$('eras').innerHTML = ERAS.map((e, i) => '<button type="button" class="x-era" data-era="' + i + '">' + e[0] + '</button>').join('');
+
+const F = ['q', 'a', 'y0', 'y1', 'kw', 'k', 'g', 'c', 'sort'];
+const EL = {q: 'fQ', a: 'fA', y0: 'yFrom', y1: 'yTo', kw: 'fKw', k: 'fKind', g: 'fGrade', c: 'fCountry', sort: 'fSort'};
+const LBL = {q: 'Search', a: SEC.creator, y0: 'From', y1: 'To', kw: 'Keyword', k: 'Type', g: 'Evidence', c: 'Country'};
+let SHOWN = 50;
+function state() { const s = {}; F.forEach(f => s[f] = $(EL[f]).value.trim()); return s; }
+function setState(s) { F.forEach(f => { if (s[f] != null) $(EL[f]).value = s[f]; }); }
+function filtered() {
+  const s = state(), toks = norm(s.q).split(/\s+/).filter(Boolean), a = norm(s.a);
+  const y0 = parseInt(s.y0) || null, y1 = parseInt(s.y1) || null;
+  let r = DATA.filter(e =>
+    toks.every(t => e._h.includes(t)) &&
+    (!a || norm(e.by).includes(a)) &&
+    (!y0 || (e.y && e.y >= y0)) && (!y1 || (e.y && e.y <= y1)) &&
+    (!s.kw || (e.kw || []).includes(s.kw)) && (!s.k || e.k === s.k) && (!s.g || e.g === s.g) &&
+    (!s.c || (e.c || '').split(' / ').includes(s.c)));
+  const tk = e => norm(e.t).replace(/^(the|a|an) /, '');
+  const ak = e => norm(e._p[0] || e.by || '~').split(' ').slice(-1)[0];
+  const by = {
+    title: (x, y) => tk(x).localeCompare(tk(y)),
+    old: (x, y) => (x.y || 9999) - (y.y || 9999) || tk(x).localeCompare(tk(y)),
+    new: (x, y) => (y.y || 0) - (x.y || 0) || tk(x).localeCompare(tk(y)),
+    author: (x, y) => ak(x).localeCompare(ak(y)) || (x.y || 0) - (y.y || 0)
+  }[s.sort || 'title'];
+  return r.sort(by);
+}
+function card(e) {
+  const by = e.by ? '<div class="x-by">' + (e._p.length ? esc(e.by).replace(/^(Dir\.|Created by)\s*/, m => '<span style="color:var(--gray)">' + m + '</span>') : esc(e.by)) + '</div>' : '';
+  const byHtml = e.by ? '<div class="x-by">' + (/^(Dir\.|Created by)/.test(e.by) ? '<span style="color:var(--gray)">' + esc(e.by.match(/^(Dir\.|Created by)/)[0]) + '</span> ' : '') +
+    e._p.map(p => '<button type="button" data-person="' + esc(p) + '" title="Show all by ' + esc(p) + '">' + esc(p) + '</button>').join(', ') + '</div>' : '';
+  const meta = [];
+  if (e.src) meta.push(esc(e.src));
+  if (e.c) meta.push(esc(e.c));
+  if (e.g && e.g !== 'Fiction') meta.push('Evidence: <b>' + esc(e.g) + '</b>');
+  return '<article class="x-entry">' +
+    '<div class="x-top"><span class="x-k">' + esc(e.k) + '</span><span class="x-yrb">' + (e.y || 'n.d.') + '</span></div>' +
+    '<h3 class="x-title">' + esc(e.t) + '</h3>' + (e._p.length ? byHtml : by) +
+    '<p class="x-sum' + (e.pending ? ' pend' : '') + '">' + esc(e.s) + '</p>' +
+    (meta.length ? '<div class="x-meta">' + meta.join(' · ') + '</div>' : '') +
+    (e.kw && e.kw.length ? '<div class="x-kws">' + e.kw.map(k => '<button type="button" data-kw="' + esc(k) + '">' + esc(k) + '</button>').join('') + '</div>' : '') +
+    (e.note ? '<details class="x-note"><summary>Reader\'s note</summary><p>' + esc(e.note) + '</p></details>' : '') +
+    (e.url ? '<a class="x-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">Open source ↗</a>' : '') +
+    '</article>';
+}
+function render() {
+  const r = filtered(), s = state();
+  $('count').innerHTML = '<b>' + r.length + '</b> of ' + DATA.length + ' ' + SEC.unit;
+  $('list').innerHTML = r.length ? r.slice(0, SHOWN).map(card).join('') : '<div class="x-empty" style="grid-column:1/-1">Nothing matches those filters. <button type="button" class="x-btn red" data-reset>Clear filters</button></div>';
+  $('more').style.display = r.length > SHOWN ? '' : 'none';
+  $('moreBtn').textContent = 'Show ' + Math.min(50, r.length - SHOWN) + ' more';
+  $('active').innerHTML = F.filter(f => f !== 'sort' && s[f]).map(f => '<button type="button" class="x-pill" data-clear="' + f + '">' + LBL[f] + ': ' + esc(s[f]) + '</button>').join('');
+  document.querySelectorAll('.x-era').forEach((b, i) => b.classList.toggle('on', String(ERAS[i][1]) === s.y0 && String(ERAS[i][2]) === s.y1));
+  const q = new URLSearchParams(); F.forEach(f => s[f] && q.set(f, s[f]));
+  const h = q.toString(); history.replaceState(null, '', h ? '#' + h : location.pathname);
+}
+let t; function go(now) { SHOWN = 50; clearTimeout(t); if (now) render(); else t = setTimeout(render, 140); }
+['fQ', 'fA', 'yFrom', 'yTo'].forEach(id => $(id).addEventListener('input', () => go()));
+['fKw', 'fKind', 'fGrade', 'fCountry', 'fSort'].forEach(id => $(id).addEventListener('change', () => go(true)));
+$('moreBtn').addEventListener('click', () => { SHOWN += 50; render(); });
+$('reset').addEventListener('click', reset);
+function reset() { F.forEach(f => $(EL[f]).value = f === 'sort' ? 'title' : ''); go(true); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-kw],[data-person],[data-era],[data-clear],[data-reset]'); if (!b) return;
+  if (b.dataset.kw) { $('fKw').value = b.dataset.kw; }
+  else if (b.dataset.person) { $('fA').value = b.dataset.person; }
+  else if (b.dataset.era != null) { const er = ERAS[+b.dataset.era]; $('yFrom').value = er[1]; $('yTo').value = er[2]; }
+  else if (b.dataset.clear) { $(EL[b.dataset.clear]).value = ''; }
+  else if (b.hasAttribute('data-reset')) { reset(); return; }
+  go(true);
+  if (b.dataset.kw || b.dataset.person) $('filters').scrollIntoView({behavior: 'smooth', block: 'start'});
+});
+setState(Object.fromEntries(new URLSearchParams(location.hash.slice(1))));
+if (!$('fSort').value) $('fSort').value = 'title';
+render();
+
+</script>
+</body>
+</html>
