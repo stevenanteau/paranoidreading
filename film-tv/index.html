@@ -23,7 +23,7 @@ a{color:var(--red)}
 .x-f>label,.x-f>.x-lab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gray)}
 .x-f input,.x-f select{width:100%;font:inherit;font-size:14px;padding:8px 10px;background:var(--bg);color:var(--ink);border:1px solid var(--line);min-width:0}
 .x-f.q{grid-column:span 6}.x-f.a{grid-column:span 6}
-.x-f.y{grid-column:span 5}.x-f.kw{grid-column:span 7}
+.x-f.y{grid-column:span 4}.x-f.kw{grid-column:span 5}.x-f.pl{grid-column:span 3}
 .x-f.s3{grid-column:span 3}.x-f.s4{grid-column:span 4}
 .x-yr{display:flex;align-items:center;gap:8px}.x-yr input{width:50%}.x-yr span{color:var(--faint);font-size:12px}
 .x-eras{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
@@ -55,6 +55,11 @@ a{color:var(--red)}
 .x-kws button{all:unset;cursor:pointer;font:600 10.5px/1.4 "Inter Tight",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
 .x-kws button::before{content:"› ";color:var(--red)}
 .x-kws button:hover{color:var(--ink)}
+.x-pls{display:flex;flex-direction:column;gap:5px;margin:4px 0 2px;padding:8px 0 2px;border-top:1px dashed var(--line)}
+.x-plrow{display:flex;align-items:baseline;gap:8px;min-width:0}
+.x-pl{flex:0 0 auto;font:800 10px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--red);border:0;padding:5px 7px;cursor:pointer;transform:rotate(-1.5deg)}
+.x-pl:hover,.x-pl:focus-visible{background:var(--ink)}
+.x-pld{font-size:12px;color:var(--gray);line-height:1.4;min-width:0;overflow-wrap:anywhere}
 .x-note{font-size:13px;color:var(--ink2);border-left:2px solid var(--red);padding:2px 0 2px 10px;margin-top:4px}
 .x-note summary{cursor:pointer;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gray)}
 .x-note p{margin:6px 0 2px}
@@ -236,8 +241,9 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
   <form class="x-filters" id="filters" onsubmit="return false" role="search" aria-label="Filter Film and TV">
     <div class="x-f q"><label for="fQ">Search</label><input id="fQ" type="search" placeholder="Title, summary, keyword…" autocomplete="off"></div>
     <div class="x-f a"><label for="fA">Director or creator</label><input id="fA" type="search" list="dlPeople" placeholder="Any director" autocomplete="off"><datalist id="dlPeople"></datalist></div>
-    <div class="x-f y"><span class="x-lab">Year</span><div class="x-yr"><label class="x-sr" for="yFrom">From year</label><input id="yFrom" type="number" inputmode="numeric" min="0" max="2100"><span>to</span><label class="x-sr" for="yTo">To year</label><input id="yTo" type="number" inputmode="numeric" min="0" max="2100"></div></div>
+    <div class="x-f y"><span class="x-lab">Year</span><div class="x-yr"><label class="x-sr" for="yFrom">From year</label><input id="yFrom" type="number" inputmode="numeric" min="-3000" max="2100"><span>to</span><label class="x-sr" for="yTo">To year</label><input id="yTo" type="number" inputmode="numeric" min="-3000" max="2100"></div></div>
     <div class="x-f kw"><label for="fKw">Keyword</label><select id="fKw"></select></div>
+    <div class="x-f pl" id="wPl"><label for="fPl">Reading list</label><select id="fPl"></select></div>
     <div class="x-f s3"><label for="fKind">Type</label><select id="fKind"></select></div>
     <div class="x-f s3" id="wGrade"><label for="fGrade">Evidence</label><select id="fGrade"></select></div>
     <div class="x-f s3" id="wCountry"><label for="fCountry">Country</label><select id="fCountry"></select></div>
@@ -257,9 +263,10 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;
 const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const people = e => String(e.by || '').replace(/^(Dir\.|Directed by|Created by|Written by)\s*/i, '')
   .split(/\.\s*(?:Written by|Dir\.)\s*|\s+and\s+|\s*&\s*|,\s*|;\s*/).map(s => s.replace(/\s*\((eds?|ed)\.\)\s*$/,'').trim()).filter(s => s && s.length > 1 && !/^et al\.?$/i.test(s) && !/^others$/i.test(s));
-DATA.forEach((e, i) => { e._i = i; e._p = people(e); e._h = norm([e.t, e.by, e.s, e.src, e.k, e.c, e.g, (e.kw||[]).join(' '), e.note].join(' ')); });
+DATA.forEach((e, i) => { e._i = i; e._p = people(e); e._h = norm([e.t, e.by, e.s, e.src, e.k, e.c, e.g, (e.kw||[]).join(' '), e.note, (e.pl||[]).map(p => p.n + ' ' + p.d).join(' ')].join(' ')); });
 const YEARS = DATA.map(e => e.y).filter(Boolean), YMIN = Math.min(...YEARS), YMAX = Math.max(new Date().getFullYear(), ...YEARS);
 const NOW = new Date().getFullYear();
+const yr = y => y == null ? 'n.d.' : (y < 0 ? (-y) + ' BCE' : (y < 1000 ? 'c. ' + y : y));
 const ERAS = [['Any', '', ''], ['Before 1945', '', 1944], ['1945 to 1991', 1945, 1991], ['1992 to 2000', 1992, 2000], ['Since 2001', 2001, ''], ['Last ten years', NOW - 9, '']];
 function opts(sel, values, all) {
   sel.innerHTML = '<option value="">' + all + '</option>' + values.map(([v, n]) => '<option value="' + esc(v) + '">' + esc(v) + (n != null ? ' (' + n + ')' : '') + '</option>').join('');
@@ -269,6 +276,8 @@ function counted(fn) {
   return [...m.entries()];
 }
 opts($('fKw'), counted(e => e.kw).sort((a, b) => a[0].localeCompare(b[0])), 'All keywords');
+const lists = counted(e => (e.pl || []).map(p => p.n)).sort((a, b) => b[1] - a[1]);
+if (lists.length) opts($('fPl'), lists, 'Any list'); else $('wPl').style.display = 'none';
 opts($('fKind'), counted(e => e.k).sort((a, b) => b[1] - a[1]), 'All types');
 const grades = counted(e => e.g).sort((a, b) => b[1] - a[1]);
 if (grades.length > 1) opts($('fGrade'), grades, 'Any evidence'); else $('wGrade').style.display = 'none';
@@ -279,9 +288,9 @@ $('dlPeople').innerHTML = ppl.map(([p]) => '<option value="' + esc(p) + '">').jo
 $('yFrom').placeholder = YMIN; $('yTo').placeholder = YMAX;
 $('eras').innerHTML = ERAS.map((e, i) => '<button type="button" class="x-era" data-era="' + i + '">' + e[0] + '</button>').join('');
 
-const F = ['q', 'a', 'y0', 'y1', 'kw', 'k', 'g', 'c', 'sort'];
-const EL = {q: 'fQ', a: 'fA', y0: 'yFrom', y1: 'yTo', kw: 'fKw', k: 'fKind', g: 'fGrade', c: 'fCountry', sort: 'fSort'};
-const LBL = {q: 'Search', a: SEC.creator, y0: 'From', y1: 'To', kw: 'Keyword', k: 'Type', g: 'Evidence', c: 'Country'};
+const F = ['q', 'a', 'y0', 'y1', 'kw', 'pl', 'k', 'g', 'c', 'sort'];
+const EL = {q: 'fQ', a: 'fA', y0: 'yFrom', y1: 'yTo', kw: 'fKw', pl: 'fPl', k: 'fKind', g: 'fGrade', c: 'fCountry', sort: 'fSort'};
+const LBL = {q: 'Search', a: SEC.creator, y0: 'From', y1: 'To', kw: 'Keyword', pl: 'Reading list', k: 'Type', g: 'Evidence', c: 'Country'};
 let SHOWN = 50;
 function state() { const s = {}; F.forEach(f => s[f] = $(EL[f]).value.trim()); return s; }
 function setState(s) { F.forEach(f => { if (s[f] != null) $(EL[f]).value = s[f]; }); }
@@ -293,7 +302,7 @@ function filtered() {
     (!a || norm(e.by).includes(a)) &&
     (!y0 || (e.y && e.y >= y0)) && (!y1 || (e.y && e.y <= y1)) &&
     (!s.kw || (e.kw || []).includes(s.kw)) && (!s.k || e.k === s.k) && (!s.g || e.g === s.g) &&
-    (!s.c || (e.c || '').split(' / ').includes(s.c)));
+    (!s.c || (e.c || '').split(' / ').includes(s.c)) && (!s.pl || (e.pl || []).some(p => p.n === s.pl)));
   const tk = e => norm(e.t).replace(/^(the|a|an) /, '');
   const ak = e => norm(e._p[0] || e.by || '~').split(' ').slice(-1)[0];
   const by = {
@@ -313,10 +322,11 @@ function card(e) {
   if (e.c) meta.push(esc(e.c));
   if (e.g && e.g !== 'Fiction') meta.push('Evidence: <b>' + esc(e.g) + '</b>');
   return '<article class="x-entry">' +
-    '<div class="x-top"><span class="x-k">' + esc(e.k) + '</span><span class="x-yrb">' + (e.y || 'n.d.') + '</span></div>' +
+    '<div class="x-top"><span class="x-k">' + esc(e.k) + '</span><span class="x-yrb">' + yr(e.y) + '</span></div>' +
     '<h3 class="x-title">' + esc(e.t) + '</h3>' + (e._p.length ? byHtml : by) +
     '<p class="x-sum' + (e.pending ? ' pend' : '') + '">' + esc(e.s) + '</p>' +
     (meta.length ? '<div class="x-meta">' + meta.join(' · ') + '</div>' : '') +
+    (e.pl && e.pl.length ? '<div class="x-pls">' + e.pl.map(p => '<div class="x-plrow"><button type="button" class="x-pl" data-pl="' + esc(p.n) + '" title="Show everything on the ' + esc(p.n) + ' list">' + esc(p.n) + '</button>' + (p.d ? '<span class="x-pld">' + esc(p.d) + '</span>' : '') + '</div>').join('') + '</div>' : '') +
     (e.kw && e.kw.length ? '<div class="x-kws">' + e.kw.map(k => '<button type="button" data-kw="' + esc(k) + '">' + esc(k) + '</button>').join('') + '</div>' : '') +
     (e.note ? '<details class="x-note"><summary>Reader\'s note</summary><p>' + esc(e.note) + '</p></details>' : '') +
     (e.url ? '<a class="x-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">Open source ↗</a>' : '') +
@@ -335,19 +345,20 @@ function render() {
 }
 let t; function go(now) { SHOWN = 50; clearTimeout(t); if (now) render(); else t = setTimeout(render, 140); }
 ['fQ', 'fA', 'yFrom', 'yTo'].forEach(id => $(id).addEventListener('input', () => go()));
-['fKw', 'fKind', 'fGrade', 'fCountry', 'fSort'].forEach(id => $(id).addEventListener('change', () => go(true)));
+['fKw', 'fPl', 'fKind', 'fGrade', 'fCountry', 'fSort'].forEach(id => $(id).addEventListener('change', () => go(true)));
 $('moreBtn').addEventListener('click', () => { SHOWN += 50; render(); });
 $('reset').addEventListener('click', reset);
 function reset() { F.forEach(f => $(EL[f]).value = f === 'sort' ? 'title' : ''); go(true); }
 document.addEventListener('click', e => {
-  const b = e.target.closest('[data-kw],[data-person],[data-era],[data-clear],[data-reset]'); if (!b) return;
+  const b = e.target.closest('[data-kw],[data-pl],[data-person],[data-era],[data-clear],[data-reset]'); if (!b) return;
   if (b.dataset.kw) { $('fKw').value = b.dataset.kw; }
+  else if (b.dataset.pl) { $('fPl').value = b.dataset.pl; }
   else if (b.dataset.person) { $('fA').value = b.dataset.person; }
   else if (b.dataset.era != null) { const er = ERAS[+b.dataset.era]; $('yFrom').value = er[1]; $('yTo').value = er[2]; }
   else if (b.dataset.clear) { $(EL[b.dataset.clear]).value = ''; }
   else if (b.hasAttribute('data-reset')) { reset(); return; }
   go(true);
-  if (b.dataset.kw || b.dataset.person) $('filters').scrollIntoView({behavior: 'smooth', block: 'start'});
+  if (b.dataset.kw || b.dataset.pl || b.dataset.person) $('filters').scrollIntoView({behavior: 'smooth', block: 'start'});
 });
 setState(Object.fromEntries(new URLSearchParams(location.hash.slice(1))));
 if (!$('fSort').value) $('fSort').value = 'title';
