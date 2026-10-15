@@ -65,6 +65,7 @@ a{color:var(--red)}
 .x-note p{margin:6px 0 2px}
 .x-link{font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-top:4px;align-self:flex-start}
 .x-link:hover{text-decoration:underline}
+.x-pickwrap{border:2px solid var(--red);padding:12px 14px 14px;margin:0 0 18px}
 .x-more{display:flex;justify-content:center;margin:22px 0 0}
 .x-empty{border:1px dashed var(--line);padding:30px;text-align:center;color:var(--gray)}
 @media(max-width:900px){.x-list{grid-template-columns:1fr}}
@@ -213,6 +214,7 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
     <a href="/film-tv/" data-m="^/film-tv">Film and TV</a>
     <a href="/nonfiction/" data-m="^/nonfiction">Non-Fiction</a>
     <a href="/articles/" data-m="^/articles">Articles and Journals</a>
+    <a href="/random/" data-m="^/random">Random Pick</a>
   </nav>
   <p class="pr-label">Routes</p>
   <nav>
@@ -250,7 +252,8 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
     <div class="x-f s3"><label for="fSort">Sort</label><select id="fSort"><option value="title">Title, A to Z</option><option value="author">Author, A to Z</option><option value="old">Year, oldest first</option><option value="new">Year, newest first</option></select></div>
     <div class="x-eras" id="eras" aria-label="Year presets"></div>
   </form>
-  <div class="x-bar"><span class="x-count" id="count" aria-live="polite"></span><div class="x-active" id="active"></div><button type="button" class="x-btn" id="reset">Clear all</button></div>
+  <div class="x-bar"><span class="x-count" id="count" aria-live="polite"></span><div class="x-active" id="active"></div><span style="display:flex;gap:8px"><button type="button" class="x-btn red" id="rnd">Random pick from these</button><button type="button" class="x-btn" id="reset">Clear all</button></span></div>
+  <div id="pick"></div>
   <div class="x-list" id="list"></div>
   <div class="x-more" id="more"><button type="button" class="x-btn red" id="moreBtn">Show more</button></div>
 </main>
@@ -347,6 +350,8 @@ let t; function go(now) { SHOWN = 50; clearTimeout(t); if (now) render(); else t
 ['fQ', 'fA', 'yFrom', 'yTo'].forEach(id => $(id).addEventListener('input', () => go()));
 ['fKw', 'fPl', 'fKind', 'fGrade', 'fCountry', 'fSort'].forEach(id => $(id).addEventListener('change', () => go(true)));
 $('moreBtn').addEventListener('click', () => { SHOWN += 50; render(); });
+$('rnd').addEventListener('click', () => { const r = filtered().filter(e => !e.pending); if (!r.length) return; const e = r[Math.floor(Math.random() * r.length)];
+  $('pick').innerHTML = '<div class="x-pickwrap"><p class="x-eyebrow">Random pick from ' + r.length + ' entries</p><div class="x-list" style="grid-template-columns:1fr">' + card(e) + '</div></div>'; $('pick').scrollIntoView({behavior: 'smooth', block: 'nearest'}); });
 $('reset').addEventListener('click', reset);
 function reset() { F.forEach(f => $(EL[f]).value = f === 'sort' ? 'title' : ''); go(true); }
 document.addEventListener('click', e => {
