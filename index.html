@@ -48,7 +48,7 @@ a{color:var(--red)}
 .x-search input,.x-search select{font:inherit;font-size:15px;padding:10px 12px;background:var(--bg);color:var(--ink);border:1px solid var(--line);min-width:0}
 .x-search input{flex:1 1 260px}
 .x-search button{font:800 12px/1 "Inter Tight",sans-serif;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:var(--bg);border:0;padding:0 18px;cursor:pointer;min-height:42px}
-.x-routes{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}
+.x-routes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .x-route{border:1px solid var(--line);padding:16px 18px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px}
 .x-route:hover{border-color:var(--ink);background:var(--hov)}
 .x-route.lead{border-color:var(--red)}
@@ -200,6 +200,7 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
     <a href="/film-tv/" data-m="^/film-tv">Film and TV</a>
     <a href="/nonfiction/" data-m="^/nonfiction">Non-Fiction</a>
     <a href="/articles/" data-m="^/articles">Articles and Journals</a>
+    <a href="/random/" data-m="^/random">Random Pick</a>
   </nav>
   <p class="pr-label">Routes</p>
   <nav>
@@ -263,6 +264,7 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
   <p class="x-sh"><span>Or take a route</span></p>
   <div class="x-routes">
     <a class="x-route lead" href="/library/#build"><h3>Build a Curriculum</h3><p>Pick up to three topics, a length and a balance of fiction to non-fiction, and get a reading route drawn from the whole catalogue.</p><span>Build one →</span></a>
+    <a class="x-route" href="/random/"><h3>Random Pick</h3><p>Pick a format, an era or a podcast list, and draw one thing from the files.</p><span>Roll →</span></a>
     <a class="x-route" href="/curriculums/"><h3>Pre-Made Curriculums</h3><p>Themed routes and nonfiction shelves, ready to read.</p><span>Browse →</span></a>
     <a class="x-route" href="/slow-read/"><h3>Deep Reads</h3><p>Slow read guides through the hardest books on the list.</p><span>Read →</span></a>
   </div>
