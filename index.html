@@ -35,6 +35,15 @@ a{color:var(--red)}
 .x-tile li{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .x-tile li::before{content:"› ";color:var(--red)}
 .x-tile .x-go{font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px}
+.x-lists{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px}
+.x-list-card{border:1px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.x-list-card .x-pl{align-self:flex-start;font:800 10.5px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--red);padding:5px 8px;transform:rotate(-1.5deg)}
+.x-list-card h3{margin:4px 0 0;font-size:22px;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+.x-list-card p{margin:0;font-size:13.5px;color:var(--ink2)}
+.x-ll{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.x-ll a{font:600 11px/1 "Inter Tight",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);border:1px solid var(--line);padding:7px 9px;text-decoration:none}
+.x-ll a b{color:var(--red)}
+.x-ll a:hover{color:var(--ink);border-color:var(--ink)}
 .x-search{display:flex;gap:8px;flex-wrap:wrap;border:1px solid var(--line);padding:14px;margin:0 0 34px}
 .x-search input,.x-search select{font:inherit;font-size:15px;padding:10px 12px;background:var(--bg);color:var(--ink);border:1px solid var(--line);min-width:0}
 .x-search input{flex:1 1 260px}
@@ -46,7 +55,7 @@ a{color:var(--red)}
 .x-route h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
 .x-route p{margin:0;font-size:13.5px;color:var(--ink2)}
 .x-route span{font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:auto;padding-top:6px}
-@media(max-width:900px){.x-portal{grid-template-columns:1fr}.x-routes{grid-template-columns:1fr}.x-mission{grid-template-columns:1fr}.x-mission div+div{border-left:0;border-top:1px dashed var(--line)}.x-tile{min-height:0}}
+@media(max-width:900px){.x-lists{grid-template-columns:1fr}.x-portal{grid-template-columns:1fr}.x-routes{grid-template-columns:1fr}.x-mission{grid-template-columns:1fr}.x-mission div+div{border-left:0;border-top:1px dashed var(--line)}.x-tile{min-height:0}}
 </style>
 <!--pr-theme--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><style id="pr-theme">:root{--file:"PR/0001"}
 /* Paranoid Reading theme: Declassified palette, Radical Press type. Layered over each page's own CSS. */
@@ -212,7 +221,7 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
 </aside><script>(function(){var p=location.pathname;document.querySelectorAll('.pr-side nav a').forEach(function(a){if(new RegExp(a.getAttribute('data-m')).test(p))a.classList.add('on');});})();</script><!--/pr-theme-->
 <main class="x-main">
   <section class="hero">
-    <p class="x-eyebrow">The Paranoid Reading List · 997 entries on file</p>
+    <p class="x-eyebrow">The Paranoid Reading List · 1224 entries on file</p>
     <h1>Choose Your Media</h1>
     <p class="x-lede">A one stop reading list for the parapolitical, the paranoid and the Marxist. Fiction to conceive the deep event, non-fiction and the academic record to document it, and film to watch it play out. Pick a format, then filter by year, keyword, author or director.</p>
     <div class="x-mission">
@@ -224,22 +233,26 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
   <p class="x-sh"><span>Four formats</span><span>Every entry: title, year, author or director, type, keywords and a one sentence summary</span></p>
   <div class="x-portal">
     <a class="x-tile" href="/novels/"><span class="x-ex">EXHIBIT A</span>
-      <h2>Fiction</h2><span class="x-n">281 entries</span>
-      <p>Fiction is how the deep event gets conceived before it gets documented. Paranoid novels, noir, weird fiction, dystopias and the bleak international canon.</p>
+      <h2>Fiction</h2><span class="x-n">438 entries</span>
+      <p>Fiction is how the deep event gets conceived before it gets documented. Paranoid novels, noir, weird fiction, dystopias, the modernists and the poets.</p>
       <ul><li>The Twenty Days of Turin <span style="color:var(--faint)">(1977)</span></li><li>Gravity&#x27;s Rainbow <span style="color:var(--faint)">(1973)</span></li><li>American Tabloid <span style="color:var(--faint)">(1995)</span></li><li>The Iron Heel <span style="color:var(--faint)">(1908)</span></li></ul><span class="x-go">Enter the fiction files →</span></a>
     <a class="x-tile" href="/film-tv/"><span class="x-ex">EXHIBIT B</span>
       <h2>Film and TV</h2><span class="x-n">105 entries</span>
       <p>The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system.</p>
       <ul><li>The Parallax View <span style="color:var(--faint)">(1974)</span></li><li>Z <span style="color:var(--faint)">(1969)</span></li><li>Investigation of a Citizen Above Suspicion <span style="color:var(--faint)">(1970)</span></li><li>The Wire <span style="color:var(--faint)">(2002)</span></li></ul><span class="x-go">Enter the film and tv files →</span></a>
     <a class="x-tile" href="/nonfiction/"><span class="x-ex">EXHIBIT C</span>
-      <h2>Non-Fiction</h2><span class="x-n">390 entries</span>
+      <h2>Non-Fiction</h2><span class="x-n">456 entries</span>
       <p>The documentary shelf: covert action, Gladio, the CIA, fascism, organized crime, empire, and the Marxist theory to read it all with. Graded by kind of evidence.</p>
       <ul><li>NATO&#x27;s Secret Armies <span style="color:var(--faint)">(2005)</span></li><li>Deep Politics and the Death of JFK <span style="color:var(--faint)">(1993)</span></li><li>The Jakarta Method <span style="color:var(--faint)">(2020)</span></li><li>Capital <span style="color:var(--faint)">(1867)</span></li></ul><span class="x-go">Enter the non-fiction files →</span></a>
     <a class="x-tile" href="/articles/"><span class="x-ex">EXHIBIT D</span>
-      <h2>Articles and Journals</h2><span class="x-n">221 entries</span>
+      <h2>Articles and Journals</h2><span class="x-n">225 entries</span>
       <p>Peer reviewed papers, parapolitical journals, investigative reportage and the press record, from the 1990 Gladio revelations to now.</p>
       <ul><li>Covert Netherworld <span style="color:var(--faint)">(2016)</span></li><li>On Terrorism and the State <span style="color:var(--faint)">(1979)</span></li><li>The ghost of Machiavelli <span style="color:var(--faint)">(2006)</span></li><li>Palantir Secretly Used New Orleans to Test Predictive Policing <span style="color:var(--faint)">(2018)</span></li></ul><span class="x-go">Enter the articles and journals files →</span></a>
     
+  </div>
+  <p class="x-sh"><span>Podcast reading lists</span><span>Each entry carries a flair for the lists it appears on</span></p>
+  <div class="x-lists">
+    <div class="x-list-card"><span class="x-pl">TrueAnon</span><h3>302 entries</h3><p>The TrueAnon listener reading list: Gladio, the CIA, the Kennedys, dark money, Epstein, and the right&#x27;s own texts read to be recognized.</p><div class="x-ll"><a href="/novels/#pl=TrueAnon">Fiction <b>15</b></a> <a href="/nonfiction/#pl=TrueAnon">Non-Fiction <b>287</b></a></div></div><div class="x-list-card"><span class="x-pl">Death Is Just Around the Corner</span><h3>235 entries</h3><p>A literary list of modernist novels, late British modernist poetry, philosophy and parapolitical history.</p><div class="x-ll"><a href="/novels/#pl=Death%20Is%20Just%20Around%20the%20Corner">Fiction <b>170</b></a> <a href="/nonfiction/#pl=Death%20Is%20Just%20Around%20the%20Corner">Non-Fiction <b>61</b></a> <a href="/articles/#pl=Death%20Is%20Just%20Around%20the%20Corner">Articles and Journals <b>4</b></a></div></div><div class="x-list-card"><span class="x-pl">Matt Christman</span><h3>38 entries</h3><p>Matt &quot;Cushbomb&quot; Christman&#x27;s recommendations as ranked by listener votes: Reconstruction, the American right, Gladio and the big novels.</p><div class="x-ll"><a href="/novels/#pl=Matt%20Christman">Fiction <b>10</b></a> <a href="/nonfiction/#pl=Matt%20Christman">Non-Fiction <b>28</b></a></div></div>
   </div>
   <p class="x-sh"><span>Search a format</span></p>
   <form class="x-search" id="qs" role="search">
