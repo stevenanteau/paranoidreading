@@ -16,12 +16,16 @@ a{color:var(--red)}
 .x-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(max-width:760px){.x-main{padding:20px 16px 60px}.x-lede{font-size:16px}}
 
-.x-botm{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:start;border:1px solid var(--ink);padding:22px;margin:0 0 30px;background:var(--bg2,transparent)}
-.x-botm img{width:200px;height:auto;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--line);display:block}
-.x-botm h2{margin:4px 0 6px;font-size:clamp(28px,5vw,42px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+.x-botms{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 30px}
+.x-botm{display:flex;flex-direction:column;gap:16px;border:1px solid var(--ink);padding:20px;min-width:0}
+.x-bimg{display:flex;justify-content:center;align-items:center;background:var(--bg2,rgba(255,255,255,.03));border:1px solid var(--line);height:360px;padding:12px}
+.x-bimg img{max-height:100%;max-width:100%;width:auto;height:auto;display:block;object-fit:contain}
+.x-btxt{display:flex;flex-direction:column;flex:1;min-width:0}
+.x-botm h2{margin:4px 0 6px;font-size:clamp(24px,3.4vw,34px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
 .x-botm p{margin:0 0 10px}
 .x-bmeta{color:var(--gray);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
-.x-bgo{display:inline-block;font:800 12px/1 "Inter Tight",sans-serif;letter-spacing:.14em;text-transform:uppercase;background:var(--red);color:var(--bg);padding:12px 16px;text-decoration:none}
+.x-bsum{flex:1}
+.x-bgo{align-self:flex-start;display:inline-block;font:800 12px/1 "Inter Tight",sans-serif;letter-spacing:.14em;text-transform:uppercase;background:var(--red);color:var(--bg);padding:12px 16px;text-decoration:none;margin-top:auto}
 .x-lbtn{align-self:flex-start;font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--ink);border:1px solid var(--ink);padding:10px 12px;cursor:pointer;margin-top:4px}
 .x-lbtn:hover{background:var(--ink);color:var(--bg)}
 .x-lpanel{border:1px solid var(--ink);padding:18px;margin:14px 0 30px}
@@ -36,7 +40,7 @@ a{color:var(--red)}
 .x-lrow:hover b{color:var(--red)}
 .x-lrow span{color:var(--gray);font-size:13px}
 .x-lrow em{grid-column:1/-1;font-style:normal;font-size:12px;color:var(--faint)}
-@media(max-width:640px){.x-botm{grid-template-columns:1fr}.x-botm img{width:140px}.x-lrow{grid-template-columns:1fr}}
+@media(max-width:720px){.x-botms{grid-template-columns:1fr}.x-bimg{height:300px}.x-lrow{grid-template-columns:1fr}}
 
 .hero{padding:24px 0 26px;border-bottom:1px solid var(--ink);margin-bottom:28px}
 .hero h1{max-width:760px}
@@ -244,7 +248,7 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
 </aside><script>(function(){var p=location.pathname;document.querySelectorAll('.pr-side nav a').forEach(function(a){if(new RegExp(a.getAttribute('data-m')).test(p))a.classList.add('on');});})();</script><!--/pr-theme-->
 <main class="x-main">
   <section class="hero">
-    <p class="x-eyebrow">The Paranoid Reading List · 1314 entries on file</p>
+    <p class="x-eyebrow">The Paranoid Reading List · 1323 entries on file</p>
     <h1>Choose Your Media</h1>
     <p class="x-lede">A one stop reading list for the parapolitical, the paranoid and the Marxist. Fiction to conceive the deep event, non-fiction and the academic record to document it, and film to watch it play out. Pick a format, then filter by year, keyword, author or director.</p>
     <div class="x-mission">
@@ -253,21 +257,25 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
       <div><b>The Marxist</b><span>Dialectical materialism, the spectacle, empire and the theory to read it all with.</span></div>
     </div>
   </section>
-  <section class="x-botm" aria-label="Book of the Month">
-    <img src="/img/twenty-days-of-turin.jpg" alt="Cover of The Twenty Days of Turin" width="200" height="300" loading="lazy">
-    <div><p class="x-eyebrow">Book of the Month · October and November 2026</p>
+  <section class="x-botms" aria-label="Book and Movie of the Month"><article class="x-botm"><div class="x-bimg"><img src="/img/twenty-days-of-turin.jpg" alt="Book of the Month cover: The Twenty Days of Turin" width="200" height="300" loading="lazy"></div>
+    <div class="x-btxt"><p class="x-eyebrow">Book of the Month · October and November 2026</p>
     <h2>The Twenty Days of Turin</h2>
     <p class="x-bmeta">Giorgio De Maria · 1977 · Fiction</p>
-    <p>A Turin writer investigates a forgotten wave of nocturnal killings and a citizens&#x27; &quot;Library&quot; of confessions, an allegory of Italy&#x27;s Years of Lead and state terror.</p>
-    <a class="x-bgo" href="/novels/#q=The%20Twenty%20Days%20of%20Turin">Open the entry →</a></div></section>
+    <p class="x-bsum">A Turin writer investigates a forgotten wave of nocturnal killings and a citizens&#x27; &quot;Library&quot; of confessions, an allegory of Italy&#x27;s Years of Lead and state terror.</p>
+    <a class="x-bgo" href="/novels/#q=The%20Twenty%20Days%20of%20Turin">Open the entry →</a></div></article><article class="x-botm"><div class="x-bimg"><img src="/img/red-rooms.jpg" alt="Movie of the Month cover: Red Rooms" width="200" height="300" loading="lazy"></div>
+    <div class="x-btxt"><p class="x-eyebrow">Movie of the Month · October and November 2026</p>
+    <h2>Red Rooms</h2>
+    <p class="x-bmeta">Dir. Pascal Plante · 2023 · Film and TV</p>
+    <p class="x-bsum">A Montreal model becomes obsessed with the trial of a man accused of filming the torture of three girls for the dark web.</p>
+    <a class="x-bgo" href="/film-tv/#q=Red%20Rooms">Open the entry →</a></div></article></section>
   <p class="x-sh"><span>Four formats</span><span>Every entry: title, year, author or director, type, keywords and a one sentence summary</span></p>
   <div class="x-portal">
     <a class="x-tile" href="/novels/"><span class="x-ex">EXHIBIT A</span>
-      <h2>Fiction</h2><span class="x-n">451 entries</span>
+      <h2>Fiction</h2><span class="x-n">452 entries</span>
       <p>Fiction is how the deep event gets conceived before it gets documented. Paranoid novels, noir, weird fiction, dystopias, the modernists and the poets.</p>
       <ul><li>The Twenty Days of Turin <span style="color:var(--faint)">(1977)</span></li><li>Gravity&#x27;s Rainbow <span style="color:var(--faint)">(1973)</span></li><li>American Tabloid <span style="color:var(--faint)">(1995)</span></li><li>The Iron Heel <span style="color:var(--faint)">(1908)</span></li></ul><span class="x-go">Enter the fiction files →</span></a>
     <a class="x-tile" href="/film-tv/"><span class="x-ex">EXHIBIT B</span>
-      <h2>Film and TV</h2><span class="x-n">105 entries</span>
+      <h2>Film and TV</h2><span class="x-n">107 entries</span>
       <p>The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system.</p>
       <ul><li>The Parallax View <span style="color:var(--faint)">(1974)</span></li><li>Z <span style="color:var(--faint)">(1969)</span></li><li>Investigation of a Citizen Above Suspicion <span style="color:var(--faint)">(1970)</span></li><li>The Wire <span style="color:var(--faint)">(2002)</span></li></ul><span class="x-go">Enter the film and tv files →</span></a>
     <a class="x-tile" href="/nonfiction/"><span class="x-ex">EXHIBIT C</span>
@@ -275,7 +283,7 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
       <p>The documentary shelf: covert action, Gladio, the CIA, fascism, organized crime, empire, and the Marxist theory to read it all with. Graded by kind of evidence.</p>
       <ul><li>NATO&#x27;s Secret Armies <span style="color:var(--faint)">(2005)</span></li><li>Deep Politics and the Death of JFK <span style="color:var(--faint)">(1993)</span></li><li>The Jakarta Method <span style="color:var(--faint)">(2020)</span></li><li>Capital <span style="color:var(--faint)">(1867)</span></li></ul><span class="x-go">Enter the non-fiction files →</span></a>
     <a class="x-tile" href="/articles/"><span class="x-ex">EXHIBIT D</span>
-      <h2>Articles and Journals</h2><span class="x-n">225 entries</span>
+      <h2>Articles and Journals</h2><span class="x-n">231 entries</span>
       <p>Peer reviewed papers, parapolitical journals, investigative reportage and the press record, from the 1990 Gladio revelations to now.</p>
       <ul><li>Covert Netherworld <span style="color:var(--faint)">(2016)</span></li><li>On Terrorism and the State <span style="color:var(--faint)">(1979)</span></li><li>The ghost of Machiavelli <span style="color:var(--faint)">(2006)</span></li><li>Palantir Secretly Used New Orleans to Test Predictive Policing <span style="color:var(--faint)">(2018)</span></li></ul><span class="x-go">Enter the articles and journals files →</span></a>
     
