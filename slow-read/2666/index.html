@@ -208,7 +208,11 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
 </head>
 <body><!--pr-theme--><aside class="pr-side" aria-label="Site navigation">
   <a class="pr-sigilrow" href="/"><svg class="pr-sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke="#d7263d" stroke-width="3" fill="none" opacity="0.9"><circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="58"/><polygon points="100,20 145,120 55,72 155,72 65,120"/></g></svg><span class="pr-brand">Paranoid Reading</span></a>
-  <p class="pr-tagline">A reading list for the parapolitical, the paranoid and the Marxist.</p>
+  <style>.pr-side .pr-social.top{border-top:0;border-bottom:1px dashed #3d3a33;padding:6px 0 12px;margin:8px 0 14px}</style>
+  <div class="pr-social top">
+    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Watch on YouTube</a>
+    <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Follow on Pagebound</a>
+  </div>
   <p class="pr-label">Choose Your Media</p>
   <nav>
     <a href="/" data-m="^/$|^/index.html$">All Media</a>
@@ -226,10 +230,6 @@ body:has(> .pr-side) header .brand,body:has(> .pr-side) .layout .sidebar{display
     <a href="/curriculums/" data-m="^/curriculums">Pre-Made Curriculums</a>
     <a href="/library/#build" data-m="^/library">Build a Curriculum</a>
   </nav>
-  <div class="pr-social">
-    <a href="https://www.youtube.com/@ParanoidReading" target="_blank" rel="noopener">Watch on YouTube</a>
-    <a href="https://pagebound.co/users/stevenanteau" target="_blank" rel="noopener">Follow on Pagebound</a>
-  </div>
 </aside><script>(function(){var p=location.pathname;document.querySelectorAll('.pr-side nav a').forEach(function(a){if(new RegExp(a.getAttribute('data-m')).test(p))a.classList.add('on');});})();</script><!--/pr-theme-->
 
 <header>
