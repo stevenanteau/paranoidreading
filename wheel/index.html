@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Wheel | Paranoid Reading</title>
+<meta name="description" content="Add titles to a wheel and spin it to decide what to read or watch next.">
+<link rel="canonical" href="https://paranoidreading.com/wheel/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem('pr-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<style>
+:root{color-scheme:dark;--red:#d7263d;--red2:#e2475b;--reddim:#7d1622;--ink:#e6e1d3;--ink2:#c9c3b3;--gray:#8e897d;--faint:#5c584f;--line:#3d3a33;--bg:#0b0b0a;--panel:#11110f;--hov:#141412;--onred:#fff}
+html[data-theme="light"]{color-scheme:light;--red:#ba1c31;--red2:#bd192e;--reddim:#801320;--ink:#39362c;--ink2:#545048;--gray:#83817b;--faint:#acaba7;--line:#c6c4c1;--bg:#ececeb;--panel:#e7e7e6;--hov:#e5e5e3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter Tight",Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--red)}button,input,select{font-family:inherit}
+header{border-bottom:1px solid var(--line)}
+.head-inner{max-width:1040px;margin:0 auto;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.brand small{display:block;color:var(--red);font-weight:500}
+.brand a{text-decoration:none;color:var(--ink)}
+.head-inner nav{display:flex;align-items:center;gap:18px}
+.head-inner nav a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--ink2)}
+.head-inner nav a:hover,.head-inner nav a.on{color:var(--red)}
+.pr-theme-btn{display:inline-flex;align-items:center;gap:6px;background:var(--hov);color:var(--ink);border:1px solid var(--line);padding:7px 10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.pr-theme-btn svg{width:13px;height:13px}
+.pr-theme-btn:hover{border-color:var(--red)}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 60px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:600}
+h1{margin:4px 0 6px;font-size:clamp(40px,8vw,76px);line-height:.95;letter-spacing:-.05em;text-transform:uppercase;font-weight:900}
+.tag{margin:0 0 26px;color:var(--ink2);max-width:640px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);padding:16px}
+.panel+.panel{margin-top:16px}
+.panel h2{margin:0 0 10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700}
+.stage{position:relative;max-width:560px;margin:0 auto}
+canvas{width:100%;height:auto;display:block}
+.pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:30px solid var(--red);filter:drop-shadow(0 2px 2px rgba(0,0,0,.5));z-index:2}
+.spin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22%;aspect-ratio:1;border-radius:50%;border:3px solid var(--bg);background:var(--red);color:var(--onred);font-weight:800;font-size:13px;letter-spacing:.14em;cursor:pointer;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.spin:hover:not(:disabled){background:var(--red2)}
+.spin:disabled{opacity:.5;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--red2);outline-offset:2px}
+.result{margin:18px auto 0;max-width:560px;text-align:center;min-height:84px}
+.result .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
+.result .win{font-size:30px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1;color:var(--red);margin:4px 0}
+.result .by{color:var(--gray)}
+.row{display:flex;gap:8px}
+input[type=text],select{flex:1;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:0;font-size:16px;background:var(--bg);color:var(--ink)}
+select{flex:none}
+input::placeholder{color:var(--gray)}
+.btn{padding:9px 14px;border:1px solid var(--red);background:var(--red);color:var(--onred);cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.btn.ghost{background:transparent;color:var(--red)}
+.btn:hover:not(:disabled){background:var(--red2);border-color:var(--red2);color:var(--onred)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{padding:5px 9px;font-size:10px}
+ul.items{list-style:none;margin:12px 0 0;padding:0;max-height:300px;overflow:auto}
+ul.items li{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--line)}
+ul.items li:first-child{border-top:0}
+.sw{width:12px;height:12px;flex:none;border:1px solid var(--line)}
+.nm{flex:1;min-width:0;overflow-wrap:anywhere}
+.x{border:0;background:none;color:var(--gray);font-size:20px;line-height:1;cursor:pointer;padding:2px 6px}
+.x:hover{color:var(--red)}
+.hint{font-size:12px;color:var(--gray);margin:8px 0 0}
+.hits{list-style:none;margin:8px 0 0;padding:0}
+.hits li{border-top:1px solid var(--line)}
+.hits button{width:100%;text-align:left;background:none;border:0;padding:7px 2px;cursor:pointer;font-size:15px;color:var(--ink)}
+.hits button:hover{background:var(--hov)}
+.hits small{color:var(--gray)}
+.tools{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.sr{position:absolute;left:-9999px}
+.secs{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:13px;color:var(--ink2)}
+.secs input,.hint input{accent-color:var(--red)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:4px;background:var(--hov);border:1px solid var(--red);color:var(--red);padding:3px 4px 3px 10px;font-size:12px;letter-spacing:.04em}
+.chip .x{font-size:16px;padding:0 4px;color:var(--red)}
+</style>
+</head>
+<body>
+<header><div class="head-inner">
+  <div class="brand"><a href="/"><small>File No. PR/0001</small>Paranoid Reading</a></div>
+  <nav>
+    <a href="/library/">The Library</a><a href="/wheel/" class="on">The Wheel</a>
+    <button type="button" class="pr-theme-btn" id="prTheme" aria-label="Switch to light mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"></path></svg><span>Light mode</span></button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="eyebrow">Tool / Random selection</div>
+  <h1>The Wheel</h1>
+  <p class="tag">Add titles, then let chance pick what you read or watch next.</p>
+
+  <div class="grid">
+    <section>
+      <div class="stage">
+        <div class="pointer" aria-hidden="true"></div>
+        <canvas id="wheel" width="1000" height="1000" role="img" aria-label="Spinning wheel of your items"></canvas>
+        <button class="spin" id="spin" type="button">SPIN</button>
+      </div>
+      <div class="result" id="result" aria-live="polite"></div>
+    </section>
+
+    <aside>
+      <div class="panel">
+        <h2>Your items</h2>
+        <form class="row" id="addForm">
+          <label class="sr" for="newItem">New item</label>
+          <input type="text" id="newItem" maxlength="80" placeholder="Type an item" autocomplete="off">
+          <button class="btn" type="submit">Add</button>
+        </form>
+        <ul class="items" id="list"></ul>
+        <div class="tools">
+          <button class="btn ghost sm" id="shuffle" type="button">Shuffle order</button>
+          <button class="btn ghost sm" id="clear" type="button">Clear all</button>
+        </div>
+        <p class="hint" id="count"></p>
+      </div>
+
+      <div class="panel">
+        <h2>Add from the catalogue</h2>
+        <label class="sr" for="q">Search the catalogue</label>
+        <input type="text" id="q" placeholder="Search titles or authors" autocomplete="off" style="width:100%">
+        <ul class="hits" id="hits"></ul>
+        <p class="hint" id="qhint">Loading catalogue...</p>
+      </div>
+
+      <div class="panel">
+        <h2>Fill by keywords</h2>
+        <label class="sr" for="kwIn">Keyword</label>
+        <input type="text" id="kwIn" placeholder="Pick up to 3 keywords" autocomplete="off" style="width:100%" disabled>
+        <ul class="hits" id="kwHits"></ul>
+        <div class="chips" id="chips"></div>
+        <div class="secs" id="secs" role="group" aria-label="Sections">
+          <label><input type="checkbox" value="novel" checked> Fiction</label>
+          <label><input type="checkbox" value="screen" checked> Film and TV</label>
+          <label><input type="checkbox" value="monograph" checked> Non-Fiction</label>
+          <label><input type="checkbox" value="article" checked> Articles</label>
+        </div>
+        <div class="row" style="margin-top:12px;align-items:center">
+          <label for="kwN" class="hint" style="margin:0">Titles</label>
+          <select id="kwN">
+            <option>3</option><option>5</option><option selected>8</option><option>10</option><option>12</option><option>16</option><option>20</option>
+          </select>
+          <button class="btn" id="kwGo" type="button" disabled>Populate wheel</button>
+        </div>
+        <label class="hint" style="display:block"><input type="checkbox" id="kwRep" checked> Replace what is on the wheel</label>
+        <p class="hint" id="kwMsg">Titles that match more of your keywords come first.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script>
+(function(){
+  var MAX = 60, KEY = 'pr-wheel-items';
+  var COLORS, TEXT, BG, RING, MUTED, FONT = '"Inter Tight", Helvetica, Arial, sans-serif';
+  function pal(){
+    var light = document.documentElement.getAttribute('data-theme') === 'light';
+    if (light){
+      COLORS = ['#ba1c31','#dedcd8','#801320','#cfcdc9','#92201d','#e3e2df'];
+      TEXT = ['#fff','#39362c','#fff','#39362c','#fff','#39362c'];
+      BG = '#ececeb'; RING = '#ba1c31'; MUTED = '#83817b';
+    } else {
+      COLORS = ['#d7263d','#2a2926','#7d1622','#3d3a33','#a31c2e','#1c1b18'];
+      TEXT = ['#fff','#e6e1d3','#fff','#e6e1d3','#fff','#e6e1d3'];
+      BG = '#0b0b0a'; RING = '#d7263d'; MUTED = '#8e897d';
+    }
+  }
+  pal();
+  var items = [], angle = 0, spinning = false, catalogue = [];
+  var cv = document.getElementById('wheel'), ctx = cv.getContext('2d');
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function load(){
+    try { var s = JSON.parse(localStorage.getItem(KEY) || '[]'); if (Array.isArray(s)) items = s.slice(0, MAX); } catch(e){}
+    if (!items.length) items = [];
+  }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(items)); } catch(e){} }
+
+  function trunc(t, n){ return t.length > n ? t.slice(0, n - 1) + '…' : t; }
+
+  function draw(){
+    var W = cv.width, R = W / 2 - 8, c = W / 2, n = items.length;
+    ctx.clearRect(0, 0, W, W);
+    ctx.save(); ctx.translate(c, c);
+    if (!n){
+      ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2);
+      ctx.fillStyle = COLORS[1]; ctx.fill();
+      ctx.lineWidth = 6; ctx.strokeStyle = RING; ctx.stroke();
+      ctx.fillStyle = MUTED; ctx.font = '36px ' + FONT; ctx.textAlign = 'center';
+      ctx.fillText('Add items to begin', 0, 90 * 0 + 150);
+      ctx.restore(); return;
+    }
+    var step = Math.PI * 2 / n;
+    ctx.rotate(angle);
+    for (var i = 0; i < n; i++){
+      var a0 = i * step - Math.PI / 2, a1 = a0 + step;
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, R, a0, a1); ctx.closePath();
+      ctx.fillStyle = COLORS[i % COLORS.length]; ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = BG; ctx.stroke();
+      ctx.save();
+      ctx.rotate(a0 + step / 2);
+      ctx.fillStyle = TEXT[i % TEXT.length];
+      ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+      var fs = Math.max(18, Math.min(38, 560 / Math.max(n, 6) * 1.1));
+      ctx.font = '600 ' + fs + 'px ' + FONT;
+      ctx.fillText(trunc(items[i], n > 24 ? 14 : 24), R - 28, 0);
+      ctx.restore();
+    }
+    ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2);
+    ctx.lineWidth = 8; ctx.strokeStyle = RING; ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderList(){
+    var ul = $('list'); ul.innerHTML = '';
+    items.forEach(function(t, i){
+      var li = document.createElement('li');
+      var sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = COLORS[i % COLORS.length];
+      var nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = t;
+      var x = document.createElement('button'); x.className = 'x'; x.type = 'button';
+      x.setAttribute('aria-label', 'Remove ' + t); x.textContent = '×';
+      x.onclick = function(){ if (spinning) return; items.splice(i, 1); changed(); };
+      li.append(sw, nm, x); ul.appendChild(li);
+    });
+    $('count').textContent = items.length + ' of ' + MAX + ' items. Saved in this browser.';
+    $('spin').disabled = spinning || items.length < 2;
+  }
+
+  function changed(){ save(); renderList(); draw(); }
+
+  function add(t){
+    t = (t || '').replace(/\s+/g, ' ').trim();
+    if (!t || spinning) return false;
+    if (items.length >= MAX){ $('count').textContent = 'The wheel is full (' + MAX + ').'; return false; }
+    if (items.some(function(x){ return x.toLowerCase() === t.toLowerCase(); })) return false;
+    items.push(t); $('result').innerHTML = ''; changed(); return true;
+  }
+
+  $('addForm').onsubmit = function(e){
+    e.preventDefault();
+    var v = $('newItem').value;
+    if (add(v)) $('newItem').value = '';
+    $('newItem').focus();
+  };
+  $('clear').onclick = function(){ if (spinning || !items.length) return; items = []; $('result').innerHTML = ''; changed(); };
+  $('shuffle').onclick = function(){
+    if (spinning) return;
+    for (var i = items.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = items[i]; items[i] = items[j]; items[j] = t; }
+    changed();
+  };
+
+  function ease(t){ return 1 - Math.pow(1 - t, 4); }
+
+  function spin(){
+    if (spinning || items.length < 2) return;
+    spinning = true; renderList(); $('result').innerHTML = '';
+    var n = items.length, step = Math.PI * 2 / n;
+    var winner = Math.floor(Math.random() * n);
+    // Slice i spans [i*step, (i+1)*step) from the top; rotating by -(centre) puts it under the pointer.
+    var jitter = (Math.random() - 0.5) * step * 0.8;
+    var centre = winner * step + step / 2 + jitter;
+    var turns = reduce ? 1 : 5 + Math.floor(Math.random() * 3);
+    var cur = ((angle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+    var target = angle - cur + Math.PI * 2 * turns + (Math.PI * 2 - centre);
+    var start = angle, dur = reduce ? 600 : 5200, t0 = null;
+    function frame(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      angle = start + (target - start) * ease(p);
+      draw();
+      if (p < 1) return requestAnimationFrame(frame);
+      angle = target; spinning = false; draw(); renderList(); show(winner);
+    }
+    requestAnimationFrame(frame);
+  }
+  $('spin').onclick = spin;
+
+  function show(i){
+    var r = $('result'); r.innerHTML = '';
+    var l = document.createElement('div'); l.className = 'lbl'; l.textContent = 'The wheel chose';
+    var w = document.createElement('div'); w.className = 'win'; w.textContent = items[i];
+    var row = document.createElement('div'); row.className = 'tools'; row.style.justifyContent = 'center';
+    var rm = document.createElement('button'); rm.className = 'btn ghost sm'; rm.type = 'button'; rm.textContent = 'Remove it and spin again';
+    rm.onclick = function(){ items.splice(i, 1); r.innerHTML = ''; changed(); };
+    row.appendChild(rm);
+    r.append(l, w, row);
+  }
+
+  // Catalogue quick add
+  function loadCatalogue(){
+    fetch('/data/catalogue.json').then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(d){
+      var arr = Array.isArray(d) ? d : (d.items || d.entries || []);
+      catalogue = arr.filter(function(x){ return x && (x.t || x.title); }).map(function(x){ return {title: x.t || x.title, by: x.by || '', year: x.y || x.year || '', kw: x.kw || [], fmt: x.x || ''}; });
+      buildKw();
+      $('qhint').textContent = catalogue.length.toLocaleString() + ' entries. Click one to add it.';
+    }).catch(function(){
+      $('qhint').textContent = 'Catalogue unavailable here. You can still type your own items.';
+      $('q').disabled = true;
+    });
+  }
+  $('q').addEventListener('input', function(){
+    var q = this.value.trim().toLowerCase(), ul = $('hits'); ul.innerHTML = '';
+    if (q.length < 2) return;
+    var out = [];
+    for (var i = 0; i < catalogue.length && out.length < 8; i++){
+      var e = catalogue[i], hay = (e.title + ' ' + (e.by || e.author || e.director || '')).toLowerCase();
+      if (hay.indexOf(q) > -1 && secOk(e)) out.push(e);
+    }
+    out.forEach(function(e){
+      var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button';
+      var by = e.by || e.author || e.director || '';
+      b.textContent = e.title;
+      if (by){ var s = document.createElement('small'); s.textContent = ' ' + by + (e.year ? ', ' + e.year : ''); b.appendChild(s); }
+      b.onclick = function(){ add(e.title); };
+      li.appendChild(b); ul.appendChild(li);
+    });
+    if (!out.length){ var li = document.createElement('li'); li.className = 'hint'; li.textContent = 'No matches.'; ul.appendChild(li); }
+  });
+
+  function secOk(e){
+    var on = [].slice.call(document.querySelectorAll('#secs input:checked')).map(function(i){ return i.value; });
+    return !e.fmt || on.indexOf(e.fmt) > -1;
+  }
+  // Keyword fill
+  var kwCount = {}, kwList = [], picked = [];
+  function buildKw(){
+    catalogue.forEach(function(e){ e.kw.forEach(function(k){ var l = String(k).toLowerCase().trim(); if (l) kwCount[l] = (kwCount[l] || 0) + 1; }); });
+    kwList = Object.keys(kwCount).sort(function(a, b){ return kwCount[b] - kwCount[a] || (a < b ? -1 : 1); });
+    $('kwIn').disabled = !kwList.length;
+    if (!kwList.length) $('kwMsg').textContent = 'No keywords found in the catalogue.';
+  }
+  function renderChips(){
+    var c = $('chips'); c.innerHTML = '';
+    picked.forEach(function(k){
+      var d = document.createElement('span'); d.className = 'chip'; d.append(k);
+      var x = document.createElement('button'); x.className = 'x'; x.type = 'button'; x.textContent = '×';
+      x.setAttribute('aria-label', 'Remove keyword ' + k);
+      x.onclick = function(){ picked = picked.filter(function(p){ return p !== k; }); renderChips(); };
+      d.appendChild(x); c.appendChild(d);
+    });
+    $('kwGo').disabled = !picked.length;
+    $('kwIn').placeholder = picked.length >= 3 ? 'Three keywords picked' : 'Pick up to 3 keywords';
+  }
+  $('kwIn').addEventListener('input', function(){
+    var q = this.value.trim().toLowerCase(), ul = $('kwHits'); ul.innerHTML = '';
+    if (!q || picked.length >= 3) return;
+    var out = kwList.filter(function(k){ return k.indexOf(q) > -1 && picked.indexOf(k) < 0; }).slice(0, 8);
+    out.forEach(function(k){
+      var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button';
+      b.textContent = k; var s = document.createElement('small'); s.textContent = ' ' + kwCount[k]; b.appendChild(s);
+      b.onclick = function(){ picked.push(k); $('kwIn').value = ''; ul.innerHTML = ''; renderChips(); $('kwIn').focus(); };
+      li.appendChild(b); ul.appendChild(li);
+    });
+    if (!out.length){ var li = document.createElement('li'); li.className = 'hint'; li.textContent = 'No matching keyword.'; ul.appendChild(li); }
+  });
+  $('kwGo').onclick = function(){
+    if (spinning || !picked.length) return;
+    var n = parseInt($('kwN').value, 10), scored = [];
+    catalogue.forEach(function(e){
+      var have = e.kw.map(function(k){ return String(k).toLowerCase().trim(); });
+      var sc = picked.filter(function(k){ return have.indexOf(k) > -1; }).length;
+      if (sc && secOk(e)) scored.push({t: e.title, sc: sc, r: Math.random()});
+    });
+    scored.sort(function(a, b){ return b.sc - a.sc || a.r - b.r; });
+    var seen = {}, pick = [];
+    scored.forEach(function(x){ var l = x.t.toLowerCase(); if (!seen[l] && pick.length < n){ seen[l] = 1; pick.push(x); } });
+    if (!pick.length){ $('kwMsg').textContent = 'No titles match those keywords.'; return; }
+    if ($('kwRep').checked) items = [];
+    var added = 0;
+    pick.forEach(function(x){ if (add(x.t)) added++; });
+    $('kwMsg').textContent = scored.length + ' titles match. ' + added + ' added to the wheel.';
+  };
+
+  // Theme toggle, same mechanism as the main site (data-theme on html, pr-theme in storage)
+  (function(){
+    var b = $('prTheme'), r = document.documentElement;
+    function set(l){
+      if (l) r.setAttribute('data-theme', 'light'); else r.removeAttribute('data-theme');
+      b.querySelector('span').textContent = l ? 'Dark mode' : 'Light mode';
+      b.setAttribute('aria-label', l ? 'Switch to dark mode' : 'Switch to light mode');
+      pal(); renderList(); draw();
+    }
+    set(r.getAttribute('data-theme') === 'light');
+    b.addEventListener('click', function(){
+      var l = r.getAttribute('data-theme') !== 'light'; set(l);
+      try { localStorage.setItem('pr-theme', l ? 'light' : 'dark'); } catch(e){}
+    });
+  })();
+
+  load(); renderList(); draw(); loadCatalogue();
+})();
+</script>
+</body>
+</html>
