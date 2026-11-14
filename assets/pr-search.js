@@ -35,4 +35,5 @@ box.addEventListener('click',function(ev){var a=ev.target.closest('a');if(!a)ret
 document.addEventListener('mousedown',function(ev){if(!box.hidden&&!box.contains(ev.target)&&ev.target!==q)open(false);});
 document.addEventListener('keydown',function(ev){if(ev.key==='/'&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ev.preventDefault();q.focus();q.select();}});
 window.addEventListener('resize',function(){if(!box.hidden)place();});
+if(document.activeElement===q&&q.value.trim())draw();
 })();

@@ -18,10 +18,11 @@ GitHub Pages builds and serves this repo from branch `main`. `CNAME` points it a
 | `current/` | Current Academic Work | Monthly academic picks with an archive |
 | `random/` | Random Pick | One draw from the catalogue, by format, era, keyword or list |
 | `wheel/` | The Wheel | Add titles and spin |
-| `topics/` | The Index | Every entry by topic, with read marks |
+| `topics/` | The Index | Every entry by topic, with read marks. Up to three topics combine: `/topics/#gladio,tension` (add `?m=any` for any of them) |
 | `dossiers/gladio/` | Gladio Dossier | Long form dossier with graded holdings |
 | `curriculums/` | Pre-Made Curriculums | 99 themed routes plus 20 nonfiction shelves |
-| `library/` | The Lens and Build a Curriculum | Statement of the lens and the curriculum builder. The old browse view is retired; `#library?t=<topic>` links forward to The Index |
+| `library/` | Build a Curriculum | The curriculum builder. Old `#library?t=<topic>` links forward to The Index |
+| `about/` | About | Statement of the lens, how to use the site, how entries are graded |
 | `404.html` | Not found | Keeps the sidebar and pre-fills the search |
 
 Retired, kept only as redirects: `daily/` (An Article a Day), `slow-read/` (Deep Reads), `apprenticeship/`. `screen/` is retired, still present, and marked noindex.
@@ -40,9 +41,15 @@ Entry shape: `{id, t:title, by, y:year, k:type, g:evidence grade, s:one sentence
 
 Other filters also live in the hash and can be shared: `q`, `a` (author or director), `y0`, `y1`, `kw`, `pl` (reading list), `k` (type), `g` (evidence), `c` (country), `sort`.
 
-## Shared sidebar
+## Shared shell
 
-Every page carries its own copy of the sidebar, theme CSS and light mode palette (between the `<!--pr-theme-->` markers). A change to the sidebar has to be made on every page.
+The sidebar, search box, theme toggle, footer and light mode palette live in three files, loaded by every page:
+
+- `assets/pr-shell.js`: builds the sidebar and footer. The sidebar links are the `GROUPS` list at the top. Edit them there, once.
+- `assets/pr-shell.css`: sidebar, search results, footer, light mode palette.
+- `assets/pr-theme.css`: the Declassified theme layered over each page's own CSS. The Wheel keeps its own look and does not load this one.
+
+A page needs two lines to join the shell: the stylesheet links in `<head>` (between the `<!--pr-shell-->` markers, with its own `--file` number) and `<script src="/assets/pr-shell.js"></script>` as the first thing in `<body>`.
 
 ## Rules
 
