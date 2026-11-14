@@ -12,7 +12,7 @@ function find(v){var n=norm(v).trim(),k=n.split(/\s+/).filter(Boolean),out=[];if
   if(d.t===n||d.t.replace(/^(the|a|an) /,'')===n)sc+=20;else if(d.t.indexOf(n)===0)sc+=8;
   out.push([sc,d]);});
  out.sort(function(a,b){return b[0]-a[0]||a[1].t.localeCompare(b[1].t);});return out.map(function(x){return x[1].e;});}
-function href(e,v){return '/'+S[e.x].path+'/#q='+encodeURIComponent(v);}
+function href(e){return '/'+S[e.x].path+'/#id='+encodeURIComponent(e.id);}
 function place(){var r=q.getBoundingClientRect();box.style.top=Math.max(12,Math.min(r.top,window.innerHeight-300))+'px';}
 function open(o){box.hidden=!o;q.setAttribute('aria-expanded',o?'true':'false');if(o)place();}
 function draw(){var v=q.value.trim();if(!v){open(false);return;}
