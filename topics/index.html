@@ -338,7 +338,7 @@ const FORMS = Object.keys(SECT).map(k => SECT[k].label);
 const GRADES = ["Fiction", "Dramatization", "Primary text", "Primary document", "Peer reviewed", "Documented", "Theory", "Reportage", "Contested", "Disputed", "Movement publication"];
 const REGIONS = J.regions;
 const ITEMS = J.entries.map(e => ({
-  id: e.zid || (e.id.indexOf('z-') === 0 ? e.id.slice(2) : e.id), x: e.x,
+  id: e.zid || (e.id.indexOf('z-') === 0 ? e.id.slice(2) : e.id), eid: e.id, x: e.x,
   title: e.t, by: e.by || '', cite: (e.by || '') + (e.src ? '. ' + e.src : ''), grade: e.g, kind: e.k, form: SECT[e.x].label,
   year: e.y, url: e.url || '', doi: e.doi || '', note: e.note || '', annotate: e.pending ? '' : e.s,
   topics: e.tp || [], weak: e.wk || [], regions: e.rg || [], pl: e.pl || []
@@ -370,7 +370,7 @@ function card(i){
   const links = [];
   if (i.doi) links.push('<a href="https://doi.org/'+esc(i.doi)+'" target="_blank" rel="noopener">DOI</a>');
   if (i.url) links.push('<a href="'+esc(i.url)+'" target="_blank" rel="noopener">Source</a>');
-  links.push('<a href="/'+SECT[i.x].path+'/#id='+encodeURIComponent(i.id)+'">Open in '+esc(SECT[i.x].label)+'</a>');
+  links.push('<a href="/'+SECT[i.x].path+'/#id='+encodeURIComponent(i.eid)+'">Open in '+esc(SECT[i.x].label)+'</a>');
   const others = i.topics.filter(t => t !== current && CNT[t]).slice(0,4);
   return '<article class="card'+(isDone?' done':'')+'">'
     + '<div class="ctop">'
