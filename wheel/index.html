@@ -44,6 +44,10 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 .result .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
 .result .win{font-size:30px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1.1;color:var(--red);margin:4px 0}
 .result .by{color:var(--gray)}
+.result a.win{display:block;text-decoration:none}
+.result a.win:hover{text-decoration:underline;text-underline-offset:4px}
+.result .open{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line)}
+.result .open:hover{color:var(--red);border-color:var(--red)}
 .row{display:flex;gap:8px}
 input[type=text],select{flex:1;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:0;font-size:16px;background:var(--bg);color:var(--ink)}
 select{flex:none}
@@ -146,7 +150,7 @@ ul.items li:first-child{border-top:0}
 
 <script>
 (function(){
-  var MAX = 60, KEY = 'pr-wheel-items';
+  var MAX = 60, KEY = 'pr-wheel-items', SECT = {};
   var COLORS, TEXT, BG, RING, MUTED, FONT = '"Inter Tight", Helvetica, Arial, sans-serif';
   function pal(){
     var light = document.documentElement.getAttribute('data-theme') === 'light';
@@ -274,19 +278,35 @@ ul.items li:first-child{border-top:0}
   function show(i){
     var r = $('result'); r.innerHTML = '';
     var l = document.createElement('div'); l.className = 'lbl'; l.textContent = 'The wheel chose';
-    var w = document.createElement('div'); w.className = 'win'; w.textContent = items[i];
+    // Link the winner to its catalogue entry; an ambiguous or typed-in title opens a search instead
+    var name = items[i], low = name.trim().toLowerCase();
+    var m = catalogue.filter(function(x){ return x.title.trim().toLowerCase() === low && SECT[x.fmt]; });
+    var href = m.length === 1 ? '/' + SECT[m[0].fmt].path + '/#id=' + encodeURIComponent(m[0].id)
+             : m.length > 1 ? '/' + SECT[m[0].fmt].path + '/#q=' + encodeURIComponent(name) : '';
+    var w = document.createElement(href ? 'a' : 'div'); w.className = 'win'; w.textContent = name;
+    if (href) { w.href = href; w.title = 'Open this entry'; }
+    var sub = null;
+    if (href) {
+      sub = document.createElement('a'); sub.className = 'open'; sub.href = href;
+      sub.textContent = m.length === 1 ? 'Open in ' + SECT[m[0].fmt].label + ' →' : 'See the ' + m.length + ' entries with this title →';
+    } else {
+      sub = document.createElement('button'); sub.type = 'button'; sub.className = 'btn ghost sm'; sub.textContent = 'Search the files for it';
+      sub.onclick = function(){ var q = document.getElementById('prQ'); if (q) { q.value = name; q.focus(); q.dispatchEvent(new Event('input')); } };
+    }
+    var subRow = document.createElement('div'); subRow.style.margin = '2px 0 10px'; subRow.appendChild(sub);
     var row = document.createElement('div'); row.className = 'tools'; row.style.justifyContent = 'center';
     var rm = document.createElement('button'); rm.className = 'btn ghost sm'; rm.type = 'button'; rm.textContent = 'Remove it and spin again';
     rm.onclick = function(){ items.splice(i, 1); r.innerHTML = ''; changed(); };
     row.appendChild(rm);
-    r.append(l, w, row);
+    r.append(l, w, subRow, row);
   }
 
   // Catalogue quick add
   function loadCatalogue(){
     fetch('/data/catalogue.json').then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(d){
       var arr = Array.isArray(d) ? d : (d.items || d.entries || []);
-      catalogue = arr.filter(function(x){ return x && (x.t || x.title); }).map(function(x){ return {title: x.t || x.title, by: x.by || '', year: x.y || x.year || '', kw: x.kw || [], fmt: x.x || ''}; });
+      catalogue = arr.filter(function(x){ return x && (x.t || x.title); }).map(function(x){ return {title: x.t || x.title, by: x.by || '', year: x.y || x.year || '', kw: x.kw || [], fmt: x.x || '', id: x.id || ''}; });
+      if (d.sections) Object.keys(d.sections).forEach(function(k){ SECT[k] = d.sections[k]; });
       buildKw();
       $('qhint').textContent = catalogue.length.toLocaleString() + ' entries. Click one to add it.';
     }).catch(function(){
