@@ -125,7 +125,7 @@ ul.items li:first-child{border-top:0}
       <div class="panel">
         <h2>Fill by keywords</h2>
         <label class="sr" for="kwIn">Keyword</label>
-        <input type="text" id="kwIn" placeholder="Pick up to 3 keywords" autocomplete="off" style="width:100%" disabled>
+        <input type="text" id="kwIn" placeholder="Type any word, up to 3 (e.g. cocaine)" autocomplete="off" style="width:100%" disabled>
         <ul class="hits" id="kwHits"></ul>
         <div class="chips" id="chips"></div>
         <div class="secs" id="secs" role="group" aria-label="Sections">
@@ -142,7 +142,7 @@ ul.items li:first-child{border-top:0}
           <button class="btn" id="kwGo" type="button" disabled>Populate wheel</button>
         </div>
         <label class="hint" style="display:block"><input type="checkbox" id="kwRep" checked> Replace what is on the wheel</label>
-        <p class="hint" id="kwMsg">Titles that match more of your keywords come first.</p>
+        <p class="hint" id="kwMsg">Type any word and press Enter. It searches titles, authors, keywords and summaries; titles that match more of your words come first.</p>
       </div>
     </aside>
   </div>
@@ -305,7 +305,7 @@ ul.items li:first-child{border-top:0}
   function loadCatalogue(){
     fetch('/data/catalogue.json').then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(d){
       var arr = Array.isArray(d) ? d : (d.items || d.entries || []);
-      catalogue = arr.filter(function(x){ return x && (x.t || x.title); }).map(function(x){ return {title: x.t || x.title, by: x.by || '', year: x.y || x.year || '', kw: x.kw || [], fmt: x.x || '', id: x.id || ''}; });
+      catalogue = arr.filter(function(x){ return x && (x.t || x.title); }).map(function(x){ return {title: x.t || x.title, by: x.by || '', year: x.y || x.year || '', kw: x.kw || [], fmt: x.x || '', id: x.id || '', txt: [x.s, x.note, x.src, x.k, (x.pl || []).map(function(p){ return p.n; }).join(' ')].join(' ').toLowerCase()}; });
       if (d.sections) Object.keys(d.sections).forEach(function(k){ SECT[k] = d.sections[k]; });
       buildKw();
       $('qhint').textContent = catalogue.length.toLocaleString() + ' entries. Click one to add it.';
@@ -337,13 +337,27 @@ ul.items li:first-child{border-top:0}
     var on = [].slice.call(document.querySelectorAll('#secs input:checked')).map(function(i){ return i.value; });
     return !e.fmt || on.indexOf(e.fmt) > -1;
   }
-  // Keyword fill
+  // Keyword fill: any word works. Suggestions show catalogue keywords, but typing a word and pressing Enter (or comma) uses it as typed.
   var kwCount = {}, kwList = [], picked = [];
   function buildKw(){
     catalogue.forEach(function(e){ e.kw.forEach(function(k){ var l = String(k).toLowerCase().trim(); if (l) kwCount[l] = (kwCount[l] || 0) + 1; }); });
     kwList = Object.keys(kwCount).sort(function(a, b){ return kwCount[b] - kwCount[a] || (a < b ? -1 : 1); });
-    $('kwIn').disabled = !kwList.length;
-    if (!kwList.length) $('kwMsg').textContent = 'No keywords found in the catalogue.';
+    $('kwIn').disabled = false;
+  }
+  function esc(t){ return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function termScore(e, t){
+    var re = t.length < 4 ? new RegExp('\\b' + esc(t) + '\\b') : new RegExp(esc(t));
+    var have = e.kw.map(function(k){ return String(k).toLowerCase().trim(); });
+    if (have.indexOf(t) > -1) return 3;
+    if (have.some(function(k){ return re.test(k); })) return 2.5;
+    if (re.test((e.title + ' ' + e.by).toLowerCase())) return 2;
+    if (re.test(e.txt || '')) return 1;
+    return 0;
+  }
+  function countFor(t){ var n = 0; catalogue.forEach(function(e){ if (secOk(e) && termScore(e, t) > 0) n++; }); return n; }
+  function addTerm(k){
+    k = k.trim().toLowerCase(); if (!k || picked.indexOf(k) > -1 || picked.length >= 3) return;
+    picked.push(k); $('kwIn').value = ''; $('kwHits').innerHTML = ''; renderChips(); $('kwIn').focus();
   }
   function renderChips(){
     var c = $('chips'); c.innerHTML = '';
@@ -355,32 +369,35 @@ ul.items li:first-child{border-top:0}
       d.appendChild(x); c.appendChild(d);
     });
     $('kwGo').disabled = !picked.length;
-    $('kwIn').placeholder = picked.length >= 3 ? 'Three keywords picked' : 'Pick up to 3 keywords';
+    $('kwIn').placeholder = picked.length >= 3 ? 'Three words picked' : 'Type any word, up to 3 (e.g. cocaine)';
   }
+  $('kwIn').addEventListener('keydown', function(ev){
+    if ((ev.key === 'Enter' || ev.key === ',') && this.value.trim()){ ev.preventDefault(); addTerm(this.value.replace(/,/g, '')); }
+  });
   $('kwIn').addEventListener('input', function(){
     var q = this.value.trim().toLowerCase(), ul = $('kwHits'); ul.innerHTML = '';
     if (!q || picked.length >= 3) return;
-    var out = kwList.filter(function(k){ return k.indexOf(q) > -1 && picked.indexOf(k) < 0; }).slice(0, 8);
-    out.forEach(function(k){
-      var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button';
-      b.textContent = k; var s = document.createElement('small'); s.textContent = ' ' + kwCount[k]; b.appendChild(s);
-      b.onclick = function(){ picked.push(k); $('kwIn').value = ''; ul.innerHTML = ''; renderChips(); $('kwIn').focus(); };
-      li.appendChild(b); ul.appendChild(li);
+    var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button';
+    b.textContent = 'Use “' + q + '”'; var s0 = document.createElement('small'); s0.textContent = ' ' + countFor(q) + ' titles'; b.appendChild(s0);
+    b.onclick = function(){ addTerm(q); }; li.appendChild(b); ul.appendChild(li);
+    kwList.filter(function(k){ return k !== q && k.indexOf(q) > -1 && picked.indexOf(k) < 0; }).slice(0, 6).forEach(function(k){
+      var l2 = document.createElement('li'), b2 = document.createElement('button'); b2.type = 'button';
+      b2.textContent = k; var s = document.createElement('small'); s.textContent = ' keyword, ' + kwCount[k]; b2.appendChild(s);
+      b2.onclick = function(){ addTerm(k); };
+      l2.appendChild(b2); ul.appendChild(l2);
     });
-    if (!out.length){ var li = document.createElement('li'); li.className = 'hint'; li.textContent = 'No matching keyword.'; ul.appendChild(li); }
   });
   $('kwGo').onclick = function(){
     if (spinning || !picked.length) return;
     var n = parseInt($('kwN').value, 10), scored = [];
     catalogue.forEach(function(e){
-      var have = e.kw.map(function(k){ return String(k).toLowerCase().trim(); });
-      var sc = picked.filter(function(k){ return have.indexOf(k) > -1; }).length;
+      var sc = 0; picked.forEach(function(k){ sc += termScore(e, k); });
       if (sc && secOk(e)) scored.push({t: e.title, sc: sc, r: Math.random()});
     });
     scored.sort(function(a, b){ return b.sc - a.sc || a.r - b.r; });
     var seen = {}, pick = [];
     scored.forEach(function(x){ var l = x.t.toLowerCase(); if (!seen[l] && pick.length < n){ seen[l] = 1; pick.push(x); } });
-    if (!pick.length){ $('kwMsg').textContent = 'No titles match those keywords.'; return; }
+    if (!pick.length){ $('kwMsg').textContent = 'No titles match those words.'; return; }
     if ($('kwRep').checked) items = [];
     var added = 0;
     pick.forEach(function(x){ if (add(x.t)) added++; });
