@@ -108,7 +108,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;
 const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const people = e => String(e.by || '').replace(/^(Dir\.|Directed by|Created by|Written by)\s*/i, '')
   .split(/\.\s*(?:Written by|Dir\.)\s*|\s+and\s+|\s*&\s*|,\s*|;\s*/).map(s => s.replace(/\s*\((eds?|ed)\.\)\s*$/,'').trim()).filter(s => s && s.length > 1 && !/^et al\.?$/i.test(s) && !/^others$/i.test(s));
-DATA.forEach((e, i) => { e._i = i; e._p = people(e); e._h = norm([e.t, e.by, e.s, e.src, e.k, e.c, e.g, (e.kw||[]).join(' '), e.note, (e.pl||[]).map(p => p.n + ' ' + p.d).join(' ')].join(' ')); });
+DATA.forEach((e, i) => { e._i = i; e._p = people(e); e._h = norm([e.t, e.by, e.s, e.src, e.k, e.c, e.g, (e.kw||[]).join(' '), (e.tg||[]).join(' '), e.note, (e.pl||[]).map(p => p.n + ' ' + p.d).join(' ')].join(' ')); });
 const YEARS = DATA.map(e => e.y).filter(Boolean), YMIN = Math.min(...YEARS), YMAX = Math.max(new Date().getFullYear(), ...YEARS);
 const NOW = new Date().getFullYear();
 const yr = y => y == null ? 'n.d.' : (y < 0 ? (-y) + ' BCE' : (y < 1000 ? 'c. ' + y : y));
@@ -173,6 +173,7 @@ function card(e) {
     (meta.length ? '<div class="x-meta">' + meta.join(' · ') + '</div>' : '') +
     (e.pl && e.pl.length ? '<div class="x-pls">' + e.pl.map(p => '<div class="x-plrow"><button type="button" class="x-pl" data-pl="' + esc(p.n) + '" title="Show everything on the ' + esc(p.n) + ' list">' + esc(p.n) + '</button>' + (p.d ? '<span class="x-pld">' + esc(p.d) + '</span>' : '') + '</div>').join('') + '</div>' : '') +
     (e.kw && e.kw.length ? '<div class="x-kws">' + e.kw.map(k => '<button type="button" data-kw="' + esc(k) + '">' + esc(k) + '</button>').join('') + '</div>' : '') +
+    (e.tg && e.tg.length ? '<div class="x-tgs">' + e.tg.map(t => '<button type="button" data-tag="' + esc(t) + '">' + esc(t) + '</button>').join('') + '</div>' : '') +
     (e.note ? '<details class="x-note"><summary>Reader\'s note</summary><p>' + esc(e.note) + '</p></details>' : '') +
     (e.url ? '<a class="x-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">Open source ↗</a>' : '') +
     '</article>';
@@ -214,5 +215,5 @@ render();
 
 }).catch(function () { document.getElementById('count').textContent = 'The files could not be loaded. Reload the page to try again.'; });
 </script>
-</body>
+<script src="/assets/pr-covers.js"></script></body>
 </html>

@@ -305,7 +305,7 @@ ul.items li:first-child{border-top:0}
   function loadCatalogue(){
     fetch('/data/catalogue.json').then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(d){
       var arr = Array.isArray(d) ? d : (d.items || d.entries || []);
-      catalogue = arr.filter(function(x){ return x && (x.t || x.title); }).map(function(x){ return {title: x.t || x.title, by: x.by || '', year: x.y || x.year || '', kw: x.kw || [], fmt: x.x || '', id: x.id || '', txt: [x.s, x.note, x.src, x.k, (x.pl || []).map(function(p){ return p.n; }).join(' ')].join(' ').toLowerCase()}; });
+      catalogue = arr.filter(function(x){ return x && (x.t || x.title); }).map(function(x){ return {title: x.t || x.title, by: x.by || '', year: x.y || x.year || '', kw: (x.kw || []).concat(x.tg || []), fmt: x.x || '', id: x.id || '', txt: [x.s, x.note, x.src, x.k, (x.pl || []).map(function(p){ return p.n; }).join(' ')].join(' ').toLowerCase()}; });
       if (d.sections) Object.keys(d.sections).forEach(function(k){ SECT[k] = d.sections[k]; });
       buildKw();
       $('qhint').textContent = catalogue.length.toLocaleString() + ' entries. Click one to add it.';
