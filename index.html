@@ -113,6 +113,31 @@ a{color:var(--red)}
 .x-route p{margin:0;font-size:13.5px;color:var(--ink2)}
 .x-route span{font:800 11px/1 "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:auto;padding-top:6px}
 @media(max-width:900px){.x-lists{grid-template-columns:1fr}.x-portal{grid-template-columns:1fr}.x-routes{grid-template-columns:1fr}.x-mission{grid-template-columns:1fr}.x-mission div+div{border-left:0;border-top:1px dashed var(--line)}.x-tile{min-height:0}}
+/* compact monthly row so the four formats show on load */
+.x-trio{gap:12px;margin:0 0 16px}
+.x-tc{display:grid;grid-template-columns:72px 1fr;column-gap:14px;row-gap:3px;padding:10px 12px;align-content:start;align-items:start}
+.x-tc>*{grid-column:2}
+.x-tc .x-eyebrow,.x-tc .x-tmast,.x-tc.ac>*{grid-column:1/-1}
+.x-tc .x-timg{grid-column:1;grid-row:2/6;height:108px;width:72px;padding:0;border:1px solid var(--line)}
+.x-tc .x-timg img{width:100%;height:100%;object-fit:cover}
+.x-tc .x-bsum{display:none!important}
+.x-trio{align-items:start}
+.x-tc .x-tmast{height:auto!important;border:0!important;padding:0!important;background:none!important;display:block!important;color:var(--gray)}
+.hero h1{font-size:44px!important;line-height:1!important;max-width:none}
+.x-portal{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:24px}
+.x-tile{min-width:0;overflow-wrap:anywhere}
+.x-tile li{overflow-wrap:break-word}
+.x-tile{padding:16px 16px 14px}
+.x-tile h2{font-size:21px!important;line-height:1.05}
+@media(max-width:1250px){.x-portal{grid-template-columns:1fr 1fr}}
+.hero .x-lede{font-size:15px;margin:4px 0 0}
+.x-tc h2{font-size:15px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.x-tc.ac h2{-webkit-line-clamp:2}
+.x-tc .x-tmast{font-size:12px}
+.x-tc .x-bgo{margin-top:6px;padding:8px 12px;font-size:11px}
+.x-tc.ac div[style]{margin-top:6px!important}
+.hero{padding:12px 0 16px;margin-bottom:16px}
+.x-tile{min-height:0}
 </style>
 <!--pr-shell--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/pr-theme.css"><link rel="stylesheet" href="/assets/pr-shell.css"><style></style><!--/pr-shell-->
 </head>
