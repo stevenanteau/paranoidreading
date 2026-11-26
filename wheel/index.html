@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script>try{if(localStorage.getItem('pr-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
 <style>
-:root{color-scheme:dark;--red:#d7263d;--red2:#e2475b;--reddim:#7d1622;--ink:#e6e1d3;--ink2:#c9c3b3;--gray:#8e897d;--faint:#5c584f;--line:#3d3a33;--bg:#0b0b0a;--panel:#11110f;--hov:#141412;--onred:#fff}
-html[data-theme="light"]{color-scheme:light;--red:#ba1c31;--red2:#bd192e;--reddim:#801320;--ink:#39362c;--ink2:#545048;--gray:#605e59;--faint:#72706b;--line:#aeaca8;--bg:#ececeb;--panel:#e7e7e6;--hov:#e5e5e3}
+:root{color-scheme:dark;--red:#d7263d;--red2:#e2475b;--reddim:#7d1622;--ink:#ececec;--ink2:#c8c8c8;--gray:#9a9a9a;--faint:#777777;--line:#2e2e2e;--bg:#0a0a0a;--panel:#11110f;--hov:#141414;--onred:#fff}
+html[data-theme="light"]{color-scheme:light;--red:#ba1c31;--red2:#bd192e;--reddim:#801320;--ink:#2e2e2e;--ink2:#545048;--gray:#5a5a5a;--faint:#6a6a6a;--line:#b0b0b0;--bg:#ececeb;--panel:#e7e7e6;--hov:#e5e5e3}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter Tight",Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
 a{color:var(--red)}button,input,select{font-family:inherit}
@@ -78,7 +78,7 @@ ul.items li:first-child{border-top:0}
 .chip{display:inline-flex;align-items:center;gap:4px;background:var(--hov);border:1px solid var(--red);color:var(--red);padding:3px 4px 3px 10px;font-size:12px;letter-spacing:.04em}
 .chip .x{font-size:16px;padding:0 4px;color:var(--red)}
 </style>
-<link rel="stylesheet" href="/assets/pr-shell.css"><style>:root{--file:"PR/0041"}</style>
+<link rel="stylesheet" href="/assets/pr-shell.css"><style></style>
 </head>
 <body>
 <script src="/assets/pr-shell.js"></script>
@@ -156,12 +156,12 @@ ul.items li:first-child{border-top:0}
     var light = document.documentElement.getAttribute('data-theme') === 'light';
     if (light){
       COLORS = ['#ba1c31','#dedcd8','#801320','#cfcdc9','#92201d','#e3e2df'];
-      TEXT = ['#fff','#39362c','#fff','#39362c','#fff','#39362c'];
+      TEXT = ['#fff','#2e2e2e','#fff','#2e2e2e','#fff','#2e2e2e'];
       BG = '#ececeb'; RING = '#ba1c31'; MUTED = '#83817b';
     } else {
-      COLORS = ['#d7263d','#2a2926','#7d1622','#3d3a33','#a31c2e','#1c1b18'];
-      TEXT = ['#fff','#e6e1d3','#fff','#e6e1d3','#fff','#e6e1d3'];
-      BG = '#0b0b0a'; RING = '#d7263d'; MUTED = '#8e897d';
+      COLORS = ['#d7263d','#2a2926','#7d1622','#2e2e2e','#a31c2e','#1c1b18'];
+      TEXT = ['#fff','#ececec','#fff','#ececec','#fff','#ececec'];
+      BG = '#0a0a0a'; RING = '#d7263d'; MUTED = '#9a9a9a';
     }
   }
   pal();

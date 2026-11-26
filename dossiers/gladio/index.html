@@ -13,12 +13,12 @@
 <meta name="description" content="A reading list for the parapolitical, the paranoid and the Marxist.">
 <style>
   :root{--ox:var(--c-6b1414,#6B1414);--ox2:var(--c-8f2320,#8f2320);--ink:var(--c-1a1a1a,#1a1a1a);--gray:var(--c-5a5a5a,#5a5a5a);--faint:var(--c-c9b8b8,#c9b8b8);
-    --paper:var(--c-faf7f2,#faf7f2);--card:var(--c-ffffff,#ffffff);--line:var(--c-e7ddd6,#e7ddd6);--shadow:0 1px 2px rgba(0,0,0,.05)}
+    --paper:var(--c-f7f7f7,#f7f7f7);--card:var(--c-ffffff,#ffffff);--line:var(--c-e7ddd6,#e7ddd6);--shadow:0 1px 2px rgba(0,0,0,.05)}
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper);color:var(--ink);font-family:Georgia,"Iowan Old Style","Times New Roman",serif;line-height:1.5;-webkit-font-smoothing:antialiased}
   a{color:var(--ox)}
   .wrap{max-width:900px;margin:0 auto;padding:0 18px 80px}
-  header{background:linear-gradient(180deg,var(--c-fbf9f5,#fbf9f5),var(--c-f4ede4,#f4ede4));border-bottom:3px solid var(--ox);position:sticky;top:0;z-index:20}
+  header{background:linear-gradient(180deg,var(--c-fafafa,#fafafa),var(--c-f2f2f2,#f2f2f2));border-bottom:3px solid var(--ox);position:sticky;top:0;z-index:20}
   .head-inner{max-width:900px;margin:0 auto;padding:14px 18px 12px}
   .brand{font-size:12px;letter-spacing:.28em;color:var(--ox);font-weight:bold;text-transform:uppercase}
   .brand a{text-decoration:none}
@@ -64,20 +64,20 @@
   .card.done .ctitle{text-decoration:line-through;text-decoration-color:var(--faint)}
   .cite{margin:3px 0 0;font-size:13px;color:var(--gray)}
   .badges{margin:7px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-  .badge{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--gray);background:var(--c-fbf9f5,#fbf9f5);white-space:nowrap}
+  .badge{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--gray);background:var(--c-fafafa,#fafafa);white-space:nowrap}
   .badge.kind{color:var(--ox);border-color:var(--c-e3cfcf,#e3cfcf);background:var(--c-fbf3f0,#fbf3f0)}
   .g-primarydocument{color:var(--c-2d4f6b,#2d4f6b);border-color:var(--c-cfdbe6,#cfdbe6);background:var(--c-f1f6fa,#f1f6fa)}
   .g-peerreviewed{color:var(--c-2f5d3a,#2f5d3a);border-color:var(--c-cfe0d2,#cfe0d2);background:var(--c-f2f8f3,#f2f8f3)}
   .g-documented{color:var(--c-2f5d3a,#2f5d3a);border-color:var(--c-cfe0d2,#cfe0d2);background:var(--c-f6faf6,#f6faf6)}
   .g-reportage{color:var(--c-5a5a5a,#5a5a5a)}
-  .g-contested{color:var(--c-8a6a1f,#8a6a1f);border-color:var(--c-e8dcbd,#e8dcbd);background:var(--c-fbf7ea,#fbf7ea)}
+  .g-contested{color:var(--c-8a6a1f,#8a6a1f);border-color:var(--c-e0e0e0,#e0e0e0);background:var(--c-f7f7f7,#f7f7f7)}
   .g-disputed{color:var(--ox2);border-color:var(--c-e3cfcf,#e3cfcf);background:var(--c-fbf3f0,#fbf3f0)}
   .g-movementpublication{color:var(--c-6b3f6b,#6b3f6b);border-color:var(--c-e0cfe0,#e0cfe0);background:var(--c-f9f2f9,#f9f2f9)}
   .g-dramatization{color:var(--c-4a4a6a,#4a4a6a);border-color:var(--c-d6d6e4,#d6d6e4);background:var(--c-f5f5fa,#f5f5fa)}
   .g-fiction{color:var(--c-5a5a5a,#5a5a5a)}
-  .g-unidentified{color:var(--c-8a6a1f,#8a6a1f);border-color:var(--c-e8dcbd,#e8dcbd);background:var(--c-fbf7ea,#fbf7ea)}
+  .g-unidentified{color:var(--c-8a6a1f,#8a6a1f);border-color:var(--c-e0e0e0,#e0e0e0);background:var(--c-f7f7f7,#f7f7f7)}
   .flag{font-size:11px;font-family:Arial,Helvetica,sans-serif;color:var(--ox2)}
-  .note{margin:8px 0 0;font-size:13.5px;color:var(--c-444444,#444);background:var(--c-fbf9f5,#fbf9f5);border-left:3px solid var(--faint);padding:6px 10px;border-radius:0 6px 6px 0}
+  .note{margin:8px 0 0;font-size:13.5px;color:var(--c-444444,#444);background:var(--c-fafafa,#fafafa);border-left:3px solid var(--faint);padding:6px 10px;border-radius:0 6px 6px 0}
   .note b{color:var(--ink)}
   .hyp{margin:9px 0 0;font-size:14.5px;color:var(--c-333333,#333);line-height:1.55}
   .links{margin:8px 0 0;font-size:13px}
@@ -87,7 +87,7 @@
   footer a{font-weight:bold}
   @media(max-width:560px){h1{font-size:22px}.controls input[type=search]{min-width:120px}.ctitle{font-size:15.5px}}
 </style>
-<!--pr-shell--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/pr-theme.css"><link rel="stylesheet" href="/assets/pr-shell.css"><style>:root{--file:"PR/0008"}</style><!--/pr-shell-->
+<!--pr-shell--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/pr-theme.css"><link rel="stylesheet" href="/assets/pr-shell.css"><style></style><!--/pr-shell-->
 </head>
 <body><script src="/assets/pr-shell.js"></script>
 

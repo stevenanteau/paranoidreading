@@ -7,13 +7,13 @@
 <!--pr-meta--><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="canonical" href="https://paranoidreading.com/film-tv/"><meta property="og:site_name" content="Paranoid Reading"><meta property="og:type" content="website"><meta property="og:title" content="Film and TV · Paranoid Reading"><meta property="og:description" content="The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system."><meta property="og:url" content="https://paranoidreading.com/film-tv/"><meta property="og:image" content="https://paranoidreading.com/img/og-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Paranoid Reading: A reading list for the parapolitical, the paranoid and the Marxist."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Film and TV · Paranoid Reading"><meta name="twitter:description" content="The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system."><meta name="twitter:image" content="https://paranoidreading.com/img/og-card.png"><!--/pr-meta-->
 <meta name="description" content="The conspiracy thriller, the political cinema of the Years of Lead, the documentary record and the television that understood the system.">
 <style>
-:root{color-scheme:dark;--red:var(--c-d7263d,#d7263d);--ink:var(--c-e6e1d3,#e6e1d3);--ink2:var(--c-c9c3b3,#c9c3b3);--gray:var(--c-8e897d,#8e897d);--faint:var(--c-5c584f,#5c584f);--line:var(--c-3d3a33,#3d3a33);--bg:var(--c-0b0b0a,#0b0b0a);--hov:var(--c-141412,#141412)}
+:root{color-scheme:dark;--red:var(--c-d7263d,#d7263d);--ink:var(--c-ececec,#ececec);--ink2:var(--c-c8c8c8,#c8c8c8);--gray:var(--c-9a9a9a,#9a9a9a);--faint:var(--c-777777,#777777);--line:var(--c-2e2e2e,#2e2e2e);--bg:var(--c-0a0a0a,#0a0a0a);--hov:var(--c-141414,#141414)}
 *{box-sizing:border-box}html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--red)}
 .x-main{max-width:1080px;margin:0 auto;padding:30px 40px 80px}
 .x-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--red);margin:0 0 6px}
-.x-lede{font-size:18px;line-height:1.5;color:var(--c-d4cebf,#d4cebf);max-width:720px;margin:0 0 6px}
+.x-lede{font-size:18px;line-height:1.5;color:var(--c-d0d0d0,#d0d0d0);max-width:720px;margin:0 0 6px}
 .x-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(max-width:760px){.x-main{padding:20px 16px 60px}.x-lede{font-size:16px}}
 
@@ -72,7 +72,7 @@ a{color:var(--red)}
 @media(max-width:900px){.x-list{grid-template-columns:1fr}}
 @media(max-width:760px){.x-filters{grid-template-columns:1fr 1fr;padding:12px}.x-f.q,.x-f.a,.x-f.y,.x-f.kw{grid-column:1/-1}.x-f.s3,.x-f.s4{grid-column:span 1}}
 </style>
-<!--pr-shell--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/pr-theme.css"><link rel="stylesheet" href="/assets/pr-shell.css"><style>:root{--file:"PR/0022"}</style><!--/pr-shell-->
+<!--pr-shell--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/pr-theme.css"><link rel="stylesheet" href="/assets/pr-shell.css"><style></style><!--/pr-shell-->
 </head>
 <body><script src="/assets/pr-shell.js"></script>
 <main class="x-main">
@@ -166,7 +166,7 @@ function card(e) {
   if (e.src) meta.push(esc(e.src));
   if (e.c) meta.push(esc(e.c));
   if (e.g && e.g !== 'Fiction') meta.push('Evidence: <b>' + esc(e.g) + '</b>');
-  return '<article class="x-entry">' +
+  return '<article class="x-entry">' + (window.prCover ? prCover(e) : '') +
     '<div class="x-top"><span class="x-k">' + esc(e.k) + '</span><span class="x-yrb">' + yr(e.y) + '</span></div>' +
     '<h3 class="x-title">' + esc(e.t) + '</h3>' + (e._p.length ? byHtml : by) +
     '<p class="x-sum' + (e.pending ? ' pend' : '') + '">' + esc(e.s) + '</p>' +
@@ -195,6 +195,7 @@ $('moreBtn').addEventListener('click', () => { SHOWN += 50; render(); });
 $('rnd').addEventListener('click', () => { const r = filtered().filter(e => !e.pending); if (!r.length) return; const e = r[Math.floor(Math.random() * r.length)];
   $('pick').innerHTML = '<div class="x-pickwrap"><p class="x-eyebrow">Random pick from ' + r.length + ' entries</p><div class="x-list" style="grid-template-columns:1fr">' + card(e) + '</div></div>'; $('pick').scrollIntoView({behavior: 'smooth', block: 'nearest'}); });
 $('reset').addEventListener('click', reset);
+window.prRerender = function () { render(); };
 function reset() { F.forEach(f => $(EL[f]).value = f === 'sort' ? 'title' : ''); go(true); }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-kw],[data-pl],[data-person],[data-era],[data-clear],[data-reset],[data-only]'); if (!b) return;
@@ -214,5 +215,5 @@ render();
 
 }).catch(function () { document.getElementById('count').textContent = 'The files could not be loaded. Reload the page to try again.'; });
 </script>
-</body>
+<script src="/assets/pr-covers.js"></script></body>
 </html>
